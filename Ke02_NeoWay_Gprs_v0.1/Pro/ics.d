@@ -1,0 +1,14 @@
+.\ics.o: ..\drivers\ics.c
+.\ics.o: ..\common\common.h
+.\ics.o: ..\cpu\arm_cm0.h
+.\ics.o: ..\platforms\ke02_config.h
+.\ics.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\ics.o: ..\cpu\headers\MKE02Z2.h
+.\ics.o: ..\cpu\core_cm0plus.h
+.\ics.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\ics.o: ..\cpu\core_cmFunc.h
+.\ics.o: ..\cpu\system_MKE02Z2.h
+.\ics.o: ..\common\assert.h
+.\ics.o: ..\common\io.h
+.\ics.o: ..\common\stdlib.h
+.\ics.o: ..\drivers\ics.h

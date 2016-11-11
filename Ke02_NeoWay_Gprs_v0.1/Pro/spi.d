@@ -1,0 +1,14 @@
+.\spi.o: ..\drivers\spi.c
+.\spi.o: ..\common\common.h
+.\spi.o: ..\cpu\arm_cm0.h
+.\spi.o: ..\platforms\ke02_config.h
+.\spi.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\spi.o: ..\cpu\headers\MKE02Z2.h
+.\spi.o: ..\cpu\core_cm0plus.h
+.\spi.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\spi.o: ..\cpu\core_cmFunc.h
+.\spi.o: ..\cpu\system_MKE02Z2.h
+.\spi.o: ..\common\assert.h
+.\spi.o: ..\common\io.h
+.\spi.o: ..\common\stdlib.h
+.\spi.o: ..\drivers\spi.h

@@ -1,0 +1,17 @@
+.\start.o: ..\cpu\start.c
+.\start.o: ..\cpu\start.h
+.\start.o: ..\common\common.h
+.\start.o: ..\cpu\arm_cm0.h
+.\start.o: ..\platforms\ke02_config.h
+.\start.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\start.o: ..\cpu\headers\MKE02Z2.h
+.\start.o: ..\cpu\core_cm0plus.h
+.\start.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\start.o: ..\cpu\core_cmFunc.h
+.\start.o: ..\cpu\system_MKE02Z2.h
+.\start.o: ..\common\assert.h
+.\start.o: ..\common\io.h
+.\start.o: ..\common\stdlib.h
+.\start.o: ..\drivers\wdog.h
+.\start.o: ..\drivers\sim.h
+.\start.o: ..\cpu\sysinit.h

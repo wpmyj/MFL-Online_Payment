@@ -1,0 +1,14 @@
+.\i2c.o: ..\drivers\i2c.c
+.\i2c.o: ..\common\common.h
+.\i2c.o: ..\cpu\arm_cm0.h
+.\i2c.o: ..\platforms\ke02_config.h
+.\i2c.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\i2c.o: ..\cpu\headers\MKE02Z2.h
+.\i2c.o: ..\cpu\core_cm0plus.h
+.\i2c.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\i2c.o: ..\cpu\core_cmFunc.h
+.\i2c.o: ..\cpu\system_MKE02Z2.h
+.\i2c.o: ..\common\assert.h
+.\i2c.o: ..\common\io.h
+.\i2c.o: ..\common\stdlib.h
+.\i2c.o: ..\drivers\i2c.h

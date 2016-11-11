@@ -1,0 +1,14 @@
+.\ftm.o: ..\drivers\ftm.c
+.\ftm.o: ..\common\common.h
+.\ftm.o: ..\cpu\arm_cm0.h
+.\ftm.o: ..\platforms\ke02_config.h
+.\ftm.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\ftm.o: ..\cpu\headers\MKE02Z2.h
+.\ftm.o: ..\cpu\core_cm0plus.h
+.\ftm.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\ftm.o: ..\cpu\core_cmFunc.h
+.\ftm.o: ..\cpu\system_MKE02Z2.h
+.\ftm.o: ..\common\assert.h
+.\ftm.o: ..\common\io.h
+.\ftm.o: ..\common\stdlib.h
+.\ftm.o: ..\drivers\ftm.h

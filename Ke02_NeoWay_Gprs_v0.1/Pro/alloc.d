@@ -1,0 +1,13 @@
+.\alloc.o: ..\common\alloc.c
+.\alloc.o: ..\common\common.h
+.\alloc.o: ..\cpu\arm_cm0.h
+.\alloc.o: ..\platforms\ke02_config.h
+.\alloc.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\alloc.o: ..\cpu\headers\MKE02Z2.h
+.\alloc.o: ..\cpu\core_cm0plus.h
+.\alloc.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\alloc.o: ..\cpu\core_cmFunc.h
+.\alloc.o: ..\cpu\system_MKE02Z2.h
+.\alloc.o: ..\common\assert.h
+.\alloc.o: ..\common\io.h
+.\alloc.o: ..\common\stdlib.h

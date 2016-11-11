@@ -1,0 +1,14 @@
+.\crc.o: ..\drivers\crc.c
+.\crc.o: ..\common\common.h
+.\crc.o: ..\cpu\arm_cm0.h
+.\crc.o: ..\platforms\ke02_config.h
+.\crc.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\crc.o: ..\cpu\headers\MKE02Z2.h
+.\crc.o: ..\cpu\core_cm0plus.h
+.\crc.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\crc.o: ..\cpu\core_cmFunc.h
+.\crc.o: ..\cpu\system_MKE02Z2.h
+.\crc.o: ..\common\assert.h
+.\crc.o: ..\common\io.h
+.\crc.o: ..\common\stdlib.h
+.\crc.o: ..\drivers\crc.h

@@ -1,0 +1,125 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Ke02_NeoWay_Gprs_v0.1\Pro\Ke02_NeoWay_Gprs_v0.1.uvproj
+Project File Date:  09/27/2016
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling alloc.c...
+compiling assert.c...
+compiling io.c...
+compiling memtest.c...
+compiling queue.c...
+compiling stdlib.c...
+compiling arm_cm0.c...
+compiling sysinit.c...
+compiling systick.c...
+compiling vectors.c...
+assembling startup_MKE02Z2.s...
+compiling start.c...
+compiling acmp.c...
+compiling adc.c...
+compiling crc.c...
+compiling flash.c...
+compiling ftm.c...
+compiling gpio.c...
+compiling i2c.c...
+compiling ics.c...
+compiling kbi.c...
+compiling pit.c...
+compiling pmc.c...
+compiling rtc.c...
+compiling sim.c...
+compiling spi.c...
+compiling uart.c...
+compiling wdog.c...
+compiling main.c...
+compiling uartApp.c...
+..\user\uartApp.c(4): warning:  #550-D: variable "pUART_RxBuff" was set but never used
+  static  uint8  *pUART_RxBuff[MAX_UART_NO] = {NULL};           /* pointer to TxBuf */
+..\user\uartApp.c(6): warning:  #550-D: variable "gu16UART_RxBuffPos" was set but never used
+  static  uint16 gu16UART_RxBuffPos[MAX_UART_NO] = {0};        /* read position to TxBuf */
+..\user\uartApp.c: 2 warnings, 0 errors
+compiling AdcApp.c...
+compiling RtcApp.c...
+compiling Init.c...
+compiling NeoWay_Gprs.c...
+linking...
+Program Size: Code=8820 RO-data=532 RW-data=48 ZI-data=1712  
+".\Ke02_NeoWay_Gprs_v0.1" - 0 Error(s), 2 Warning(s).
+Load "E:\\Easepal\\项目\\在线自助支付操作系统\\M590E\\程序\\Ke02_NeoWay_Gprs_v0.1\\Pro\\Ke02_NeoWay_Gprs_v0.1" 
+Set JLink Project File to "E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Ke02_NeoWay_Gprs_v0.1\Pro\JLinkSettings.ini"
+* JLink Info: Device "MKE02Z64XXX4" selected.
+ 
+JLink info:
+------------
+DLL: V5.12b, compiled Apr 15 2016 14:54:46
+Firmware: J-Link V9 compiled Mar 29 2016 18:46:37
+Hardware: V9.40
+S/N : 59401044 
+Feature(s) : RDI, GDB, FlashDL, FlashBP, JFlash 
+ 
+* JLink Info: Found SWD-DP with ID 0x0BC11477
+* JLink Info: Found SWD-DP with ID 0x0BC11477
+* JLink Info: Found Cortex-M0 r0p0, Little endian.
+* JLink Info: FPUnit: 2 code (BP) slots and 0 literal slots
+* JLink Info: CoreSight components:
+* JLink Info: ROMTbl 0 @ F0002000
+* JLink Info: ROMTbl 0 [0]: F00FD000, CID: B105100D, PID: 000BB4C0 ROM Table
+* JLink Info: ROMTbl 1 @ E00FF000
+* JLink Info: ROMTbl 1 [0]: FFF0F000, CID: B105E00D, PID: 000BB008 SCS
+* JLink Info: ROMTbl 1 [1]: FFF02000, CID: B105E00D, PID: 000BB00A DWT
+* JLink Info: ROMTbl 1 [2]: FFF03000, CID: B105E00D, PID: 000BB00B FPB
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: MKE02Z64xxx4
+VTarget = 4.572V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 0
+Hardware-Breakpoints: 2
+Software-Breakpoints: 8192
+Watchpoints:          2
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+kpoints: 2
+Software-Breakpoints: 8192
+Watchpoints:          2
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+Load "E:\\Easepal\\项目\\在线自助支付操作系统\\M590E\\程序\\Ke02_NeoWay_Gprs_v0.1\\Pro\\Ke02_NeoWay_Gprs_v0.1" 
+Set JLink Project File to "E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Ke02_NeoWay_Gprs_v0.1\Pro\JLinkSettings.ini"
+* JLink Info: Device "MKE02Z64XXX4" selected.
+ 
+JLink info:
+------------
+DLL: V5.12b, compiled Apr 15 2016 14:54:46
+Firmware: J-Link V9 compiled Mar 29 2016 18:46:37
+Hardware: V9.40
+S/N : 59401044 
+Feature(s) : RDI, GDB, FlashDL, FlashBP, JFlash 
+ 
+Error: Flash Download failed  -  Target DLL has been cancelled
+Load "E:\\Easepal\\项目\\在线自助支付操作系统\\M590E\\程序\\Ke02_NeoWay_Gprs_v0.1\\Pro\\Ke02_NeoWay_Gprs_v0.1" 
+Set JLink Project File to "E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Ke02_NeoWay_Gprs_v0.1\Pro\JLinkSettings.ini"
+* JLink Info: Device "MKE02Z64XXX4" selected.
+ 
+JLink info:
+------------
+DLL: V5.12b, compiled Apr 15 2016 14:54:46
+Firmware: J-Link V9 compiled Mar 29 2016 18:46:37
+Hardware: V9.40
+S/N : 59401044 
+Feature(s) : RDI, GDB, FlashDL, FlashBP, JFlash 
+ 
+Error: Flash Download failed  -  Target DLL has been cancelled

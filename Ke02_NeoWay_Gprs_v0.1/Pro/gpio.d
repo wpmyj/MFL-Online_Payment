@@ -1,0 +1,14 @@
+.\gpio.o: ..\drivers\gpio.c
+.\gpio.o: ..\drivers\gpio.h
+.\gpio.o: ..\common\common.h
+.\gpio.o: ..\cpu\arm_cm0.h
+.\gpio.o: ..\platforms\ke02_config.h
+.\gpio.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\gpio.o: ..\cpu\headers\MKE02Z2.h
+.\gpio.o: ..\cpu\core_cm0plus.h
+.\gpio.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\gpio.o: ..\cpu\core_cmFunc.h
+.\gpio.o: ..\cpu\system_MKE02Z2.h
+.\gpio.o: ..\common\assert.h
+.\gpio.o: ..\common\io.h
+.\gpio.o: ..\common\stdlib.h

@@ -1,0 +1,14 @@
+.\systick.o: ..\cpu\systick.c
+.\systick.o: ..\common\common.h
+.\systick.o: ..\cpu\arm_cm0.h
+.\systick.o: ..\platforms\ke02_config.h
+.\systick.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\systick.o: ..\cpu\headers\MKE02Z2.h
+.\systick.o: ..\cpu\core_cm0plus.h
+.\systick.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\systick.o: ..\cpu\core_cmFunc.h
+.\systick.o: ..\cpu\system_MKE02Z2.h
+.\systick.o: ..\common\assert.h
+.\systick.o: ..\common\io.h
+.\systick.o: ..\common\stdlib.h
+.\systick.o: ..\cpu\systick.h

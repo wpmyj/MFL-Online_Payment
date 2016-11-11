@@ -1,0 +1,16 @@
+.\uart.o: ..\drivers\uart.c
+.\uart.o: ..\drivers\uart.h
+.\uart.o: ..\common\common.h
+.\uart.o: ..\cpu\arm_cm0.h
+.\uart.o: ..\platforms\ke02_config.h
+.\uart.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\uart.o: ..\cpu\headers\MKE02Z2.h
+.\uart.o: ..\cpu\core_cm0plus.h
+.\uart.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\uart.o: ..\cpu\core_cmFunc.h
+.\uart.o: ..\cpu\system_MKE02Z2.h
+.\uart.o: ..\common\assert.h
+.\uart.o: ..\common\io.h
+.\uart.o: ..\common\stdlib.h
+.\uart.o: ..\drivers\wdog.h
+.\uart.o: ..\drivers\sim.h

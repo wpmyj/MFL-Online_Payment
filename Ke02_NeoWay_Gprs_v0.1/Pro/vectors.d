@@ -1,0 +1,15 @@
+.\vectors.o: ..\cpu\vectors.c
+.\vectors.o: ..\cpu\vectors.h
+.\vectors.o: ..\cpu\isr.h
+.\vectors.o: ..\common\common.h
+.\vectors.o: ..\cpu\arm_cm0.h
+.\vectors.o: ..\platforms\ke02_config.h
+.\vectors.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\vectors.o: ..\cpu\headers\MKE02Z2.h
+.\vectors.o: ..\cpu\core_cm0plus.h
+.\vectors.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\vectors.o: ..\cpu\core_cmFunc.h
+.\vectors.o: ..\cpu\system_MKE02Z2.h
+.\vectors.o: ..\common\assert.h
+.\vectors.o: ..\common\io.h
+.\vectors.o: ..\common\stdlib.h

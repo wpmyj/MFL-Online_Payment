@@ -1,0 +1,14 @@
+.\flash.o: ..\drivers\flash.c
+.\flash.o: ..\drivers\flash.h
+.\flash.o: ..\common\common.h
+.\flash.o: ..\cpu\arm_cm0.h
+.\flash.o: ..\platforms\ke02_config.h
+.\flash.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\flash.o: ..\cpu\headers\MKE02Z2.h
+.\flash.o: ..\cpu\core_cm0plus.h
+.\flash.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\flash.o: ..\cpu\core_cmFunc.h
+.\flash.o: ..\cpu\system_MKE02Z2.h
+.\flash.o: ..\common\assert.h
+.\flash.o: ..\common\io.h
+.\flash.o: ..\common\stdlib.h

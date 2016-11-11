@@ -1,0 +1,13 @@
+.\assert.o: ..\common\assert.c
+.\assert.o: ..\common\common.h
+.\assert.o: ..\cpu\arm_cm0.h
+.\assert.o: ..\platforms\ke02_config.h
+.\assert.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\assert.o: ..\cpu\headers\MKE02Z2.h
+.\assert.o: ..\cpu\core_cm0plus.h
+.\assert.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\assert.o: ..\cpu\core_cmFunc.h
+.\assert.o: ..\cpu\system_MKE02Z2.h
+.\assert.o: ..\common\assert.h
+.\assert.o: ..\common\io.h
+.\assert.o: ..\common\stdlib.h

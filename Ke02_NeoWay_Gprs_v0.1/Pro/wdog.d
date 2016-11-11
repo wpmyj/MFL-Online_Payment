@@ -1,0 +1,15 @@
+.\wdog.o: ..\drivers\wdog.c
+.\wdog.o: ..\common\common.h
+.\wdog.o: ..\cpu\arm_cm0.h
+.\wdog.o: ..\platforms\ke02_config.h
+.\wdog.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\wdog.o: ..\cpu\headers\MKE02Z2.h
+.\wdog.o: ..\cpu\core_cm0plus.h
+.\wdog.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\wdog.o: ..\cpu\core_cmFunc.h
+.\wdog.o: ..\cpu\system_MKE02Z2.h
+.\wdog.o: ..\common\assert.h
+.\wdog.o: ..\common\io.h
+.\wdog.o: ..\common\stdlib.h
+.\wdog.o: ..\drivers\wdog.h
+.\wdog.o: ..\drivers\sim.h

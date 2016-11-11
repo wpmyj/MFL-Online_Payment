@@ -1,0 +1,14 @@
+.\queue.o: ..\common\queue.c
+.\queue.o: ..\common\common.h
+.\queue.o: ..\cpu\arm_cm0.h
+.\queue.o: ..\platforms\ke02_config.h
+.\queue.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\queue.o: ..\cpu\headers\MKE02Z2.h
+.\queue.o: ..\cpu\core_cm0plus.h
+.\queue.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\queue.o: ..\cpu\core_cmFunc.h
+.\queue.o: ..\cpu\system_MKE02Z2.h
+.\queue.o: ..\common\assert.h
+.\queue.o: ..\common\io.h
+.\queue.o: ..\common\stdlib.h
+.\queue.o: ..\common\queue.h

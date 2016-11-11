@@ -1,0 +1,14 @@
+.\pit.o: ..\drivers\pit.c
+.\pit.o: ..\common\common.h
+.\pit.o: ..\cpu\arm_cm0.h
+.\pit.o: ..\platforms\ke02_config.h
+.\pit.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\pit.o: ..\cpu\headers\MKE02Z2.h
+.\pit.o: ..\cpu\core_cm0plus.h
+.\pit.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
+.\pit.o: ..\cpu\core_cmFunc.h
+.\pit.o: ..\cpu\system_MKE02Z2.h
+.\pit.o: ..\common\assert.h
+.\pit.o: ..\common\io.h
+.\pit.o: ..\common\stdlib.h
+.\pit.o: ..\drivers\pit.h

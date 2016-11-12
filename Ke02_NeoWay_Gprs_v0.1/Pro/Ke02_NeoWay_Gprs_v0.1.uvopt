@@ -139,24 +139,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD1FFFFC00 -FC1000 -FN2 -FF0MKE02Zxxx_P64KB -FS00 -FL010000 -FF1MKE02Zxxx_EE256B -FS110000000 -FL1100 -FP0($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_P64KB.FLM) -FP1($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_EE256B.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>82</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>20370</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\Easepal\脧卯脛驴\脭脷脧脽脳脭脰煤脰搂赂露虏脵脳梅脧碌脥鲁\M590E\鲁脤脨貌\Ke02_NeoWay_Gprs_v0.1\user\Connet_Master.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -257,6 +240,11 @@
           <count>19</count>
           <WinNumber>1</WinNumber>
           <ItemText>ErrorDate</ItemText>
+        </Ww>
+        <Ww>
+          <count>20</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Cnt</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

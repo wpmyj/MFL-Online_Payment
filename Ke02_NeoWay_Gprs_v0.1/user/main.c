@@ -24,6 +24,7 @@
 #include "NeoWay_Gprs.h"
 #include "GPRS_Protocol.h"
 #include "Connet_Master.h"
+
 extern uint8 g_uRTC10MsEvent;
 extern uint8 g_uRTC50MsEvent;
 extern uint8 g_uRTC1SEvent;
@@ -56,13 +57,15 @@ int main (void)
 		}
 
 		Gprs_ReceiveEvent();
-        if(ON==NeoWaySysPar.Init.GprsSendState)
+    if(ON==NeoWaySysPar.Init.GprsSendState)
 		{
 			TcpSend_Date();
 			NeoWaySysPar.Init.GprsSendState=0;
 		}
 		Gprs_StartCodeEvent();
-	}    
+	}   
+  /********************Î¹¹·Ê±¼ä************************/
+    WDOG_Feed();
 }
 
 

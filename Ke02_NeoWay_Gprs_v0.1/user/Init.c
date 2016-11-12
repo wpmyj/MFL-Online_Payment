@@ -11,8 +11,9 @@ void Board_Init(void)
 		Gpio_Init();
 		Uart_Init();
 		Rtc_Init();
-	  Pit_Init();
+	    Pit_Init();
 		printf("Board Init Finish\n");
+        Wdog_Init();
 }
 
 void Gpio_Init(void)
@@ -71,4 +72,17 @@ void Pit_Init(void)
 	PIT_Init(PIT_CHANNEL0, pPIT_Config0);  
 	PIT_SetCallback(PIT_CHANNEL0, PIT_Task);
   NVIC_SetPriority(PIT_CH0_IRQn,1); 
+}
+void Wdog_Init(void)
+{
+    WDOG_ConfigType sWDOGConfig = {0}; 
+    sWDOGConfig.sBits.bWaitEnable   = TRUE;
+    sWDOGConfig.sBits.bStopEnable   = TRUE;
+    sWDOGConfig.sBits.bDbgEnable    = TRUE;
+    sWDOGConfig.sBits.bUpdateEnable = FALSE;
+    sWDOGConfig.sBits.bDisable      = FALSE;        /* enable WDOG */
+    sWDOGConfig.sBits.bClkSrc       = WDOG_CLK_INTERNAL_1KHZ;
+    sWDOGConfig.u16TimeOut          = 30000;  /*< 60s */
+    sWDOGConfig.u16WinTime          = 0; 
+    WDOG_Init(&sWDOGConfig);
 }

@@ -11,7 +11,7 @@
 **			2016-10-25 :	创建
 **						Note ：	串口中断等级要比定时器高，不然会导致重启不了
 **			2016-10-29 ：	建立GPRS协议链接
-**			2016-11-10 ： 开始修改时序问题
+**			2016-11-10 ： 开始修改时序问题,急停的按键还未实现
 ** ===================================================================
 */
 
@@ -40,7 +40,7 @@ Send: 3				"AT+CGSN\r"								获取CGSN号，产品序列号
 			1 		 正常初始化过程，未收到正确、成功应答时，重启模块
 			2			 从开机开始，计时。在规定时间内未完成初始化的时候，重启模块
 			3			 每秒去识别连接状态标志位，当PPP、TCP、服务器失去连接时，重启模块
-			4			 GPRS协议中，当三分钟未收到后台回应的数据
+			4			 GPRS协议中，当125S未收到后台回应的数据
 			包时，重启模块
 */
 
@@ -68,6 +68,7 @@ extern void GprsRec_Date(uint8* Date,uint8 num);
 /********************全局变量************************/
 //接收GPRS接收数组
 uint8 g_aNeoWayRecBuff[NEOWAY_REC_MAX] = {0};
+uint8 g_aNeoWayRecNum = 0;
 uint8 g_aNeoWayRec[NEOWAY_REC_MAX]= {0};
 
 //接收到TCP数据
@@ -149,10 +150,11 @@ static void NeoWay_Rec1ms(void)
 printf("Receive Date:<-----");
 printf("%s",g_aNeoWayRec);
 printf("\r\n");		
-#endif			
-			NeoWayRec.Time=0;
-			NeoWayRec.Num=0;
-			NeoWayRec.Receiving=OFF;		
+#endif		
+			g_aNeoWayRecNum = NeoWayRec.Num;
+			NeoWayRec.Time = 0;
+			NeoWayRec.Num = 0;
+			NeoWayRec.Receiving = OFF;		
 		}
 	}
 
@@ -675,9 +677,11 @@ uint8 TcpSend_Date(void)
 	uint8 i=0;
 	int8 SendDateNum[4] ;
 	uint16 k=0;
+    volatile static uint16 Cnt=0; 
 	//转换数值为字符串	
 	itoa(g_uSendTcpDateNum,SendDateNum,10);
 	strcat(Send,SendDateNum);	
+	 Cnt = 0;
 	while(0 == Send[19-i])
 	{
 		i++;
@@ -686,11 +690,13 @@ uint8 TcpSend_Date(void)
 	NeoWay_SendString((uint8*)Send);
 	for(k=0;k<5000;k++)
 	{
+	    Cnt++;
 		Delay_ms(1);
 		if((strstr((char *)g_aNeoWayRec,">")>0))
 		{
 			Delay_ms(NEOWAY_SEND_WAIT_TIME);
 			NeoWay_SendDate(g_aTcpSendDate,g_uSendTcpDateNum);
+      
 			return SUCCEED;
 		}
 	}
@@ -723,41 +729,45 @@ uint8 Gprs_Send_Date(void)
 */
 void ModuleBack_Code(void)
 {
-	if(strstr((char *)g_aNeoWayRec,"MODEM:STARTUP")>0)
+	if(strstr((char *)g_aNeoWayRec,"+TCPRECV:0")>0)
+	{//接收到TCP数据
+		NeoWayExternalPar.LoseTime=0;
+		g_uRecTcpDateNum=ReceiveTCP_Date();
+		GprsRec_Date(g_aTcpRecDateBuff,g_uRecTcpDateNum);
+    memset(&g_aNeoWayRec,0,sizeof(g_aNeoWayRec));
+	}else if(strstr((char *)g_aNeoWayRec,"MODEM:STARTUP")>0)
 	{//开机成功	
 		NeoWaySysPar.Init.ModulePowerState = ON;
 		NeoWaySysPar.Init.StartNum++;
+    memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
 	}else if(strstr((char *)g_aNeoWayRec,"+PBREADY")>0)
 	{//检测到SIM卡
 		NeoWaySysPar.Init.FindSimState = ON;
 		NeoWaySysPar.Init.FindSimNum++;
 		NeoWaySysPar.Init.StartInitState = ON;
+    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
 	}else if(strstr((char *)g_aNeoWayRec,"SOCKETS:IPR")>0)
 	{//网络阻塞
 		NeoWayExternalPar.NetWorkConnetState = OFF;		
 		NeoWaySysPar.NetWork.ConnetTCPState = OFF;
 		NeoWaySysPar.NetWork.ConnetPPPState = OFF;
 		NeoWayExternalPar.HardwareRebootState = ON;
+    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
 	}else if(strstr((char *)g_aNeoWayRec,"Link Closed")>0)
 	{//服务器断开，网络异常
 		NeoWayExternalPar.NetWorkConnetState = OFF;
 		NeoWaySysPar.NetWork.ConnetTCPState = OFF;
 		NeoWaySysPar.NetWork.ConnetPPPState = OFF;
 		NeoWayExternalPar.HardwareRebootState = ON;
+    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
 	}else if(strstr((char *)g_aNeoWayRec,"+TCPSEND:Error")>0)
 	{
 		NeoWayExternalPar.NetWorkConnetState = OFF;
 		NeoWaySysPar.NetWork.ConnetTCPState = OFF;
 		NeoWaySysPar.NetWork.ConnetPPPState = OFF;
 		NeoWayExternalPar.HardwareRebootState = ON;
-	}else if(strstr((char *)g_aNeoWayRec,"+TCPRECV:0")>0)
-	{//接收到TCP数据
-		NeoWayExternalPar.LoseTime=0;
-		g_uRecTcpDateNum=ReceiveTCP_Date();
-		GprsRec_Date(g_aTcpRecDateBuff,g_uRecTcpDateNum);
-
+    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
 	}
-    memset(&g_aNeoWayRec,0,sizeof(g_aNeoWayRec));
 }	
 /*
 ** ===================================================================

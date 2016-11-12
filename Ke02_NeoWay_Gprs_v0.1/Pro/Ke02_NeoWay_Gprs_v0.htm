@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Ke02_NeoWay_Gprs_v0.1]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Ke02_NeoWay_Gprs_v0.1</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Thu Nov 10 19:40:23 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Sat Nov 12 09:39:21 2016
 <BR><P>
 <H3>Maximum Stack Usage =        368 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -25,7 +25,6 @@ Function Pointers
  <LI><a href="#[21]">ACMP1_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
  <LI><a href="#[1b]">ADC0_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
  <LI><a href="#[5]">Adc_FifoIsr</a> from adcapp.o(.text) referenced from vectors.o(.ARM.__AT_0x00000000)
- <LI><a href="#[5]">Adc_FifoIsr</a> from adcapp.o(.text) referenced from init.o(.text)
  <LI><a href="#[1d]">FTM0_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
  <LI><a href="#[1e]">FTM1_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
  <LI><a href="#[1f]">FTM2_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
@@ -336,7 +335,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClrFlags
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_DisableIRQ
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Init
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Init
 </UL>
 
 <P><STRONG><a name="[120]"></a>RTC_SetCallback</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rtc.o(.text), UNUSED)
@@ -515,8 +514,6 @@ Global Symbols
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_SetMode
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_SetFifoLevel
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc_Init
-</UL>
 
 <P><STRONG><a name="[62]"></a>ADC_SetChannel</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, adc.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_PollRead
@@ -532,13 +529,11 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_SetChannel
 </UL>
 
-<P><STRONG><a name="[bd]"></a>ADC_SetCallBack</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, adc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adc_Init
-</UL>
+<P><STRONG><a name="[131]"></a>ADC_SetCallBack</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, adc.o(.text), UNUSED)
 
-<P><STRONG><a name="[131]"></a>ADC_VrefSelect</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, adc.o(.text), UNUSED)
+<P><STRONG><a name="[132]"></a>ADC_VrefSelect</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, adc.o(.text), UNUSED)
 
-<P><STRONG><a name="[132]"></a>ADC_Isr</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, adc.o(.text), UNUSED)
+<P><STRONG><a name="[133]"></a>ADC_Isr</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, adc.o(.text), UNUSED)
 
 <P><STRONG><a name="[64]"></a>FLASH_Init</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, flash.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = FLASH_Init &rArr; __aeabi_uidivmod
@@ -643,13 +638,13 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_LaunchCMD
 </UL>
 
-<P><STRONG><a name="[133]"></a>EEPROM_Program1Byte_NoWait</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, flash.o(.text), UNUSED)
+<P><STRONG><a name="[134]"></a>EEPROM_Program1Byte_NoWait</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, flash.o(.text), UNUSED)
 
-<P><STRONG><a name="[134]"></a>EEPROM_ProgramUpto4Bytes_NoWait</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, flash.o(.text), UNUSED)
+<P><STRONG><a name="[135]"></a>EEPROM_ProgramUpto4Bytes_NoWait</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, flash.o(.text), UNUSED)
 
-<P><STRONG><a name="[135]"></a>EEPROM_EraseSector_NoWait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, flash.o(.text), UNUSED)
+<P><STRONG><a name="[136]"></a>EEPROM_EraseSector_NoWait</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, flash.o(.text), UNUSED)
 
-<P><STRONG><a name="[136]"></a>FLASH_EraseBlock_NoWait</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, flash.o(.text), UNUSED)
+<P><STRONG><a name="[137]"></a>FLASH_EraseBlock_NoWait</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, flash.o(.text), UNUSED)
 
 <P><STRONG><a name="[78]"></a>FLASH_VerifyBackdoorKey</STRONG> (Thumb, 160 bytes, Stack size 12 bytes, flash.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_LaunchCMD
@@ -659,7 +654,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_LaunchCMD
 </UL>
 
-<P><STRONG><a name="[137]"></a>FLASH_CheckErrStatus</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, flash.o(.text), UNUSED)
+<P><STRONG><a name="[138]"></a>FLASH_CheckErrStatus</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, flash.o(.text), UNUSED)
 
 <P><STRONG><a name="[7a]"></a>GPIO_DeInit</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, gpio.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
@@ -735,7 +730,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ICS_Init
 </UL>
 
-<P><STRONG><a name="[138]"></a>FEI_to_FBI</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[139]"></a>FEI_to_FBI</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
 <P><STRONG><a name="[86]"></a>FEI_to_FBE</STRONG> (Thumb, 120 bytes, Stack size 4 bytes, ics.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSC_Init
@@ -767,7 +762,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSC_Disable
 </UL>
 
-<P><STRONG><a name="[139]"></a>FEE_to_FBE</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[13a]"></a>FEE_to_FBE</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
 <P><STRONG><a name="[8c]"></a>FBI_to_FBE</STRONG> (Thumb, 96 bytes, Stack size 4 bytes, ics.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSC_Init
@@ -777,25 +772,25 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSC_Init
 </UL>
 
-<P><STRONG><a name="[13a]"></a>FBI_to_FBILP</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[13b]"></a>FBI_to_FBILP</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
-<P><STRONG><a name="[13b]"></a>FBI_to_FEI</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[13c]"></a>FBI_to_FEI</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
 <P><STRONG><a name="[8e]"></a>FBE_to_FBI</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, ics.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSC_Disable
 </UL>
 
-<P><STRONG><a name="[13c]"></a>FBE_to_FEE</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[13d]"></a>FBE_to_FEE</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
 <P><STRONG><a name="[8f]"></a>FBE_to_FEI</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, ics.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSC_Disable
 </UL>
 
-<P><STRONG><a name="[13d]"></a>FBE_to_FBELP</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[13e]"></a>FBE_to_FBELP</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
-<P><STRONG><a name="[13e]"></a>FBELP_to_FBE</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[13f]"></a>FBELP_to_FBE</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
-<P><STRONG><a name="[13f]"></a>FBILP_to_FBI</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[140]"></a>FBILP_to_FBI</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
 <P><STRONG><a name="[58]"></a>ICS_Trim</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, ics.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysinit
@@ -811,9 +806,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysinit
 </UL>
 
-<P><STRONG><a name="[140]"></a>ICS_DeInit</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[141]"></a>ICS_DeInit</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
-<P><STRONG><a name="[141]"></a>OSC_DeInit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
+<P><STRONG><a name="[142]"></a>OSC_DeInit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, ics.o(.text), UNUSED)
 
 <P><STRONG><a name="[91]"></a>PIT_SetLoadVal</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, pit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIT_DeInit
@@ -827,11 +822,11 @@ Global Symbols
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIT_SetLoadVal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
 </UL>
 
-<P><STRONG><a name="[b7]"></a>PIT_SetCallback</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, pit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
+<P><STRONG><a name="[b9]"></a>PIT_SetCallback</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, pit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
 </UL>
 
 <P><STRONG><a name="[94]"></a>PIT_DeInit</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, pit.o(.text), UNUSED)
@@ -860,7 +855,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysinit
 </UL>
 
-<P><STRONG><a name="[142]"></a>SIM_SetClockGating</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, sim.o(.text), UNUSED)
+<P><STRONG><a name="[143]"></a>SIM_SetClockGating</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, sim.o(.text), UNUSED)
 
 <P><STRONG><a name="[53]"></a>SIM_GetStatus</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, sim.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_sys_log
@@ -927,9 +922,9 @@ Global Symbols
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendMaster_Date
 </UL>
 
-<P><STRONG><a name="[143]"></a>UART_ReceiveWait</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, uart.o(.text), UNUSED)
+<P><STRONG><a name="[144]"></a>UART_ReceiveWait</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, uart.o(.text), UNUSED)
 
-<P><STRONG><a name="[144]"></a>UART_WaitTxComplete</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, uart.o(.text), UNUSED)
+<P><STRONG><a name="[145]"></a>UART_WaitTxComplete</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, uart.o(.text), UNUSED)
 
 <P><STRONG><a name="[be]"></a>UART_SetCallback</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, uart.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NeoWayBoard_Init
@@ -961,9 +956,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start
 </UL>
 
-<P><STRONG><a name="[145]"></a>WDOG_Enable</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, wdog.o(.text), UNUSED)
+<P><STRONG><a name="[146]"></a>WDOG_Enable</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, wdog.o(.text), UNUSED)
 
-<P><STRONG><a name="[146]"></a>WDOG_Init</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, wdog.o(.text), UNUSED)
+<P><STRONG><a name="[b7]"></a>WDOG_Init</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, wdog.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = WDOG_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wdog_Init
+</UL>
 
 <P><STRONG><a name="[147]"></a>WDOG_DeInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, wdog.o(.text), UNUSED)
 
@@ -1026,16 +1025,15 @@ Global Symbols
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_ReadDataReg
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_CheckFlag
 </UL>
-<BR>[Address Reference Count : 2]<UL><LI> neoway_gprs.o(.text)
-<LI> connet_master.o(.text)
+<BR>[Address Reference Count : 2]<UL><LI> connet_master.o(.text)
+<LI> neoway_gprs.o(.text)
 </UL>
 <P><STRONG><a name="[b3]"></a>Deal_Receive_data</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, uartapp.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 
 <P><STRONG><a name="[5]"></a>Adc_FifoIsr</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, adcapp.o(.text))
-<BR>[Address Reference Count : 2]<UL><LI> vectors.o(.ARM.__AT_0x00000000)
-<LI> init.o(.text)
+<BR>[Address Reference Count : 1]<UL><LI> vectors.o(.ARM.__AT_0x00000000)
 </UL>
 <P><STRONG><a name="[b4]"></a>Read_AdcBuff</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, adcapp.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_SetChannel
@@ -1049,53 +1047,57 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> vectors.o(.ARM.__AT_0x00000000)
 </UL>
+<P><STRONG><a name="[b6]"></a>Wdog_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, init.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Wdog_Init &rArr; WDOG_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WDOG_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Init
+</UL>
+
 <P><STRONG><a name="[2f]"></a>PIT_Task</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, init.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> init.o(.text)
 </UL>
-<P><STRONG><a name="[b6]"></a>Pit_Init</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, init.o(.text))
+<P><STRONG><a name="[b8]"></a>Pit_Init</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, init.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Pit_Init &rArr; PIT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIT_SetCallback
+<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIT_SetCallback
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIT_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Init
 </UL>
 
-<P><STRONG><a name="[b9]"></a>Rtc_Init</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, init.o(.text))
+<P><STRONG><a name="[bb]"></a>Rtc_Init</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, init.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Rtc_Init &rArr; RTC_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Init
 </UL>
 
-<P><STRONG><a name="[bb]"></a>Uart_Init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init.o(.text))
+<P><STRONG><a name="[bd]"></a>Uart_Init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Init
 </UL>
 
-<P><STRONG><a name="[ba]"></a>Gpio_Init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init.o(.text))
+<P><STRONG><a name="[bc]"></a>Gpio_Init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Board_Init
 </UL>
 
-<P><STRONG><a name="[a2]"></a>Board_Init</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, init.o(.text))
+<P><STRONG><a name="[a2]"></a>Board_Init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, init.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = Board_Init &rArr; sysinit &rArr; UART_InitPrint &rArr; UART_Init &rArr; assert_failed &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Init
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysinit
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gpio_Init
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Init
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Init
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gpio_Init
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Init
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wdog_Init
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[bc]"></a>Adc_Init</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, init.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_SetCallBack
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
 </UL>
 
 <P><STRONG><a name="[a4]"></a>NeoWayBoard_Init</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, neoway_gprs.o(.text))
@@ -1148,7 +1150,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Isr
 </UL>
 
-<P><STRONG><a name="[aa]"></a>TcpSend_Date</STRONG> (Thumb, 132 bytes, Stack size 40 bytes, neoway_gprs.o(.text))
+<P><STRONG><a name="[aa]"></a>TcpSend_Date</STRONG> (Thumb, 148 bytes, Stack size 40 bytes, neoway_gprs.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = TcpSend_Date &rArr; itoa &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcat
@@ -1166,7 +1168,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GprsSend_Date
 </UL>
 
-<P><STRONG><a name="[a6]"></a>ModuleBack_Code</STRONG> (Thumb, 222 bytes, Stack size 8 bytes, neoway_gprs.o(.text))
+<P><STRONG><a name="[a6]"></a>ModuleBack_Code</STRONG> (Thumb, 272 bytes, Stack size 8 bytes, neoway_gprs.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = ModuleBack_Code &rArr; ReceiveTCP_Date &rArr; pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strstr
@@ -1608,14 +1610,14 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_HandleInt
 </UL>
 
-<P><STRONG><a name="[b8]"></a>NVIC_SetPriority</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, init.o(.text))
+<P><STRONG><a name="[ba]"></a>NVIC_SetPriority</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, init.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Init
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rtc_Init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pit_Init
 </UL>
 
-<P><STRONG><a name="[c1]"></a>NeoWay_Rec1ms</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, neoway_gprs.o(.text))
+<P><STRONG><a name="[c1]"></a>NeoWay_Rec1ms</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, neoway_gprs.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = NeoWay_Rec1ms &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
@@ -1734,7 +1736,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NeoWay_Init
 </UL>
 
-<P><STRONG><a name="[ce]"></a>Get_Cimi</STRONG> (Thumb, 960 bytes, Stack size 16 bytes, neoway_gprs.o(.text))
+<P><STRONG><a name="[ce]"></a>Get_Cimi</STRONG> (Thumb, 964 bytes, Stack size 16 bytes, neoway_gprs.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Get_Cimi &rArr; NeoWay_SendString &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strrchr
@@ -1822,7 +1824,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TcpSend_Date
 </UL>
 
-<P><STRONG><a name="[da]"></a>ReceiveTCP_Date</STRONG> (Thumb, 522 bytes, Stack size 80 bytes, neoway_gprs.o(.text))
+<P><STRONG><a name="[da]"></a>ReceiveTCP_Date</STRONG> (Thumb, 524 bytes, Stack size 80 bytes, neoway_gprs.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = ReceiveTCP_Date &rArr; pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strrchr

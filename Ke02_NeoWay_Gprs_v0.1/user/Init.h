@@ -12,6 +12,7 @@
 #include "AdcApp.h"
 #include "RtcApp.h"
 #include "pit.h"
+#include "wdog.h"
 #include "NeoWay_Gprs.h"
 #define UART1_BUFFLENGTH   10
 
@@ -20,4 +21,5 @@ void Gpio_Init(void);
 void Uart_Init(void);
 void Rtc_Init(void);
 void Pit_Init(void);
+void Wdog_Init(void);
 #endif

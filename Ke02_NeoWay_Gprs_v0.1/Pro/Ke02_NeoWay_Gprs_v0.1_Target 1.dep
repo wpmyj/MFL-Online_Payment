@@ -2,7 +2,7 @@ Dependencies for Project 'Ke02_NeoWay_Gprs_v0.1', Target 'Target 1': (DO NOT MOD
 F (..\common\alloc.c)(0x58258E24)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\alloc.o --omf_browse .\alloc.crf --depend .\alloc.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -15,7 +15,7 @@ I (..\common\stdlib.h)(0x58258E24)
 F (..\common\assert.c)(0x58258E24)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\assert.o --omf_browse .\assert.crf --depend .\assert.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -28,7 +28,7 @@ I (..\common\stdlib.h)(0x58258E24)
 F (..\common\io.c)(0x58258E24)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\io.o --omf_browse .\io.crf --depend .\io.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -47,7 +47,7 @@ I (..\common\memtest.h)(0x58258E24)
 F (..\common\queue.c)(0x58258E24)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\queue.o --omf_browse .\queue.crf --depend .\queue.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -61,7 +61,7 @@ I (..\common\queue.h)(0x58258E24)
 F (..\common\stdlib.c)(0x58258E24)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\stdlib.o --omf_browse .\stdlib.crf --depend .\stdlib.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -74,7 +74,7 @@ I (..\common\stdlib.h)(0x58258E24)
 F (..\cpu\arm_cm0.c)(0x58258E24)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\arm_cm0.o --omf_browse .\arm_cm0.crf --depend .\arm_cm0.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -87,7 +87,7 @@ I (..\common\stdlib.h)(0x58258E24)
 F (..\cpu\sysinit.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\sysinit.o --omf_browse .\sysinit.crf --depend .\sysinit.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -105,7 +105,7 @@ I (..\drivers\ics.h)(0x58258E25)
 F (..\cpu\systick.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\systick.o --omf_browse .\systick.crf --depend .\systick.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -121,7 +121,7 @@ I (..\cpu\vectors.h)(0x58258E25)
 I (..\cpu\isr.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -136,7 +136,7 @@ F (..\cpu\start.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=in
 I (..\cpu\start.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -152,7 +152,7 @@ I (..\cpu\sysinit.h)(0x58258E25)
 F (..\drivers\acmp.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\acmp.o --omf_browse .\acmp.crf --depend .\acmp.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -166,7 +166,7 @@ I (..\drivers\acmp.h)(0x58258E25)
 F (..\drivers\adc.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -180,7 +180,7 @@ I (..\drivers\adc.h)(0x58258E25)
 F (..\drivers\crc.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\crc.o --omf_browse .\crc.crf --depend .\crc.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -195,7 +195,7 @@ F (..\drivers\flash.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apc
 I (..\drivers\flash.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -208,7 +208,7 @@ I (..\common\stdlib.h)(0x58258E24)
 F (..\drivers\ftm.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\ftm.o --omf_browse .\ftm.crf --depend .\ftm.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -223,7 +223,7 @@ F (..\drivers\gpio.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs
 I (..\drivers\gpio.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -236,7 +236,7 @@ I (..\common\stdlib.h)(0x58258E24)
 F (..\drivers\i2c.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\i2c.o --omf_browse .\i2c.crf --depend .\i2c.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -250,7 +250,7 @@ I (..\drivers\i2c.h)(0x58258E25)
 F (..\drivers\ics.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\ics.o --omf_browse .\ics.crf --depend .\ics.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -264,7 +264,7 @@ I (..\drivers\ics.h)(0x58258E25)
 F (..\drivers\kbi.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\kbi.o --omf_browse .\kbi.crf --depend .\kbi.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -278,7 +278,7 @@ I (..\drivers\kbi.h)(0x58258E25)
 F (..\drivers\pit.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\pit.o --omf_browse .\pit.crf --depend .\pit.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -292,7 +292,7 @@ I (..\drivers\pit.h)(0x58258E25)
 F (..\drivers\pmc.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\pmc.o --omf_browse .\pmc.crf --depend .\pmc.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -306,7 +306,7 @@ I (..\drivers\pmc.h)(0x58258E25)
 F (..\drivers\rtc.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\rtc.o --omf_browse .\rtc.crf --depend .\rtc.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -320,7 +320,7 @@ I (..\drivers\rtc.h)(0x58258E25)
 F (..\drivers\sim.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\sim.o --omf_browse .\sim.crf --depend .\sim.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -334,7 +334,7 @@ I (..\drivers\sim.h)(0x58258E25)
 F (..\drivers\spi.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\spi.o --omf_browse .\spi.crf --depend .\spi.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -349,7 +349,7 @@ F (..\drivers\uart.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs
 I (..\drivers\uart.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -364,7 +364,7 @@ I (..\drivers\sim.h)(0x58258E25)
 F (..\drivers\wdog.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\wdog.o --omf_browse .\wdog.crf --depend .\wdog.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -376,10 +376,10 @@ I (..\common\io.h)(0x58258E24)
 I (..\common\stdlib.h)(0x58258E24)
 I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
-F (..\user\main.c)(0x5826729B)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+F (..\user\main.c)(0x5833A0E6)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -399,22 +399,22 @@ I (..\drivers\adc.h)(0x58258E25)
 I (..\cpu\sysinit.h)(0x58258E25)
 I (..\drivers\flash.h)(0x58258E25)
 I (..\drivers\ftm.h)(0x58258E25)
-I (..\user\Init.h)(0x58267201)
+I (..\user\Init.h)(0x58329C76)
 I (..\user\uartApp.h)(0x58258E25)
 I (..\user\AdcApp.h)(0x58258E25)
-I (..\user\RtcApp.h)(0x58258E25)
+I (..\user\RtcApp.h)(0x5832575C)
 I (..\drivers\pit.h)(0x58258E25)
-I (..\user\NeoWay_Gprs.h)(0x58258E25)
+I (..\user\NeoWay_Gprs.h)(0x58339C8B)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
 I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
-I (..\user\GPRS_Protocol.h)(0x58258E25)
+I (..\user\GPRS_Protocol.h)(0x58329C88)
 I (..\drivers\crc.h)(0x58258E25)
-I (..\user\Connet_Master.h)(0x58258E25)
-F (..\user\uartApp.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\uartapp.o --omf_browse .\uartapp.crf --depend .\uartapp.d)
+I (..\user\Connet_Master.h)(0x582FB5DB)
+F (..\user\uartApp.c)(0x58324F22)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\uartapp.o --omf_browse .\uartapp.crf --depend .\uartapp.d)
 I (..\user\uartApp.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -428,13 +428,13 @@ I (..\cpu\sysinit.h)(0x58258E25)
 I (..\drivers\uart.h)(0x58258E25)
 I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
-I (..\user\Connet_Master.h)(0x58258E25)
+I (..\user\Connet_Master.h)(0x582FB5DB)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
-F (..\user\AdcApp.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\adcapp.o --omf_browse .\adcapp.crf --depend .\adcapp.d)
+F (..\user\AdcApp.c)(0x5832597B)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\adcapp.o --omf_browse .\adcapp.crf --depend .\adcapp.d)
 I (..\user\AdcApp.h)(0x58258E25)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -448,11 +448,11 @@ I (..\drivers\adc.h)(0x58258E25)
 I (..\drivers\uart.h)(0x58258E25)
 I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
-F (..\user\RtcApp.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\rtcapp.o --omf_browse .\rtcapp.crf --depend .\rtcapp.d)
-I (..\user\RtcApp.h)(0x58258E25)
+F (..\user\RtcApp.c)(0x58325A72)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\rtcapp.o --omf_browse .\rtcapp.crf --depend .\rtcapp.d)
+I (..\user\RtcApp.h)(0x5832575C)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -468,11 +468,11 @@ I (..\drivers\adc.h)(0x58258E25)
 I (..\drivers\uart.h)(0x58258E25)
 I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
-F (..\user\Init.c)(0x58267284)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\init.o --omf_browse .\init.crf --depend .\init.d)
-I (..\user\Init.h)(0x58267201)
+F (..\user\Init.c)(0x58339997)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\init.o --omf_browse .\init.crf --depend .\init.d)
+I (..\user\Init.h)(0x58329C76)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -492,17 +492,17 @@ I (..\cpu\sysinit.h)(0x58258E25)
 I (..\drivers\flash.h)(0x58258E25)
 I (..\user\uartApp.h)(0x58258E25)
 I (..\user\AdcApp.h)(0x58258E25)
-I (..\user\RtcApp.h)(0x58258E25)
+I (..\user\RtcApp.h)(0x5832575C)
 I (..\drivers\pit.h)(0x58258E25)
-I (..\user\NeoWay_Gprs.h)(0x58258E25)
+I (..\user\NeoWay_Gprs.h)(0x58339C8B)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
 I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
-F (..\user\NeoWay_Gprs.c)(0x582668BD)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\neoway_gprs.o --omf_browse .\neoway_gprs.crf --depend .\neoway_gprs.d)
-I (..\user\NeoWay_Gprs.h)(0x58258E25)
+F (..\user\NeoWay_Gprs.c)(0x58339EDF)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\neoway_gprs.o --omf_browse .\neoway_gprs.crf --depend .\neoway_gprs.d)
+I (..\user\NeoWay_Gprs.h)(0x58339C8B)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -519,11 +519,11 @@ I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
 I (..\user\uartApp.h)(0x58258E25)
 I (..\drivers\gpio.h)(0x58258E25)
-F (..\user\GPRS_Protocol.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\gprs_protocol.o --omf_browse .\gprs_protocol.crf --depend .\gprs_protocol.d)
-I (..\user\GPRS_Protocol.h)(0x58258E25)
+F (..\user\GPRS_Protocol.c)(0x5832B5EF)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\gprs_protocol.o --omf_browse .\gprs_protocol.crf --depend .\gprs_protocol.d)
+I (..\user\GPRS_Protocol.h)(0x58329C88)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -534,7 +534,7 @@ I (..\common\assert.h)(0x58258E24)
 I (..\common\io.h)(0x58258E24)
 I (..\common\stdlib.h)(0x58258E24)
 I (..\drivers\crc.h)(0x58258E25)
-I (..\user\NeoWay_Gprs.h)(0x58258E25)
+I (..\user\NeoWay_Gprs.h)(0x58339C8B)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
 I (..\cpu\sysinit.h)(0x58258E25)
 I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
@@ -543,13 +543,20 @@ I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
 I (..\user\uartApp.h)(0x58258E25)
 I (..\drivers\gpio.h)(0x58258E25)
-I (..\user\Connet_Master.h)(0x58258E25)
-F (..\user\Connet_Master.c)(0x58258E25)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\connet_master.o --omf_browse .\connet_master.crf --depend .\connet_master.d)
-I (..\user\Connet_Master.h)(0x58258E25)
+I (..\user\Connet_Master.h)(0x582FB5DB)
+I (..\user\Init.h)(0x58329C76)
+I (..\drivers\rtc.h)(0x58258E25)
+I (..\drivers\adc.h)(0x58258E25)
+I (..\drivers\flash.h)(0x58258E25)
+I (..\user\AdcApp.h)(0x58258E25)
+I (..\user\RtcApp.h)(0x5832575C)
+I (..\drivers\pit.h)(0x58258E25)
+F (..\user\Connet_Master.c)(0x5832A4BF)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Motor_driver -I..\common -I..\cpu -I..\cpu\headers -I..\drivers -I..\platforms -I..\Pro -I..\..\Motor_driver -I..\..\-I d:\Keil_v5\ARM\RV31\INC-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\Kinetis_KExx_DFP\1.4.0-DMKE02Z64xxx4 -DKEIL -DFRDM_KE02 -DCPU_KE02 -DCMSIS-o .\connet_master.o --omf_browse .\connet_master.crf --depend .\connet_master.d)
+I (..\user\Connet_Master.h)(0x582FB5DB)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
 I (..\common\common.h)(0x58258E24)
 I (..\cpu\arm_cm0.h)(0x58258E24)
-I (..\platforms\ke02_config.h)(0x58258E25)
+I (..\platforms\ke02_config.h)(0x582FB79E)
 I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
 I (..\cpu\headers\MKE02Z2.h)(0x58258E24)
 I (..\cpu\core_cm0plus.h)(0x58258E24)
@@ -564,8 +571,15 @@ I (..\drivers\uart.h)(0x58258E25)
 I (..\drivers\wdog.h)(0x58258E25)
 I (..\drivers\sim.h)(0x58258E25)
 I (..\user\uartApp.h)(0x58258E25)
-I (..\user\GPRS_Protocol.h)(0x58258E25)
+I (..\user\GPRS_Protocol.h)(0x58329C88)
 I (..\drivers\crc.h)(0x58258E25)
-I (..\user\NeoWay_Gprs.h)(0x58258E25)
+I (..\user\NeoWay_Gprs.h)(0x58339C8B)
 I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
 I (..\drivers\gpio.h)(0x58258E25)
+I (..\user\Init.h)(0x58329C76)
+I (..\drivers\rtc.h)(0x58258E25)
+I (..\drivers\adc.h)(0x58258E25)
+I (..\drivers\flash.h)(0x58258E25)
+I (..\user\AdcApp.h)(0x58258E25)
+I (..\user\RtcApp.h)(0x5832575C)
+I (..\drivers\pit.h)(0x58258E25)

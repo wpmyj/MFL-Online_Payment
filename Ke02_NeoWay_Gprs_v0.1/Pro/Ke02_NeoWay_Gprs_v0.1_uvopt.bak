@@ -143,16 +143,16 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>82</LineNumber>
+          <LineNumber>915</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>20370</Address>
+          <Address>15846</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\Easepal\脧卯脛驴\脭脷脧脽脳脭脰煤脰搂赂露虏脵脳梅脧碌脥鲁\M590E\鲁脤脨貌\Ke02_NeoWay_Gprs_v0.1\user\Connet_Master.c</Filename>
+          <Filename>E:\Easepal\脧卯脛驴\脭脷脧脽脳脭脰煤脰搂赂露虏脵脳梅脧碌脥鲁\M590E\鲁脤脨貌\Online_Payment\Online_Payment\Ke02_NeoWay_Gprs_v0.1\user\NeoWay_Gprs.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -258,6 +258,26 @@
           <WinNumber>1</WinNumber>
           <ItemText>ErrorDate</ItemText>
         </Ww>
+        <Ww>
+          <count>20</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Cnt</ItemText>
+        </Ww>
+        <Ww>
+          <count>21</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>NeoWaySysPar.Init.ModulePowerState</ItemText>
+        </Ww>
+        <Ww>
+          <count>22</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>NeoWayExternalPar.SofewareRebootState</ItemText>
+        </Ww>
+        <Ww>
+          <count>23</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>NeoWayExternalPar.HardwareRebootState</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -265,9 +285,9 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
-        <aSer1>1</aSer1>
+        <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
         <viewmode>1</viewmode>

@@ -18,6 +18,7 @@ void Rtc_Isr(void)
 	{
 		Cnt_10Ms=0;
 		g_uRTC10MsEvent=1;
+		Read_AdcBuff();
 	}
 	if(Cnt_50Ms>=50)
 	{

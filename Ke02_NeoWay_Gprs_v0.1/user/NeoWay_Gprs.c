@@ -37,11 +37,10 @@ Send: 3				"AT+CGSN\r"								获取CGSN号，产品序列号
 
 /********************GPRS模块保护机制***********************/
 /*
-			1 		 正常初始化过程，未收到正确、成功应答时，重启模块
-			2			 从开机开始，计时。在规定时间内未完成初始化的时候，重启模块
-			3			 每秒去识别连接状态标志位，当PPP、TCP、服务器失去连接时，重启模块
-			4			 GPRS协议中，当125S未收到后台回应的数据
-			包时，重启模块
+			1			 从开机开始，计时。在40S内未完成初始化的时候，软件重启模块
+			2			 每秒去识别连接状态标志位，当PPP、TCP、服务器失去连接时，软件重启模块
+			3			 重复3次软件重启无效时，启动硬件重启
+			4			 GPRS协议中，当305S未收到后台回应的数据，硬件重启模块
 */
 
 /********************其他文件调用参数集合************************/
@@ -65,6 +64,7 @@ uint8 Gprs_Send_Date(void)				 发送数据函数，调用此函数时，必须先赋值g_aTcpSendD
 */
 
 extern void GprsRec_Date(uint8* Date,uint8 num); 
+extern uint16 g_uNeoWayVccio;
 /********************全局变量************************/
 //接收GPRS接收数组
 uint8 g_aNeoWayRecBuff[NEOWAY_REC_MAX] = {0};
@@ -85,7 +85,7 @@ NeoWaySysPar_ NeoWaySysPar;
 NeoWayExternalPar_ NeoWayExternalPar;
 
 uint16 Connet_ErrorCnt=0;
-uint8 Uart1_ReceiveBuff[UART1_BUFFLENGTH]={0};
+uint8 Uart0_ReceiveBuff[UART0_BUFFLENGTH]={0};
 /********************函数************************/
 
 
@@ -95,15 +95,17 @@ void NeoWayBoard_Init(void)
 	UART_ConfigType sUARTConfig;
 	sUARTConfig.u32SysClkHz = BUS_CLK_HZ;
 	sUARTConfig.u32Baudrate = 115200;
-	UART_Init(UART1,&sUARTConfig);
+	UART_Init(UART0,&sUARTConfig);
 	UART_SetCallback(UART_HandleInt);
-	UART_ReceiveInt(UART1, Uart1_ReceiveBuff, UART1_BUFFLENGTH);
-	NVIC_EnableIRQ(UART1_IRQn); 
-	NVIC_SetPriority(UART1_IRQn,2);
+	UART_ReceiveInt(UART0, Uart0_ReceiveBuff, UART0_BUFFLENGTH);
+	NVIC_EnableIRQ(UART0_IRQn); 
+	NVIC_SetPriority(UART0_IRQn,2);
 
 	/********************UART************************/
 	GPIO_PinInit(PORT_EMERGOFF, GPIO_PinOutput); 
 	GPIO_PinInit(PORT_ON_OFF, GPIO_PinOutput);	
+	GPIO_PinInit(HARDWARE_POWR_CONTORL, GPIO_PinOutput);	
+	GPIO_PinClear(HARDWARE_POWR_CONTORL);
 	GPIO_PinClear(PORT_EMERGOFF);
 	GPIO_PinClear(PORT_ON_OFF);		
 }
@@ -154,10 +156,10 @@ printf("\r\n");
 			g_aNeoWayRecNum = NeoWayRec.Num;
 			NeoWayRec.Time = 0;
 			NeoWayRec.Num = 0;
-			NeoWayRec.Receiving = OFF;		
+			NeoWayRec.Receiving = OFF;
+			NeoWayRec.Dealing = ON;
 		}
 	}
-
 }
 /*
 ** ===================================================================
@@ -182,6 +184,13 @@ void NeoWay_Rtc1s(void)
 void NeoWay_Rtc1ms(void)
 {
 	NeoWay_Rec1ms();	
+	if((g_uNeoWayVccio >= 2100)&&(g_uNeoWayVccio<=2600))
+	{
+		NeoWaySysPar.Init.ModulePowerState = ON;
+	}else
+	{
+	  NeoWaySysPar.Init.ModulePowerState = OFF;
+	}
 }
 
 /*
@@ -203,7 +212,7 @@ static uint8  NeoWay_SendString(uint8* string)
 	//+1是因为\r
 #ifdef DEBUG_RANK_BRONZE
 printf("Send Date is:----->");
-UART_SendWait(UART0,string,i+1);	
+UART_SendWait(NEOWAY_DEBUG_UART,string,i+1);	
 printf("\r\n");
 #endif 
 	UART_SendWait(NEOWAY_UART,string,i+1);	
@@ -230,11 +239,11 @@ static uint8  NeoWay_SendDate(uint8* Date,uint8 num)
 printf("Send Server Date is:----->>");
 	for(i=0;i<num;i++)
 	{
-		UART_PutChar(UART0, '0');
-		UART_PutChar(UART0, 'x');
-		UART_PutChar(UART0, (*(Date+i)>>4)+'0');
-		UART_PutChar(UART0, (((*(Date+i))&0x0f)+'0'));
-		UART_PutChar(UART0, ' ');
+		UART_PutChar(NEOWAY_DEBUG_UART, '0');
+		UART_PutChar(NEOWAY_DEBUG_UART, 'x');
+		UART_PutChar(NEOWAY_DEBUG_UART, (*(Date+i)>>4)+'0');
+		UART_PutChar(NEOWAY_DEBUG_UART, (((*(Date+i))&0x0f)+'0'));
+		UART_PutChar(NEOWAY_DEBUG_UART, ' ');
 	}
 printf("\r\n");
 #endif 
@@ -248,7 +257,7 @@ printf("\r\n");
 **     Returns     : Nothing
 ** ===================================================================
 */
-static void Delay_ms(uint16 num)
+void Delay_ms(uint16 num)
 {
 	uint16 m,k=0;
 	for(m=0;m<num;m++)
@@ -729,44 +738,49 @@ uint8 Gprs_Send_Date(void)
 */
 void ModuleBack_Code(void)
 {
-	if(strstr((char *)g_aNeoWayRec,"+TCPRECV:0")>0)
-	{//接收到TCP数据
-		NeoWayExternalPar.LoseTime=0;
-		g_uRecTcpDateNum=ReceiveTCP_Date();
-		GprsRec_Date(g_aTcpRecDateBuff,g_uRecTcpDateNum);
-    memset(&g_aNeoWayRec,0,sizeof(g_aNeoWayRec));
-	}else if(strstr((char *)g_aNeoWayRec,"MODEM:STARTUP")>0)
-	{//开机成功	
-		NeoWaySysPar.Init.ModulePowerState = ON;
-		NeoWaySysPar.Init.StartNum++;
-    memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
-	}else if(strstr((char *)g_aNeoWayRec,"+PBREADY")>0)
-	{//检测到SIM卡
-		NeoWaySysPar.Init.FindSimState = ON;
-		NeoWaySysPar.Init.FindSimNum++;
-		NeoWaySysPar.Init.StartInitState = ON;
-    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
-	}else if(strstr((char *)g_aNeoWayRec,"SOCKETS:IPR")>0)
-	{//网络阻塞
-		NeoWayExternalPar.NetWorkConnetState = OFF;		
-		NeoWaySysPar.NetWork.ConnetTCPState = OFF;
-		NeoWaySysPar.NetWork.ConnetPPPState = OFF;
-		NeoWayExternalPar.HardwareRebootState = ON;
-    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
-	}else if(strstr((char *)g_aNeoWayRec,"Link Closed")>0)
-	{//服务器断开，网络异常
-		NeoWayExternalPar.NetWorkConnetState = OFF;
-		NeoWaySysPar.NetWork.ConnetTCPState = OFF;
-		NeoWaySysPar.NetWork.ConnetPPPState = OFF;
-		NeoWayExternalPar.HardwareRebootState = ON;
-    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
-	}else if(strstr((char *)g_aNeoWayRec,"+TCPSEND:Error")>0)
+	if(ON == NeoWayRec.Dealing)
 	{
-		NeoWayExternalPar.NetWorkConnetState = OFF;
-		NeoWaySysPar.NetWork.ConnetTCPState = OFF;
-		NeoWaySysPar.NetWork.ConnetPPPState = OFF;
-		NeoWayExternalPar.HardwareRebootState = ON;
-    memset(&g_aNeoWayRec,0,g_uRecTcpDateNum);
+		if(strstr((char *)g_aNeoWayRec,"+TCPRECV:0")>0)
+		{//接收到TCP数据
+			NeoWayExternalPar.LoseTime = 0;
+			Connet_ErrorCnt = 0;
+			
+			g_uRecTcpDateNum=ReceiveTCP_Date();
+			GprsRec_Date(g_aTcpRecDateBuff,g_uRecTcpDateNum);
+			memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
+		}else if(strstr((char *)g_aNeoWayRec,"MODEM:STARTUP")>0)
+		{//开机成功				
+			NeoWaySysPar.Init.StartNum++;
+			memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
+		}else if(strstr((char *)g_aNeoWayRec,"+PBREADY")>0)
+		{//检测到SIM卡
+			NeoWaySysPar.Init.FindSimState = ON;
+			NeoWaySysPar.Init.FindSimNum++;
+			NeoWaySysPar.Init.StartInitState = ON;
+			memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
+		}else if(strstr((char *)g_aNeoWayRec,"SOCKETS:IPR")>0)
+		{//网络阻塞
+			NeoWayExternalPar.NetWorkConnetState = OFF;		
+			NeoWaySysPar.NetWork.ConnetTCPState = OFF;
+			NeoWaySysPar.NetWork.ConnetPPPState = OFF;
+			NeoWayExternalPar.SofewareRebootState = ON;
+			memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
+		}else if(strstr((char *)g_aNeoWayRec,"Link Closed")>0)
+		{//服务器断开，网络异常
+			NeoWayExternalPar.NetWorkConnetState = OFF;
+			NeoWaySysPar.NetWork.ConnetTCPState = OFF;
+			NeoWaySysPar.NetWork.ConnetPPPState = OFF;
+			NeoWayExternalPar.SofewareRebootState = ON;
+			memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
+		}else if(strstr((char *)g_aNeoWayRec,"+TCPSEND:Error")>0)
+		{
+			NeoWayExternalPar.NetWorkConnetState = OFF;
+			NeoWaySysPar.NetWork.ConnetTCPState = OFF;
+			NeoWaySysPar.NetWork.ConnetPPPState = OFF;
+			NeoWayExternalPar.SofewareRebootState = ON;
+			memset(&g_aNeoWayRec,0,g_aNeoWayRecNum);
+		}
+		NeoWayRec.Dealing=OFF;
 	}
 }	
 /*
@@ -810,7 +824,6 @@ printf("Rec TCP Date Over Rang\r\n");
 	return DateLength;
 }
 
-
 static void Empty_Par(void)
 {
 	memset(&NeoWayRec,0,sizeof(NeoWayRec));
@@ -832,7 +845,20 @@ static void ReBuild_NetWork(void)
 	BuildTCP_Connet();
 }
 
-static void ReBootHardware_Module(void)
+void ReBootHardware_Module(void)
+{
+	if(ON == NeoWaySysPar.Init.ModulePowerState)
+	{
+		PowerOff_Module();
+	}
+	GPIO_PinClear(HARDWARE_POWR_CONTORL);
+	Delay_ms(100);
+	GPIO_PinSet(HARDWARE_POWR_CONTORL);
+	Delay_ms(300);
+	PowerOn_Module();
+}	
+
+static void ReBootSofeware_Module(void)
 {
 	Empty_Par();
 	//缺少硬件重启函数	
@@ -840,23 +866,21 @@ static void ReBootHardware_Module(void)
 	PowerOn_Module();
 	NeoWaySysPar.Init.StartInitState = ON;
 }	
-
-static void ReBootSofeware_Module(void)
-{
-	
-}	
 static void PowerOff_Module(void)
 {
-	GPIO_PinSet(PORT_ON_OFF);	
-	Delay_ms(600);
 	GPIO_PinClear(PORT_ON_OFF);	
+	Delay_ms(600);
+	GPIO_PinSet(PORT_ON_OFF);	
 	Delay_ms(6000);	
 }
 static void PowerOn_Module(void)
 {
-	GPIO_PinClear(PORT_ON_OFF);	
+	GPIO_PinSet(PORT_ON_OFF);	
 }
-
+void Module_Init(void)
+{
+	
+}
 static void Protect_Connet(void)
 {
 	static uint16 Temp = 0;
@@ -866,8 +890,7 @@ static void Protect_Connet(void)
 		if(Temp>=NEOWAY_REC_REBOOT_TIME)
 		{//待添加重启函数
 			Temp=0;
-			Connet_ErrorCnt++;
-			ReBootHardware_Module();
+			NeoWayExternalPar.SofewareRebootState = ON;
 		}else
 		{
 			Temp++;
@@ -880,17 +903,25 @@ static void Protect_Connet(void)
 	
 	if(ON == NeoWayExternalPar.HardwareRebootState)
 	{//启动硬件复位
-		Connet_ErrorCnt++;
+		NeoWayExternalPar.HardwareRebootState = OFF;		
 		ReBootHardware_Module();		
 	}
 	if(ON == NeoWayExternalPar.SofewareRebootState)
 	{//启动软件复位
-	
+		NeoWayExternalPar.SofewareRebootState = OFF;
+		Connet_ErrorCnt++;
+		if(Connet_ErrorCnt >=3 )
+		{
+			Connet_ErrorCnt = 0;
+			NeoWayExternalPar.HardwareRebootState = ON;
+		}else
+		{
+			ReBootSofeware_Module();
+		}		
 	}
 	if(ON == NeoWaySysPar.Init.StartInitState)
 	{
 		NeoWaySysPar.Init.StartInitState = OFF;
 		NeoWay_Init();
 	}
-
 }

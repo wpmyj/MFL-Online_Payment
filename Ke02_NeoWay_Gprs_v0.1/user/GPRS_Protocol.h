@@ -4,6 +4,8 @@
 #include "crc.h"
 #include "NeoWay_Gprs.h"
 #include "Connet_Master.h"
+#include "Init.h"
+#include "gpio.h"
 
 #define SERIAL_ID_LENGTH        20
 #define SERVER_IP_LENGTH        4

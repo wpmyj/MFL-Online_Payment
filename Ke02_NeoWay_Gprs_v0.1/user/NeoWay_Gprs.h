@@ -27,16 +27,17 @@
 #define NEOWAY_SEND_MAX  128
 #define TCP_REC_DATE_MAX 128
 
-#define UART1_BUFFLENGTH   10
+#define UART0_BUFFLENGTH   10
 
-#define PORT_EMERGOFF  	GPIO_PTD6
-#define PORT_ON_OFF   	GPIO_PTD7 
-
+#define PORT_EMERGOFF  	GPIO_PTC1
+#define PORT_ON_OFF   	GPIO_PTD5 
+#define HARDWARE_POWR_CONTORL    GPIO_PTD1
 //帧间隔时间
 #define NEOWAY_REC_INTERVAL_TIME  20
 #define NEOWAY_REC_REBOOT_TIME 40
 
-#define NEOWAY_UART   UART1
+#define NEOWAY_UART   UART0
+#define NEOWAY_DEBUG_UART UART1
 //发送等待200ms
 #define NEOWAY_WAIT_TIME 200
 #define NEOWAY_SEND_WAIT_TIME 70
@@ -52,6 +53,7 @@
 //接收用到的参数
 typedef struct{
 	uint8 	Receiving;
+	uint8   Dealing;
 	uint16  Num;
 	uint16  Time;
 }NeoWayRec_;
@@ -92,7 +94,7 @@ typedef struct{
 
 extern NeoWayExternalPar_ NeoWayExternalPar;
 extern NeoWaySysPar_ NeoWaySysPar;
-
+void Delay_ms(uint16 num);
 void NeoWayBoard_Init(void);
 void NeoWay_Rtc1s(void);
 uint8 NeoWay_Init(void);
@@ -111,7 +113,8 @@ static uint16 ReceiveTCP_Date(void);
 void ModuleBack_Code(void);
 static void Empty_Par(void);
 static void ReBuild_NetWork(void);
-static void ReBootHardware_Module(void);
+void ReBootHardware_Module(void);
+static void ReBootSofeware_Module(void);
 static void ReBoot_Module(void);
 static void PowerOff_Module(void);
 static void PowerOn_Module(void);

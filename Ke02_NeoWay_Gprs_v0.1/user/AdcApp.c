@@ -2,7 +2,7 @@
 
 static unsigned int ADC_ConversionCount=0;
 unsigned int ADC_ConversionBuff[16]={0};
-unsigned int ADC_SenserTemperature[16]={0};	
+volatile unsigned int g_uNeoWayVccio = 0;
 void Adc_FifoIsr(void)
 {
 
@@ -22,23 +22,22 @@ void Adc_FifoIsr(void)
 void Read_AdcBuff(void)
 {
 		static unsigned char i,TemperatureCount=0;
+		unsigned long long Temp=0;
 		
 		TemperatureCount++;
 	
 		if(TemperatureCount<=16)
 		{
-			ADC_SetChannel(ADC,ADC_CHANNEL_AD22_TEMPSENSOR);
+			ADC_SetChannel(ADC,ADC_CHANNEL_AD0);
 		}else
 		{
 			TemperatureCount=0;
+			g_uNeoWayVccio=ADC_ConversionBuff[15];
 			for(i=0;i<16;i++)
 			{
-				ADC_SenserTemperature[i]=ADC_ConversionBuff[i];
-				UART_PutChar(UART0,0xfd);
-				UART_PutChar(UART0,(unsigned char)(ADC_SenserTemperature[i]>>8));
-				UART_PutChar(UART0,(unsigned char)(ADC_SenserTemperature[i]));
-				UART_PutChar(UART0,0xfc);
-				ADC_ConversionCount=0;
+				Temp+=ADC_ConversionBuff[i];				
 			}
+			g_uNeoWayVccio=(uint16)(Temp/16);
+			ADC_ConversionCount=0;
 		}
 }

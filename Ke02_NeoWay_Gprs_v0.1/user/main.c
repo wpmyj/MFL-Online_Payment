@@ -9,7 +9,13 @@
 * @date 2016-9-27
 *
 * @brief  
-*
+* @port :uart0 gprs  23-24
+				 uart1 Debug 36-37
+				 uart2 380W  16-17
+				 PowerControl 1   PTD1
+				 RstCpu      19		PTC1
+				 On/Off Mcu  18		PTD5
+
 *******************************************************************************/
 #include "common.h"
 #include "ics.h"
@@ -29,7 +35,6 @@ extern uint8 g_uRTC10MsEvent;
 extern uint8 g_uRTC50MsEvent;
 extern uint8 g_uRTC1SEvent;
 
-
 void Rtc_Event(void);
 
 volatile uint8 TempFlag=0;
@@ -41,8 +46,8 @@ int main (void)
 	ConnetBoard_Init();
 	NeoWayBoard_Init();
 	Init_Gprs_Device();
-	//缺少NEOWAY模块重启函数
-	NeoWaySysPar.Init.StartInitState=ON;
+	Delay_ms(200);  //等待采集的电源电压值稳定
+	ReBootHardware_Module();	
   while(1)
 	{	
 		/********************模块回码解析************************/		
@@ -55,7 +60,6 @@ int main (void)
 			SendMaster_KeyValue(Key);
 			SendMaster_Date();
 		}
-
 		Gprs_ReceiveEvent();
     if(ON==NeoWaySysPar.Init.GprsSendState)
 		{
@@ -63,23 +67,20 @@ int main (void)
 			NeoWaySysPar.Init.GprsSendState=0;
 		}
 		Gprs_StartCodeEvent();
-	}   
-  /********************喂狗时间************************/
+		/********************喂狗时间************************/
     WDOG_Feed();
+	}   
 }
-
 
 void Rtc_Event(void)
 {
 		if(g_uRTC10MsEvent>=1)
 		{
-			g_uRTC10MsEvent=0;
-			
+			g_uRTC10MsEvent=0;			
 		}
 		if(g_uRTC50MsEvent>=1)
 		{
-			g_uRTC50MsEvent=0;			
-
+			g_uRTC50MsEvent=0;		
 		}
 		if(g_uRTC1SEvent>=1)
 		{
@@ -87,5 +88,4 @@ void Rtc_Event(void)
 			Gprs_1SEvent();
 			NeoWay_Rtc1s();
 		}
-
 }

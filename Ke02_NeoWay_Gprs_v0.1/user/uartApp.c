@@ -40,7 +40,7 @@ void UART_HandleInt(UART_Type *pUART)
     
     u8Port = ((uint32)pUART-(uint32)UART0)>>12;
     
-	if(u8Port == 1)
+	if(u8Port == 0)
     {
     	if(UART_CheckFlag(pUART,UART_FlagOR))   //Òç³ö
     	{
@@ -62,7 +62,7 @@ void UART_HandleInt(UART_Type *pUART)
     	        }
     		}
 	}
-	if(u8Port == 0)
+	if(u8Port == 2)
     {
     	if(UART_CheckFlag(pUART,UART_FlagOR))   //Òç³ö
     	{
@@ -84,13 +84,4 @@ void UART_HandleInt(UART_Type *pUART)
     	        }
     		}
 	}
-}
-void Deal_Receive_data(uint8 data)
-{
-    volatile uint8 temp=0;
-    temp=data;
-    if(0x01==temp)
-    {
-         printf("ok");
-    }
 }

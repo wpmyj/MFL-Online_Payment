@@ -7,18 +7,17 @@ void Board_Init(void)
 {
 		sysinit();			//初始化系统
 		FLASH_Init(BUS_CLK_HZ); 
-		printf("Board Init Start\n");
 		Gpio_Init();
 		Uart_Init();
 		Rtc_Init();
-	    Pit_Init();
-		printf("Board Init Finish\n");
-        Wdog_Init();
+		Adc_Init();
+	  Pit_Init();
+    Wdog_Init();
 }
 
 void Gpio_Init(void)
 {
-	
+	GPIO_PinInit(LIGHT, GPIO_PinOutput);	
 }
 void Uart_Init(void)
 {
@@ -46,7 +45,7 @@ void PIT_Task(void)
 	{
 		Cnt=0;
 		NeoWayExternalPar.LoseTime++;
-		if(NeoWayExternalPar.LoseTime >= 122)
+		if(NeoWayExternalPar.LoseTime >= 305)
 		{
 			NeoWayExternalPar.HardwareRebootState = ON;
 			NeoWayExternalPar.LoseTime = 0;
@@ -85,4 +84,16 @@ void Wdog_Init(void)
     sWDOGConfig.u16TimeOut          = 30000;  /*< 60s */
     sWDOGConfig.u16WinTime          = 0; 
     WDOG_Init(&sWDOGConfig);
+}
+
+void Adc_Init(void)
+{
+		ADC_ConfigType  sADC_Config = {0};
+		sADC_Config.u8ClockDiv = ADC_ADIV_DIVIDE_4;
+    sADC_Config.u8ClockSource = CLOCK_SOURCE_BUS_CLOCK;
+    sADC_Config.u8Mode = ADC_MODE_12BIT;
+    sADC_Config.sSetting.bIntEn = 1;
+    sADC_Config.u8FiFoLevel = ADC_FIFO_LEVEL3;
+    ADC_SetCallBack(Adc_FifoIsr);
+    ADC_Init( ADC, &sADC_Config);
 }

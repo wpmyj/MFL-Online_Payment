@@ -15,11 +15,12 @@
 #include "wdog.h"
 #include "NeoWay_Gprs.h"
 #define UART1_BUFFLENGTH   10
-
+#define LIGHT			GPIO_PTB5
 void Board_Init(void);
 void Gpio_Init(void);
 void Uart_Init(void);
 void Rtc_Init(void);
+void Adc_Init(void);
 void Pit_Init(void);
 void Wdog_Init(void);
 #endif

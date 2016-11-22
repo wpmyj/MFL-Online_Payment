@@ -23,3 +23,10 @@
 .\connet_master.o: ..\user\NeoWay_Gprs.h
 .\connet_master.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
 .\connet_master.o: ..\drivers\gpio.h
+.\connet_master.o: ..\user\Init.h
+.\connet_master.o: ..\drivers\rtc.h
+.\connet_master.o: ..\drivers\adc.h
+.\connet_master.o: ..\drivers\flash.h
+.\connet_master.o: ..\user\AdcApp.h
+.\connet_master.o: ..\user\RtcApp.h
+.\connet_master.o: ..\drivers\pit.h

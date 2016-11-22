@@ -23,3 +23,10 @@
 .\gprs_protocol.o: ..\user\uartApp.h
 .\gprs_protocol.o: ..\drivers\gpio.h
 .\gprs_protocol.o: ..\user\Connet_Master.h
+.\gprs_protocol.o: ..\user\Init.h
+.\gprs_protocol.o: ..\drivers\rtc.h
+.\gprs_protocol.o: ..\drivers\adc.h
+.\gprs_protocol.o: ..\drivers\flash.h
+.\gprs_protocol.o: ..\user\AdcApp.h
+.\gprs_protocol.o: ..\user\RtcApp.h
+.\gprs_protocol.o: ..\drivers\pit.h

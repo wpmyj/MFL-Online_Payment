@@ -10,6 +10,7 @@
 										 启动程序函数也要重写
 										 去掉串口中断接收函数
 										 接收的数据使用指针指向，发送的数据，使用数据复制
+							note : 心跳包报警，需修改
 ** ===================================================================
 */
 
@@ -240,6 +241,7 @@ static void Gprs_HeartbeatEvent(void)
 {
 	static uint8 flag = 0; 
 	Gprs_flag.bits.HeartbeatTime++;
+	GPIO_PinToggle(LIGHT);
 	if((OFF==Gprs_flag.bits.ReportHeartbeat))
 	{
 		Gprs_flag.bits.HeartbeatFaultNum = 0;
@@ -247,14 +249,14 @@ static void Gprs_HeartbeatEvent(void)
 	if((Gprs_flag.bits.HeartbeatTime>=60)&&(flag==0))// 60S
 	{
 		Send_Heartbeat(SendOriginal);
-		//Gprs_flag.bits.HeartbeatFaultNum++;		
+	//Gprs_flag.bits.HeartbeatFaultNum++;		
 		Gprs_flag.bits.HeartbeatTime=0;		
 	}
 	if(Gprs_flag.bits.HeartbeatFaultNum>=3)//错误累积
 	{
 		flag = 1;
 		Gprs_flag.bits.HeartbeatTime = 0;
-		Gprs_flag.bits.HeartbeatFaultNum=0;
+		Gprs_flag.bits.HeartbeatFaultNum = 0;
 	}
 	if((1==flag)&&(Gprs_flag.bits.HeartbeatTime>=3600)) //一个小时
 	{
@@ -301,15 +303,11 @@ uint8 Gprs_StartCodeEvent(void)
 		Startflag = ON;	
 		switch(Set_Param.Start_Program)
 		{
-		case  0x03 :SendMaster_KeyValue(5);
-								SendMaster_Date();break;
-		case  0x04 :SendMaster_KeyValue(5);
-								SendMaster_Date();break;
 		case  0x05 :SendMaster_KeyValue(5);
 								SendMaster_Date();break;
-		case  0x06 :SendMaster_KeyValue(5);
+		case  0x06 :SendMaster_KeyValue(6);
 								SendMaster_Date();break;
-		case  0x07 :SendMaster_KeyValue(5);
+		case  0x07 :SendMaster_KeyValue(7);
 								SendMaster_Date();break;			
 		default    :break;
 		}
@@ -317,7 +315,6 @@ uint8 Gprs_StartCodeEvent(void)
 	}
 	if((ON==Gprs_flag.bits.Stop_Chair))
 	{	
-
 		if(0x01==Set_Param.Stop_Chair)
 		{
 			SendMaster_KeyValue(1);

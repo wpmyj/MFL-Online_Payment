@@ -5,7 +5,7 @@
 #include "sysinit.h"
 #include "uart.h"
 #include "uartApp.h"
-#define UART_CONNET_MASTER  UART2
+#define UART_CONNET_MASTER  UART1
 #define SERIAL_ID_LENGTH 20
 typedef struct{
 	struct{

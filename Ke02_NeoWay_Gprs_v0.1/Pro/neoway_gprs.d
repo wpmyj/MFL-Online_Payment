@@ -20,3 +20,13 @@
 .\neoway_gprs.o: ..\drivers\sim.h
 .\neoway_gprs.o: ..\user\uartApp.h
 .\neoway_gprs.o: ..\drivers\gpio.h
+.\neoway_gprs.o: ..\user\GPRS_Protocol.h
+.\neoway_gprs.o: ..\drivers\crc.h
+.\neoway_gprs.o: ..\user\Connet_Master.h
+.\neoway_gprs.o: ..\user\Init.h
+.\neoway_gprs.o: ..\drivers\rtc.h
+.\neoway_gprs.o: ..\drivers\adc.h
+.\neoway_gprs.o: ..\drivers\flash.h
+.\neoway_gprs.o: ..\user\AdcApp.h
+.\neoway_gprs.o: ..\user\RtcApp.h
+.\neoway_gprs.o: ..\drivers\pit.h

@@ -17,7 +17,8 @@ void Board_Init(void)
 
 void Gpio_Init(void)
 {
-	GPIO_PinInit(LIGHT, GPIO_PinOutput);	
+	GPIO_PinInit(LIGHT, GPIO_PinOutput);
+  GPIO_PinSet(LIGHT);
 }
 void Uart_Init(void)
 {

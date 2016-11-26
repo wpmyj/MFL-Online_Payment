@@ -3,8 +3,8 @@
 
 
 
-#define UART2_BUFFLENGTH   10
-uint8 Uart2_ReceiveBuff[UART2_BUFFLENGTH]={0};
+#define UART1_BUFFLENGTH   10
+uint8 Uart1_ReceiveBuff[UART1_BUFFLENGTH]={0};
 
 
 uint8 g_aRecMasterDate[21] = {0};
@@ -18,11 +18,11 @@ void ConnetBoard_Init(void)
 	UART_ConfigType sUARTConfig;
 	sUARTConfig.u32SysClkHz = BUS_CLK_HZ;
 	sUARTConfig.u32Baudrate = 19200;
-	UART_Init(UART2,&sUARTConfig);
+	UART_Init(UART1,&sUARTConfig);
 	UART_SetCallback(UART_HandleInt);
-	UART_ReceiveInt(UART2, Uart2_ReceiveBuff, UART2_BUFFLENGTH);
-	NVIC_EnableIRQ(UART2_IRQn); 
-	NVIC_SetPriority(UART2_IRQn,3);		
+	UART_ReceiveInt(UART1, Uart1_ReceiveBuff, UART1_BUFFLENGTH);
+	NVIC_EnableIRQ(UART1_IRQn); 
+	NVIC_SetPriority(UART1_IRQn,3);		
 }
 
 void RecMaster_Uart(uint8 date)

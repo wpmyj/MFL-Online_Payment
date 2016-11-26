@@ -62,7 +62,7 @@ void UART_HandleInt(UART_Type *pUART)
     	        }
     		}
 	}
-	if(u8Port == 2)
+	if(u8Port == 1)
     {
     	if(UART_CheckFlag(pUART,UART_FlagOR))   //Òç³ö
     	{

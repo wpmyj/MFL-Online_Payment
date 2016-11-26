@@ -90,7 +90,7 @@
     //#define XOSC_STOP_ENABLE
 
     /* define SCI port # to be used */
-    #define TERM_PORT   UART1               /*!< UART0 is used on KE02 EVB board */
+    #define TERM_PORT   UART2               /*!< UART0 is used on KE02 EVB board */
 
 #else
     /*! define what clock mode at startup on freedom board
@@ -109,7 +109,7 @@
     //#define EXT_CLK_FREQ_KHZ	20000       /* in KHz */
 		#define EXT_CLK_FREQ_KHZ	10000       /* in KHz */
     /*! define UART port # to be used */
-    #define TERM_PORT   UART1               /*!< UART1 is used on KE02 freedom board */
+    #define TERM_PORT   UART2             /*!< UART1 is used on KE02 freedom board */
 
 #endif
 

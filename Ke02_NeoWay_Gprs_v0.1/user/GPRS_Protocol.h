@@ -8,6 +8,7 @@
 #include "gpio.h"
 
 #define SERIAL_ID_LENGTH        20
+#define IP_NUMBER               3
 #define SERVER_IP_LENGTH        4
 #define SERVER_PORT_LENGTH      2
 #define CHAIR_ALARM             1  
@@ -31,13 +32,15 @@
 #define ACK_ORDER_MUST_REPLY    0xFE    //ÃüÁî£¬±ØÐëÓ¦´ð
 
 
-#define SERIAL_ID       {'3','3','0','C'}
+#define SERIAL_ID       {'3','3','0','D'}
 //#define SERIAL_ID       {0}
 
-#define SERVER_IP       {192,168,1,1}
-#define SERVER_PORT     {0x17,0x71}   //¶Ë¿ÚºÅ:6001
-
-
+#define SERVER_IP_1       {121,43,115,207}
+#define SERVER_PORT_1     {0x17,0x71}   //¶Ë¿ÚºÅ:6001
+#define SERVER_IP_2       {121,43,115,207}
+#define SERVER_PORT_2     {0x17,0x71}   //¶Ë¿ÚºÅ:6001
+#define SERVER_IP_3       {121,43,115,207}
+#define SERVER_PORT_3     {0x17,0x71}   //¶Ë¿ÚºÅ:6001
 typedef struct { 
     uint16 flag;
     struct{
@@ -71,8 +74,12 @@ typedef struct{
 }Monitor_Target_01 ;
 
 typedef struct{
-    uint8  Server_Ip[SERVER_IP_LENGTH];    
-    uint8  Server_Port[SERVER_PORT_LENGTH];
+    uint8  Server_Ip_1[SERVER_IP_LENGTH];    
+    uint8  Server_Port_1[SERVER_PORT_LENGTH];
+    uint8  Server_Ip_2[SERVER_IP_LENGTH];    
+    uint8  Server_Port_2[SERVER_PORT_LENGTH];
+    uint8  Server_Ip_3[SERVER_IP_LENGTH];    
+    uint8  Server_Port_3[SERVER_PORT_LENGTH];
 }Monitor_Target_02;
 
 typedef struct {
@@ -97,8 +104,12 @@ enum  Device_InfoNum{
 
 enum Web_ParamNum{
   Head_WEB      = 0x01,
-    Server_Ip   = 0x01,
-    Server_Port = 0x02
+    Server_Ip_1   = 0x01,
+    Server_Port_1 = 0x02,
+    Server_Ip_2   = 0x03,
+    Server_Port_2 = 0x04,
+    Server_Ip_3   = 0x05,
+    Server_Port_3 = 0x06
 };
 
 enum Alarm_StateNum{
@@ -119,6 +130,7 @@ enum Collect_DataNum{
 };
 
 extern Monitor_Target_01 Device_Info;
+extern Monitor_Target_02 Web_Param;
 void GprsRec_Date(uint8* Date,uint8 num);
 static void GprsSend_Date(uint8* Date,uint8 num);
 void Gprs_1SEvent(void);

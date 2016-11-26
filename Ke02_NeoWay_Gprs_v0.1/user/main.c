@@ -10,8 +10,8 @@
 *
 * @brief  
 * @port :uart0 gprs  23-24
-				 uart1 Debug 36-37
-				 uart2 380W  16-17
+				 uart1 380W 36-37
+				 uart2 Debug  16-17
 				 PowerControl 1   PTD1
 				 RstCpu      19		PTC1
 				 On/Off Mcu  18		PTD5

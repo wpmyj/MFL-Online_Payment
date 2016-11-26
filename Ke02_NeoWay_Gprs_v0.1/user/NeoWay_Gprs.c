@@ -12,10 +12,12 @@
 **						Note ：	串口中断等级要比定时器高，不然会导致重启不了
 **			2016-10-29 ：	建立GPRS协议链接
 **			2016-11-10 ： 开始修改时序问题,急停的按键还未实现
+**      2016-11-25 :  增加IP、端口修改
 ** ===================================================================
 */
 
 #include "NeoWay_Gprs.h"
+#include "GPRS_Protocol.h"
 /********************建立连接流程图************************/
 /*
 Rec:	1				MODEM:STARTUP							开机成功
@@ -592,6 +594,37 @@ printf("Build PPP ERROR \r\n");
 }
 /*
 ** ===================================================================
+**     Method      : 	Write_Ip
+**     Description :	写IP
+**     Parameters  : 	*Ip 
+**     Returns     : 	结果
+** ===================================================================
+*/
+int8*  Write_Ip(uint8* Ip,uint8* Port)
+{
+    static int8 SendTcpIp[35] = {"AT+TCPSETUP=0,"};
+    uint8 i = 0;
+    uint16 port_temp = 0;
+    int8 temp[]="9999";
+    for(;i<4;i++)
+    {
+       itoa((int)*(Ip+i),temp,10);
+       strcat(SendTcpIp,temp);
+       if(i<3)
+       {
+            strcat(SendTcpIp,".");
+       }
+    }
+    port_temp=(uint16)(*Port)<<8;
+    port_temp+=*(Port+1);
+    itoa((int16)port_temp,temp,10);
+    strcat(SendTcpIp,",");
+    strcat(SendTcpIp,temp);
+		strcat(SendTcpIp,"\r");
+		return SendTcpIp;
+}
+/*
+** ===================================================================
 **     Method      : 	BuildTCP_Connet
 **     Description :	建立TCP连接
 **     Parameters  : 	None
@@ -600,7 +633,15 @@ printf("Build PPP ERROR \r\n");
 */
 static uint8 BuildTCP_Connet(void)
 {
-	NeoWay_SendString((uint8*)SEND_TCP_IP);
+	//NeoWay_SendString((uint8*)SEND_TCP_IP); 
+  switch(NeoWaySysPar.NetWork.IpSelectNum)
+  {
+      case  1: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_1,Web_Param.Server_Port_1));
+      case  2: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_2,Web_Param.Server_Port_2));
+      case  3: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_3,Web_Param.Server_Port_3));
+      default: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_1,Web_Param.Server_Port_1));
+  }
+ 
 	Delay_ms(NEOWAY_WAIT_TIME);
  if(strstr((char *)g_aNeoWayRec,"FAIL")>0)
 	{

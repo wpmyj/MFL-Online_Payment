@@ -8,7 +8,7 @@
 #include "uart.h"
 #include "uartApp.h"
 #include "gpio.h"
-//#define DEBUG
+#define DEBUG
 #ifdef  DEBUG
 //关键信息-重要错误
 #define DEBUG_RANK_DIAMOND     
@@ -80,7 +80,8 @@ typedef struct{
 	struct{
 		uint8 ConnetPPPState;
 		uint8 ConnetTCPState;
-		uint8 ConnetServerState;		
+		uint8 ConnetServerState;
+    uint8 IpSelectNum;
 	}NetWork;
 }NeoWaySysPar_;
 
@@ -110,6 +111,7 @@ static uint8 BuildTCP_Connet(void);
 uint8 TcpSend_Date(void);
 uint8 Gprs_Send_Date(void);
 static uint16 ReceiveTCP_Date(void);
+static char* itoa(int num,char*str,int radix);
 void ModuleBack_Code(void);
 static void Empty_Par(void);
 static void ReBuild_NetWork(void);

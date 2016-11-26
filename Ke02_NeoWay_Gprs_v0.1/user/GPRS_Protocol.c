@@ -309,7 +309,8 @@ uint8 Gprs_StartCodeEvent(void)
 								SendMaster_Date();break;
 		case  0x07 :SendMaster_KeyValue(7);
 								SendMaster_Date();break;			
-		default    :break;
+		default    :SendMaster_KeyValue(5);
+								SendMaster_Date();break;
 		}
 	
 	}
@@ -490,20 +491,42 @@ void Init_Gprs_Device(void)
 {
 	uint8 i = 0;
 	uint8 temp_id[SERIAL_ID_LENGTH] = SERIAL_ID;
-	uint8 temp_ip[4]  =SERVER_IP;
-	uint8 temp_port[2] =SERVER_PORT;        
+	uint8 temp_ip_1[4]  =SERVER_IP_1;
+	uint8 temp_port_1[2] =SERVER_PORT_1; 
+	uint8 temp_ip_2[4]  =SERVER_IP_2;
+	uint8 temp_port_2[2] =SERVER_PORT_2;   
+  uint8 temp_ip_3[4]  =SERVER_IP_3;
+	uint8 temp_port_3[2] =SERVER_PORT_3;   
 	for(i=0;i<SERIAL_ID_LENGTH;i++)
 	{
 		Device_Info.Serial_Id[i] = temp_id[i];   //设备ID
 	}    
+  
 	for(i=0;i<SERVER_IP_LENGTH;i++)
 	{
-		Web_Param.Server_Ip[i] = temp_ip[i];   //服务器IP
+		Web_Param.Server_Ip_1[i] = temp_ip_1[i];   //服务器IP
 	}
 	for(i=0;i<SERVER_PORT_LENGTH;i++)
 	{
-		Web_Param.Server_Port[i] = temp_port[i];//服务器端口号
+		Web_Param.Server_Port_1[i] = temp_port_1[i];//服务器端口号
 	}
+  	for(i=0;i<SERVER_IP_LENGTH;i++)
+	{
+		Web_Param.Server_Ip_2[i] = temp_ip_2[i];   //服务器IP
+	}
+	for(i=0;i<SERVER_PORT_LENGTH;i++)
+	{
+		Web_Param.Server_Port_2[i] = temp_port_2[i];//服务器端口号
+	}
+  for(i=0;i<SERVER_IP_LENGTH;i++)
+	{
+		Web_Param.Server_Ip_3[i] = temp_ip_3[i];   //服务器IP
+	}
+	for(i=0;i<SERVER_PORT_LENGTH;i++)
+	{
+		Web_Param.Server_Port_3[i] = temp_port_3[i];//服务器端口号
+	}
+  NeoWaySysPar.NetWork.IpSelectNum = 1;
 	Alarm_State.Chair_Alarm = 0x00;
 	Set_Param.Lock_Chair=0x00;    //0x00表示解锁
 	Collect_Data.Chair_ServiceCondition = 0x01; 	
@@ -863,8 +886,12 @@ static uint8* Matching_WEB(const uint8 *web)
 {
 	switch(*web)
 	{
-		case Server_Ip   	: return (Web_Param.Server_Ip);
-		case Server_Port 	: return (Web_Param.Server_Port);
+		case Server_Ip_1   	: return (Web_Param.Server_Ip_1);
+		case Server_Port_1 	: return (Web_Param.Server_Port_1);
+		case Server_Ip_2   	: return (Web_Param.Server_Ip_2);
+		case Server_Port_2 	: return (Web_Param.Server_Port_2);
+    case Server_Ip_3   	: return (Web_Param.Server_Ip_3);
+		case Server_Port_3 	: return (Web_Param.Server_Port_3);
 		default  	   		: return  NULL;
 	}
 }

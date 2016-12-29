@@ -32,7 +32,7 @@
 #define ACK_ORDER_MUST_REPLY    0xFE    //ÃüÁî£¬±ØÐëÓ¦´ð
 
 
-#define SERIAL_ID       {'3','3','0','D'}
+#define SERIAL_ID       {'3','3','0','C'}
 //#define SERIAL_ID       {0}
 
 #define SERVER_IP_1       {121,43,115,207}

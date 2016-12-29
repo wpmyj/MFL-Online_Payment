@@ -11,10 +11,12 @@
 										 去掉串口中断接收函数
 										 接收的数据使用指针指向，发送的数据，使用数据复制
 							note : 心跳包报警，需修改
+							note : ip写入eeprom 标号 还未实现
 ** ===================================================================
 */
 
 #include "GPRS_Protocol.h"
+
 /********************调用外部参数集合************************/
 /*
 			NeoWayExternalPar            状态信息
@@ -113,9 +115,9 @@ void GprsRec_Date(uint8* Date,uint8 num)
 		//扣除帧头、帧尾
 		ReceiveOriginal = Date+1;   
 		Original_length = num-2;
-		Gprs_flag.bits.Deal_data=ON;
-		NeoWayExternalPar.RecTcpDateState=OFF;
+		Gprs_flag.bits.Deal_data=ON;		
 	}
+  NeoWayExternalPar.RecTcpDateState=OFF;
 }
 
 /*
@@ -172,13 +174,18 @@ static void Gprs_FirstOpenEvent(void)
 	if(Gprs_flag.bits.ReportFirstOpen==ON)
 	{
 		time++;
-		if(time>=2)
+		if((2 == time)||(5 == time)||(10 == time))
 		{
 			Send_FirstOpen(SendOriginal);
-			time=0;
 		}
-		Gprs_flag.bits.HeartbeatTime=0;		
-	}
+    if(time>=11)
+    {
+        time=11;
+    }
+	}else
+	{
+    time=0;
+  }
 }
 
 /*
@@ -290,7 +297,6 @@ uint8 Gprs_StartCodeEvent(void)
 			if(ON==Master_Inf.State.SysPower)
 			{
 				SendMaster_KeyValue(1);
-				SendMaster_Date();
 			}		
 		}
 	}
@@ -303,16 +309,11 @@ uint8 Gprs_StartCodeEvent(void)
 		Startflag = ON;	
 		switch(Set_Param.Start_Program)
 		{
-		case  0x05 :SendMaster_KeyValue(5);
-								SendMaster_Date();break;
-		case  0x06 :SendMaster_KeyValue(6);
-								SendMaster_Date();break;
-		case  0x07 :SendMaster_KeyValue(7);
-								SendMaster_Date();break;			
-		default    :SendMaster_KeyValue(5);
-								SendMaster_Date();break;
-		}
-	
+		case  0x05 :SendMaster_KeyValue(5);break;
+		case  0x06 :SendMaster_KeyValue(6);break;
+		case  0x07 :SendMaster_KeyValue(7);break;			
+		default    :SendMaster_KeyValue(5);break;
+		}	
 	}
 	if((ON==Gprs_flag.bits.Stop_Chair))
 	{	
@@ -341,9 +342,8 @@ uint8  Gprs_ReceiveEvent(void)
 	volatile uint16 count_crc=0;
 	volatile uint8  length=0;
 	uint16 temp_crc = 0;
-	volatile static uint16 ErrorDate=0;
 	uint8  source[FRAME_MAX_LENGTH]={0};	
-	if(1==Gprs_flag.bits.Deal_data)			//数据接收完毕，开始处理数据
+	if(ON == Gprs_flag.bits.Deal_data)			//数据接收完毕，开始处理数据
 	{  
 	length=ServerToGprs_ChangeMean( ReceiveOriginal, source, Original_length); 	
 	count_crc=crc16(source, length-2);	
@@ -361,7 +361,6 @@ uint8  Gprs_ReceiveEvent(void)
 				}
 			}
 	}
-	ErrorDate++;
 	*(source+1)=ACK_CRC_FAULT;
 	temp_crc = crc16(source,length-2);//-2为扣除原CRC的长度
 	*(source+length-2) = temp_crc>>8;
@@ -884,6 +883,7 @@ static uint8* Matching_DEV(const uint8 *dev)
 }
 static uint8* Matching_WEB(const uint8 *web)
 {
+	
 	switch(*web)
 	{
 		case Server_Ip_1   	: return (Web_Param.Server_Ip_1);

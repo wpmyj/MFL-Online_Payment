@@ -20,7 +20,7 @@
 
 
 #define ERROR    0
-#define SUCCEED  1
+#define SUCCEED  1 
 
 
 #define NEOWAY_REC_MAX   128
@@ -34,7 +34,7 @@
 #define HARDWARE_POWR_CONTORL    GPIO_PTD1
 //÷°º‰∏Ù ±º‰
 #define NEOWAY_REC_INTERVAL_TIME  20
-#define NEOWAY_REC_REBOOT_TIME 40
+#define NEOWAY_REC_REBOOT_TIME 120
 
 #define NEOWAY_UART   UART0
 #define NEOWAY_DEBUG_UART UART1
@@ -71,9 +71,8 @@ typedef struct{
 typedef struct{
 	struct{
 		uint8 ModulePowerState;
-		uint8 StartNum;
+		uint8 ModuleRunning;
 		uint8 FindSimState;
-		uint8 FindSimNum;
 		uint8 StartInitState;
 		uint8 GprsSendState;
 	}Init;
@@ -97,6 +96,7 @@ extern NeoWayExternalPar_ NeoWayExternalPar;
 extern NeoWaySysPar_ NeoWaySysPar;
 void Delay_ms(uint16 num);
 void NeoWayBoard_Init(void);
+static void NeoWayIp_Init(void);
 void NeoWay_Rtc1s(void);
 uint8 NeoWay_Init(void);
 static uint8 Get_Cgsn(void);
@@ -117,7 +117,7 @@ static void Empty_Par(void);
 static void ReBuild_NetWork(void);
 void ReBootHardware_Module(void);
 static void ReBootSofeware_Module(void);
-static void ReBoot_Module(void);
+void ReBoot_Module(void);
 static void PowerOff_Module(void);
 static void PowerOn_Module(void);
 static void Protect_Connet(void);

@@ -131,7 +131,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U59401044 -O78 -S8 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BC11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD1FFFFC00 -FC1000 -FN2 -FF0MKE02Zxxx_P64KB.FLM -FS00 -FL010000 -FP0($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_P64KB.FLM) -FF1MKE02Zxxx_EE256B.FLM -FS110000000 -FL1100 -FP1($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_EE256B.FLM)</Name>
+          <Name>-U304427288 -O78 -S8 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BC11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO7 -FD1FFFFC00 -FC1000 -FN2 -FF0MKE02Zxxx_P64KB.FLM -FS00 -FL010000 -FP0($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_P64KB.FLM) -FF1MKE02Zxxx_EE256B.FLM -FS110000000 -FL1100 -FP1($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_EE256B.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -139,7 +139,40 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD1FFFFC00 -FC1000 -FN2 -FF0MKE02Zxxx_P64KB -FS00 -FL010000 -FF1MKE02Zxxx_EE256B -FS110000000 -FL1100 -FP0($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_P64KB.FLM) -FP1($$Device:MKE02Z64xxx4$Flash/MKE02Zxxx_EE256B.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>367</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>16752</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\Easepal\脧卯脛驴\脭脷脧脽脳脭脰煤脰搂赂露虏脵脳梅脧碌脥鲁\M590E\鲁脤脨貌\Online_Payment\Ke02_NeoWay_Gprs_v0.1\user\NeoWay_Gprs.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>353</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>16704</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\Easepal\脧卯脛驴\脭脷脧脽脳脭脰煤脰搂赂露虏脵脳梅脧碌脥鲁\M590E\鲁脤脨貌\Online_Payment\Ke02_NeoWay_Gprs_v0.1\user\NeoWay_Gprs.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -149,134 +182,16 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>(null)</ItemText>
-        </Ww>
-        <Ww>
-          <count>2</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>NeoWayRec</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Gprs_flag.bits.HeartbeatTime,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>NeoWayExternalPar.LoseTime,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Connet_ErrorCnt,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_aRecMasterDate</ItemText>
-        </Ww>
-        <Ww>
-          <count>7</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_aSendMasterDate</ItemText>
-        </Ww>
-        <Ww>
-          <count>8</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Serial_Id</ItemText>
-        </Ww>
-        <Ww>
-          <count>9</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Device_Info.Serial_Id</ItemText>
-        </Ww>
-        <Ww>
-          <count>10</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf</ItemText>
-        </Ww>
-        <Ww>
-          <count>11</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>TempFlag</ItemText>
-        </Ww>
-        <Ww>
-          <count>12</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Key</ItemText>
-        </Ww>
-        <Ww>
-          <count>13</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Cnt</ItemText>
-        </Ww>
-        <Ww>
-          <count>14</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_uRecTcpDateNum,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>15</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>\\Ke02_NeoWay_Gprs_v0\../user/NeoWay_Gprs.c\g_aTcpRecDateBuff</ItemText>
-        </Ww>
-        <Ww>
-          <count>16</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Collect_Data.Chair_ServiceCondition</ItemText>
-        </Ww>
-        <Ww>
-          <count>17</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf.RunningTime,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>18</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Set_Param.Lock_Chair</ItemText>
-        </Ww>
-        <Ww>
-          <count>19</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>ErrorDate</ItemText>
-        </Ww>
-        <Ww>
-          <count>20</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Cnt</ItemText>
-        </Ww>
-        <Ww>
-          <count>21</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>NeoWaySysPar.Init.ModulePowerState</ItemText>
-        </Ww>
-        <Ww>
-          <count>22</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>NeoWayExternalPar.SofewareRebootState</ItemText>
-        </Ww>
-        <Ww>
-          <count>23</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>NeoWayExternalPar.HardwareRebootState</ItemText>
-        </Ww>
-        <Ww>
-          <count>24</count>
-          <WinNumber>1</WinNumber>
           <ItemText>NeoWaySysPar</ItemText>
         </Ww>
-        <Ww>
-          <count>25</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf.Alarm_Num</ItemText>
-        </Ww>
-        <Ww>
-          <count>26</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_uNeoWayVccio,0x0A</ItemText>
-        </Ww>
       </WatchWindow1>
+      <MemoryWindow1>
+        <Mm>
+          <WinNumber>1</WinNumber>
+          <SubType>0</SubType>
+          <ItemText>0x10000000</ItemText>
+        </Mm>
+      </MemoryWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -803,7 +718,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>35</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>

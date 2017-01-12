@@ -48,6 +48,7 @@
 //链路，服务器IP，端口号
 #define SEND_TCP_IP ("AT+TCPSETUP=0,121.43.115.207,6001\r")
 
+#define DNS_WEB ("at+dns=\"www.ogawaplus.com\"\r")
 
 
 //接收用到的参数
@@ -107,6 +108,7 @@ static uint8 SetProtocol_Stack(void);
 static void SetPDP_Format(void);
 static void User_Authentication(void);
 static uint8 BuildPPP_Connet(void);
+static void DNS_AnalysisGetIp(void);
 static uint8 BuildTCP_Connet(void);
 uint8 TcpSend_Date(void);
 uint8 Gprs_Send_Date(void);

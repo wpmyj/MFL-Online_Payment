@@ -32,6 +32,15 @@ void RecMaster_Uart(uint8 date)
 	static uint8 i = 0; 
 	uint8 Checkout=0,n=0;
 	static uint8 TempDate[2] = {0};
+  volatile uint8 m=0;
+  static uint8 Old_State=0;
+  if(('$' == date)&&(ON==Ext_Inf.Start_ReadID))
+  {
+    m=1;
+		RecList =3;
+		TempDate[0] = date;
+		return;
+  }
 	switch(RecList)
 	{
 		case 0: if((0x03 == date)||(0x06 == date))
@@ -81,6 +90,7 @@ void RecMaster_Uart(uint8 date)
 						{
 							TempDate[1] = date;
 							RecList = 4;
+							i=0;
 						}else
 						{
 							TempDate[0] = 0;
@@ -91,7 +101,8 @@ void RecMaster_Uart(uint8 date)
 						{
 							g_aRecMasterDate[i+2] = date;
 							i++;
-						}else
+						}
+						if(19 == i)
 						{
 							g_aRecMasterDate[0] = TempDate[0];
 							g_aRecMasterDate[1] = TempDate[1];
@@ -108,8 +119,16 @@ void RecMaster_Uart(uint8 date)
 	}
 	if(1 == Deal_Date)
 	{
+	  Master_Inf.LostMasterTime = 0;
+    Alarm_State.Gprs_Alarm &=0xFE;//Çå¸æ¾¯Î»
+    
 		if(0x03 == g_aRecMasterDate[0])
 		{
+       if((g_aRecMasterDate[2]&0x13)!=Old_State)
+      {
+        Gprs_flag.bits.StateChange |=0x02;
+        Collect_Data.Chair_State=(g_aRecMasterDate[2]&0x13);
+      }
 			Master_Inf.State.SysPower = g_aRecMasterDate[2]&0x01;
 			Master_Inf.State.Pause = g_aRecMasterDate[2]&0x02;
 			Master_Inf.State.Error = g_aRecMasterDate[2]&0x10;
@@ -119,13 +138,15 @@ void RecMaster_Uart(uint8 date)
 			Master_Inf.RunningTime=(uint16)(g_aRecMasterDate[5]*60);
 			Master_Inf.RunningTime+=g_aRecMasterDate[6];
 			Master_Inf.Alarm_Num = g_aRecMasterDate[7];	
+
+        Old_State =(g_aRecMasterDate[2]&0x13);
+
 /******************************************************/
 			SendMaster_Date();
 		}else if(0x06 == g_aRecMasterDate[0])
 		{
-			Ext_Inf.NoRespond_State=0;
-			Ext_Inf.KeyValue = 0;
-			SendMaster_Date();
+    			Ext_Inf.NoRespond_State=0;
+    			SendMaster_Date();
 		}
 	}else if(2 == Deal_Date)
 	{
@@ -133,7 +154,8 @@ void RecMaster_Uart(uint8 date)
 		{
 			Device_Info.Serial_Id[n] = g_aRecMasterDate[n+2];
 		}
-		Ext_Inf.DownloadID_State = 1;
+		Ext_Inf.DownloadID_State = ON;
+    Ext_Inf.Start_ReadID = OFF;
 	}	
 }
 
@@ -146,10 +168,11 @@ void SendMaster_Date(void)
 	g_aSendMasterDate[2] = 0x00;
 	g_aSendMasterDate[3] = 0x00;
 	
-	if(1 == Ext_Inf.NoRespond_State)
+	if(ON == Ext_Inf.NoRespond_State)
 	{
-		g_aSendMasterDate[0] = 0x06;
-		g_aSendMasterDate[3] = Ext_Inf.KeyValue;
+		g_aSendMasterDate[0] = 0x06;		
+		g_aSendMasterDate[3] = Ext_Inf.KeyValue;	
+		Ext_Inf.NoRespond_State		=OFF;
 	}
 	for(i=0;i<4;i++)
 	{
@@ -157,6 +180,7 @@ void SendMaster_Date(void)
 	}
 	g_aSendMasterDate[4] = Checkout;	
 	UART_SendWait(UART_CONNET_MASTER,g_aSendMasterDate,5);	
+
 }
 
 void SendMaster_KeyValue(uint8 KeyValue)
@@ -165,3 +189,26 @@ void SendMaster_KeyValue(uint8 KeyValue)
 	Ext_Inf.KeyValue = KeyValue;
 }
 
+void  Read_MasterID(void)
+{
+    Ext_Inf.Start_ReadID=ON;
+    SendMaster_KeyValue(2);
+}
+
+
+void LostMasterCnt(void)
+{
+    if(ON==NeoWayExternalPar.NetWorkConnetState)
+    {
+        Master_Inf.LostMasterTime++;
+        if(Master_Inf.LostMasterTime==10)
+        {
+            Alarm_State.Gprs_Alarm |=0x01;
+        }
+        if(Master_Inf.LostMasterTime>=11)
+        {
+            Master_Inf.LostMasterTime =11;
+        }
+    }
+
+}

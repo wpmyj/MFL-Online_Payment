@@ -250,13 +250,13 @@ void NeoWay_Rtc1s(void)
 void NeoWay_Rtc1ms(void)
 {
 	NeoWay_Rec1ms();	
-	if((g_uNeoWayVccio >= 2100)&&(g_uNeoWayVccio<=2900))
-	{
-		NeoWaySysPar.Init.ModulePowerState = ON;
-	}else
-	{
-	  NeoWaySysPar.Init.ModulePowerState = OFF;
-	}
+//	if((g_uNeoWayVccio >= 2100)&&(g_uNeoWayVccio<=2900))
+//	{
+//		NeoWaySysPar.Init.ModulePowerState = ON;
+//	}else
+//	{
+//	  NeoWaySysPar.Init.ModulePowerState = OFF;
+//	}
 }
 
 /*
@@ -347,7 +347,7 @@ uint8 NeoWay_Init(void)
         NeoWaySysPar.Init.StartInitState = OFF;
         Delay_ms(NEOWAY_WAIT_TIME);
         Get_Cgsn();
-        Get_Cimi();
+       // Get_Cimi();
         NetWork_Login();
         Signal_Strength(); 
         SetProtocol_Stack();   
@@ -357,12 +357,14 @@ uint8 NeoWay_Init(void)
         {
             if(SUCCEED == BuildPPP_Connet())
               break;
-            if(3 == i)
+            if(1 == i)
             {
-                NeoWayExternalPar.SofewareRebootState = ON; 
+                NeoWayExternalPar.HardwareRebootState= ON; 
                 return ERROR;
             }
+            
         }
+				DNS_AnalysisGetIp();
         if(ERROR == BuildTCP_Connet())
         {
             NeoWayExternalPar.SofewareRebootState = ON; 
@@ -437,6 +439,8 @@ static uint8 Get_Cimi(void)
 	int8* TempPrintf="012345678912345";
 	NeoWay_SendString((uint8*)"AT+CIMI\r");
 	Delay_ms(NEOWAY_WAIT_TIME);
+	Delay_ms(NEOWAY_WAIT_TIME);
+	Delay_ms(NEOWAY_WAIT_TIME);
 	if(strstr((char *)g_aNeoWayRec,"ERROR")>0)
 	{//获取失败
 #ifdef DEBUG_RANK_DIAMOND	
@@ -483,7 +487,13 @@ static uint8 NetWork_Login(void)
 	volatile uint8 Mode=0;
 	uint8 Stat=0;
 	int8* string;
+//  Delay_ms(NEOWAY_WAIT_TIME);
+//  NeoWay_SendString((uint8*)"AT+CREG=2\r");
+//	Delay_ms(NEOWAY_WAIT_TIME);
+//  Delay_ms(NEOWAY_WAIT_TIME);
 	NeoWay_SendString((uint8*)"AT+CREG?\r");
+	Delay_ms(NEOWAY_WAIT_TIME);
+	Delay_ms(NEOWAY_WAIT_TIME);
 	Delay_ms(NEOWAY_WAIT_TIME);
 	if(strstr((char *)g_aNeoWayRec,"ERROR")>0)
 	{//获取失败		
@@ -542,6 +552,8 @@ printf("Get Signal Strength ERROR\r");
 		{
 			ErrorRate =(*(string+1)-'0');
 		}
+    Web_Param.Gprs_ErrorRate = ErrorRate;
+    Web_Param.Gprs_Strength  = Strength;
 #ifdef DEBUG_RANK_PLATINUM	
 printf("Signal Strength is %d\r\n",Strength);
 printf("Signal ErrorRate is %d\r\n",ErrorRate);	
@@ -589,9 +601,11 @@ printf("Set Internal Protocol Stack  ERROR \r\n");
 static void SetPDP_Format(void)
 {
 #ifdef CMNET
+	Delay_ms(NEOWAY_WAIT_TIME);
 	NeoWay_SendString((uint8*)"AT+CGDCONT=1,\"IP\",\"CMNET\"\r");
 #endif
 #ifdef UNINET
+	Delay_ms(NEOWAY_WAIT_TIME);
 	NeoWay_SendString((uint8*)"AT+CGDCONT=1,\"IP\",\"UNINET\"\r");
 #endif
 }
@@ -605,6 +619,7 @@ static void SetPDP_Format(void)
 */
 void User_Authentication(void)
 {
+	Delay_ms(NEOWAY_WAIT_TIME);
 	NeoWay_SendString((uint8*)"AT+XGAUTH=1,1,\"gsm\",\"1234\"\r");
 	Delay_ms(NEOWAY_WAIT_TIME);
 	NeoWay_SendString((uint8*)"AT+XGAUTH=?\r");
@@ -633,17 +648,19 @@ static uint8 BuildPPP_Connet(void)
 {
 	int8* string;
 	uint8 i=0,k=0,m=0;
-	uint8 ErrorCnt=0;
+
 
 	for(k=1;k<4;k++)
 	{
 #ifdef DEBUG_RANK_PLATINUM		
 printf("Build PPP ing ~~~~~ Wait A Moment  \r\n");
-#endif		
+#endif	
+		Delay_ms(NEOWAY_WAIT_TIME);		
 		NeoWay_SendString((uint8*)"AT+XIIC=1\r");
 		for(m=0;m<k;m++)
 		{//3秒
-			Delay_ms(3000);
+			Delay_ms(4000);
+      WDOG_Feed();
 		}		
 		NeoWay_SendString((uint8*)"AT+XIIC?\r");
 		Delay_ms(NEOWAY_WAIT_TIME);
@@ -664,16 +681,13 @@ printf("Build PPP SUCCEED,IP is %s \r\n",NeoWayInf.Ip);
 			NeoWaySysPar.NetWork.ConnetPPPState=ON;
 			return SUCCEED;
 		}	
-		ErrorCnt++;
-		if(ErrorCnt>=4)
-		{
+		
+
+	}
+
 #ifdef DEBUG_RANK_DIAMOND		
 printf("Build PPP ERROR \r\n");
 #endif		
-		//缺少重启函数
-		return ERROR;
-		}
-	}
 	return ERROR;
 }
 /*
@@ -707,6 +721,75 @@ int8*  Write_Ip(uint8* Ip,uint8* Port)
 		strcat(SendTcpIp,"\r");
 		return SendTcpIp;
 }
+
+/*
+** ===================================================================
+**     Method      : 	DNS_AnalysisGetIp
+**     Description :	DNS
+**     Parameters  : 	None
+**     Returns     : 	结果
+** ===================================================================
+*/
+static void DNS_AnalysisGetIp(void)
+{	
+	uint8 i ,m = 0;
+  uint8 temp = 0;
+	volatile int8* string;
+	NeoWay_SendString((uint8*)DNS_WEB);
+	Delay_ms(NEOWAY_WAIT_TIME);
+	if(strstr((const char *)g_aNeoWayRec,"OK")>0)
+	{
+		for(i=0;i<20;i++)
+		{
+			Delay_ms(NEOWAY_WAIT_TIME);
+			if(strstr((char *)g_aNeoWayRec,"+DNS:")>0)
+			break;
+		}
+		string=strchr((const char *)(g_aNeoWayRec+3),'.');	
+		if(NULL == string)
+		{
+			return ;
+		}		
+		for(i=0;i<3;i++)
+    {
+        for(m=0;m<3;m++)
+        {
+					  if(('.'==*(string-m-1))||(':'==*(string-m-1)))
+						break;
+            temp +=(*(string-m-1)-'0')*(pow(10,m)) ;
+        }
+        Web_Param.Server_Ip_1[i] = temp;
+        temp = 0;
+        if(i<2)
+        string=strchr((const char *)(string+1),0x2E);
+        if(NULL == string)
+        {
+            return ;
+        }	
+    }
+    for(i=0;i<3;i++)
+    {
+        if(0x0D == *(string+i+1))
+        {
+            break;     
+        }
+        temp += ((*(string+i+1)-'0')*(pow(10,(2-i))));
+    }
+    if(0 == i)
+    {
+        Web_Param.Server_Ip_1[3] = temp;
+    }else if(1 == i)
+    {
+        Web_Param.Server_Ip_1[3] = temp/10;
+    }else if(2 == i)
+		{
+				Web_Param.Server_Ip_1[3] = temp/100;	
+		}    
+		
+	}
+
+}
+
 /*
 ** ===================================================================
 **     Method      : 	BuildTCP_Connet
@@ -860,6 +943,7 @@ uint8 Gprs_Send_Date(void)
 */
 void ModuleBack_Code(void)
 {
+    static uint16 temp=0;
 	if(ON == NeoWayRec.Dealing)
 	{
 		if(strstr((char *)g_aNeoWayRec,"+TCPRECV:0")>0)
@@ -876,6 +960,7 @@ void ModuleBack_Code(void)
 			NeoWaySysPar.Init.ModuleRunning=ON;
 		}else if(strstr((char *)g_aNeoWayRec,"+PBREADY")>0)
 		{//检测到SIM卡
+		    temp++;
 			NeoWaySysPar.Init.FindSimState = ON;
 			NeoWaySysPar.Init.StartInitState = ON;
 		}else if(strstr((char *)g_aNeoWayRec,"SOCKETS:IPR")>0)
@@ -954,6 +1039,8 @@ static void Empty_Par(void)
 	memset(&g_aTcpRecDateBuff,0,sizeof(g_aTcpRecDateBuff));
 	memset(&g_aTcpSendDate,0,sizeof(g_aTcpSendDate));
 	g_uSendTcpDateNum = 0;	
+  g_aNeoWayRecNum = 0;
+  g_uRecTcpDateNum = 0;
 }
 //static void ReBuild_NetWork(void)
 //{
@@ -964,13 +1051,13 @@ static void Empty_Par(void)
 
 void ReBootHardware_Module(void)
 {
-	if(ON == NeoWaySysPar.Init.ModulePowerState)
-	{
-		PowerOff_Module();
-	}
+//	if(ON == NeoWaySysPar.Init.ModulePowerState)
+//	{
+//		PowerOff_Module();
+//	}
   Empty_Par();
 	GPIO_PinClear(HARDWARE_POWR_CONTORL);
-	Delay_ms(100);
+	Delay_ms(500);
 	GPIO_PinSet(HARDWARE_POWR_CONTORL);
 	Delay_ms(300);
 	PowerOn_Module();
@@ -984,15 +1071,19 @@ static void ReBootSofeware_Module(void)
 	NeoWaySysPar.Init.StartInitState = ON;
 }	
 static void PowerOff_Module(void)
-{
-	GPIO_PinClear(PORT_ON_OFF);	
-	Delay_ms(600);
-	GPIO_PinSet(PORT_ON_OFF);	
-	Delay_ms(6000);	
+{ 
+    GPIO_PinClear(PORT_ON_OFF);
+    Delay_ms(100);
+    GPIO_PinSet(PORT_ON_OFF);
+    Delay_ms(300);
+    Delay_ms(5700);	
+    GPIO_PinClear(PORT_ON_OFF);
+    Delay_ms(100);
 }
 static void PowerOn_Module(void)
 {
 	GPIO_PinSet(PORT_ON_OFF);	
+	Delay_ms(300);
 }
 
 
@@ -1039,8 +1130,8 @@ static void Protect_Connet(void)
 		}
     if(Temp == 5)
     {
-        NeoWaySysPar.Init.ModuleRunning = ON;
-        NeoWaySysPar.Init.FindSimState = ON;
+//        NeoWaySysPar.Init.ModuleRunning = ON;
+//        NeoWaySysPar.Init.FindSimState = ON;
     }
 	}else if((ON == NeoWaySysPar.NetWork.ConnetTCPState)&&
 		(ON == NeoWaySysPar.NetWork.ConnetPPPState))

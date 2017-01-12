@@ -20,11 +20,13 @@ typedef struct{
 	uint8 Alarm_Num;
 	uint8 Serial_Id[SERIAL_ID_LENGTH];
 	uint16 RunningTime;
+  uint16 LostMasterTime;
 }Master_Inf_;
 typedef struct{
 	uint8 DownloadID_State;
 	uint8 NoRespond_State;
 	uint8 KeyValue;
+  uint8 Start_ReadID;
 }Ext_Inf_;
 
 extern Master_Inf_ Master_Inf;
@@ -34,4 +36,5 @@ void ConnetBoard_Init(void);
 void RecMaster_Uart(uint8 date);
 void SendMaster_Date(void);
 void SendMaster_KeyValue(uint8 KeyValue);
+void Read_MasterID(void);
 #endif

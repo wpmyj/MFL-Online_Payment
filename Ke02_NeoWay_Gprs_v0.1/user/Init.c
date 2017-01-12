@@ -10,7 +10,7 @@ void Board_Init(void)
 		Gpio_Init();
 		Uart_Init();
 		Rtc_Init();
-		Adc_Init();
+		//Adc_Init();
 	  Pit_Init();
     Wdog_Init();
 }

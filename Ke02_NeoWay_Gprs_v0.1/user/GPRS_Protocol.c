@@ -152,12 +152,16 @@ static void GprsSend_Date(uint8* Date,uint8 num)
 */
 void Gprs_1SEvent(void)
 {	
-	if(1==NeoWayExternalPar.NetWorkConnetState)
+	if(ON==NeoWayExternalPar.NetWorkConnetState)
 	{
 		Gprs_FirstOpenEvent();
 		Gprs_HeartbeatEvent();
 		Gprs_AlarmEvent();
 	}
+  if(ON == Gprs_flag.bits.StartProgram)
+  {
+        Gprs_flag.bits.ProtectOpenProgramTime++; 
+  }
 }
 
 /*
@@ -199,22 +203,26 @@ static void Gprs_FirstOpenEvent(void)
 
 static void Gprs_AlarmEvent(void)
 {
-	static uint8  flag = OFF;
-	if(0==Master_Inf.Alarm_Num)
-	{
-		flag=OFF;						//	非告警状态，清除标志、状态
-		Gprs_flag.bits.AlarmFlag=OFF;
-		Gprs_flag.bits.AlarmTime=0;
-	}
-	if((0!=Master_Inf.Alarm_Num)&&(OFF==Gprs_flag.bits.AlarmFlag)&&(OFF==flag))
-	{
-		flag=ON; //仅进一次
+	static uint8  flag = 0;
+  static uint8 Old_ChairAlarm = 0;
+  static uint8 Old_GprsAlarm = 0;
+
+  if(Alarm_State.Gprs_Alarm!=Old_GprsAlarm)
+  { //GPRS告警上报
+    Gprs_flag.bits.ReportAlarm=ON; //开启循环告警标志位
 		Set_Param.Lock_Chair=0x01;//设备上锁
-	 	Gprs_flag.bits.ReportAlarm=ON; //开启循环告警标志位
-		Alarm_State.Chair_Alarm=Master_Inf.Alarm_Num; //写入告警信息
-		Send_Alarm(SendOriginal);
-		Gprs_flag.bits.AlarmFlag=ON;
-	}
+    Send_GprsAlarm(SendOriginal);
+    flag =2;
+    Old_GprsAlarm=Alarm_State.Gprs_Alarm;
+  }else  if(Master_Inf.Alarm_Num!=Old_ChairAlarm)
+  {  //椅子告警上报
+    Set_Param.Lock_Chair=0x01;//设备上锁
+    Gprs_flag.bits.ReportAlarm=ON; //开启循环告警标志位
+    Alarm_State.Chair_Alarm=Master_Inf.Alarm_Num; //写入告警信息
+    Send_Alarm(SendOriginal);
+    flag = 1;
+    Old_ChairAlarm=Alarm_State.Chair_Alarm;
+  }
 	if(ON==Gprs_flag.bits.AlarmFlag)
 	{
 		Gprs_flag.bits.AlarmTime++;
@@ -232,7 +240,14 @@ static void Gprs_AlarmEvent(void)
 			return;
 		}
 		Alarm_State.Chair_Alarm=Master_Inf.Alarm_Num;
-		Send_Alarm(SendOriginal);
+    if(1 == flag)
+    {
+    		Send_Alarm(SendOriginal);
+    }else if(2 == flag)
+    {
+        Send_GprsAlarm(SendOriginal);
+    }
+    
 	}
 }
 
@@ -256,7 +271,7 @@ static void Gprs_HeartbeatEvent(void)
 	if((Gprs_flag.bits.HeartbeatTime>=60)&&(flag==0))// 60S
 	{
 		Send_Heartbeat(SendOriginal);
-	//Gprs_flag.bits.HeartbeatFaultNum++;		
+	 // Gprs_flag.bits.HeartbeatFaultNum++;		
 		Gprs_flag.bits.HeartbeatTime=0;		
 	}
 	if(Gprs_flag.bits.HeartbeatFaultNum>=3)//错误累积
@@ -280,33 +295,41 @@ static void Gprs_HeartbeatEvent(void)
 **     Returns     : 	Nothing
 ** ===================================================================
 */
-//需重写
 uint8 Gprs_StartCodeEvent(void)
 {	
-	volatile 	static uint8 Startflag = 0;
-	static uint8 flag=0;
-	
-	if((1==flag)||(0!=Master_Inf.RunningTime))  //不在运行都为未使用
-	{
-		flag=1;
-		if((0==Master_Inf.RunningTime)&&(ON==Startflag))
-		{
-			flag = 0;
-			Collect_Data.Chair_ServiceCondition=0x01;
-			Startflag=OFF;
-			if(ON==Master_Inf.State.SysPower)
-			{
-				SendMaster_KeyValue(1);
-			}		
-		}
-	}
+  if(Gprs_flag.bits.ProtectOpenProgramTime <= PROTECT_START_TIME)
+  {
+      if(0!=Master_Inf.RunningTime)
+      {
+        Collect_Data.Start_ProgramState = 0x02;     
+        Gprs_flag.bits.StateChange |= 0x01;
+        Gprs_flag.bits.ProtectOpenProgramTime=4;
+      }else if(Gprs_flag.bits.ProtectOpenProgramTime == PROTECT_START_TIME)
+      {
+        Collect_Data.Start_ProgramState = 0x03;
+        Gprs_flag.bits.StateChange |= 0x01;
+      }
+  }else if(Gprs_flag.bits.ProtectOpenProgramTime > PROTECT_START_TIME)
+  {
+    if(( 0 == Master_Inf.RunningTime)||(Gprs_flag.bits.ProtectOpenProgramTime >PROTECT_PROGRAM_TIME))
+    {
+        Collect_Data.Start_ProgramState = 0x01;
+        Gprs_flag.bits.ProtectOpenProgramTime = 0;
+        Collect_Data.Chair_ServiceCondition = 0x01;
+        Gprs_flag.bits.StartProgram = OFF;
+        if(ON==Master_Inf.State.SysPower)
+        {
+        	SendMaster_KeyValue(1);
+        }		
+    }
+  }
 	
 	if((ON == Gprs_flag.bits.Start_Program)&&(0x01==Collect_Data.Chair_ServiceCondition)
 		&&(0x00==Set_Param.Lock_Chair))
-	{
-		Gprs_flag.bits.Start_Program=OFF;	
+	{			
 		Collect_Data.Chair_ServiceCondition=0x02;	
-		Startflag = ON;	
+    Gprs_flag.bits.StartProgram=ON;
+    Gprs_flag.bits.ProtectOpenProgramTime=0;
 		switch(Set_Param.Start_Program)
 		{
 		case  0x05 :SendMaster_KeyValue(5);break;
@@ -315,14 +338,15 @@ uint8 Gprs_StartCodeEvent(void)
 		default    :SendMaster_KeyValue(5);break;
 		}	
 	}
+  Gprs_flag.bits.Start_Program=OFF;
 	if((ON==Gprs_flag.bits.Stop_Chair))
 	{	
 		if(0x01==Set_Param.Stop_Chair)
 		{
-			SendMaster_KeyValue(1);
-			SendMaster_Date();
+			SendMaster_KeyValue(1);	
 			Gprs_flag.bits.Stop_Chair=OFF;
 			Collect_Data.Chair_ServiceCondition=0x01;
+			Collect_Data.Start_ProgramState = 0x01;
 		}
 	}
 
@@ -341,7 +365,7 @@ uint8  Gprs_ReceiveEvent(void)
 {
 	volatile uint16 count_crc=0;
 	volatile uint8  length=0;
-	uint16 temp_crc = 0;
+	volatile uint16 temp_crc = 0;
 	uint8  source[FRAME_MAX_LENGTH]={0};	
 	if(ON == Gprs_flag.bits.Deal_data)			//数据接收完毕，开始处理数据
 	{  
@@ -360,12 +384,7 @@ uint8  Gprs_ReceiveEvent(void)
 					return TRUE;
 				}
 			}
-	}
-	*(source+1)=ACK_CRC_FAULT;
-	temp_crc = crc16(source,length-2);//-2为扣除原CRC的长度
-	*(source+length-2) = temp_crc>>8;
-	*(source+length-1) = temp_crc;		
-	Group_SendData(source,length);	
+	}	
 	Gprs_flag.bits.Deal_data = 0;
 	Original_length = 0;
 	Gprs_flag.bits.HeartbeatTime=0;
@@ -391,21 +410,18 @@ static uint8 Read_AckCmd(const uint8 *source , uint8 *target ,const uint8 length
            if((ON == Gprs_flag.bits.ReportFirstOpen)||(ACK_SUCCEED==*(source+1)))
 						{
 							Gprs_flag.bits.ReportFirstOpen = OFF;
-							Gprs_flag.bits.ActiveReportFlag = OFF;
 							break;//开机上报成功
 						}else{return FAULT;}        
         case ORDER_HEARTBEAT:  
 					if((ON == Gprs_flag.bits.ReportHeartbeat)||(ACK_SUCCEED==*(source+1)))
 						{
 							Gprs_flag.bits.ReportHeartbeat = OFF;
-							Gprs_flag.bits.ActiveReportFlag = OFF;
 							break; //心跳上报成功
 						}else{return FAULT;}    
         case ORDER_ALARM:  
 					if((ON == Gprs_flag.bits.ReportAlarm)||(ACK_SUCCEED==*(source+1)))
 						{
 							Gprs_flag.bits.ReportAlarm = OFF;
-							Gprs_flag.bits.ActiveReportFlag = OFF;
 							Gprs_flag.bits.AlarmFlag = OFF;
 							Gprs_flag.bits.AlarmTime = 0;
 							break;//告警上报成功
@@ -422,6 +438,11 @@ static uint8 Read_AckCmd(const uint8 *source , uint8 *target ,const uint8 length
 							Send_SetInfo(source,target,length);
 							break; 			//将数据存储在target中了 
 						}else{return FAULT;}		
+    case ORDER_SendInfo:
+            if(ACK_ORDER_MUST_REPLY == *(source+1))
+						{							
+							break; 			//将数据存储在target中了 
+						}else{return FAULT;}
 		default: return FAULT ;
 	}
     return TRUE;    
@@ -489,22 +510,23 @@ static uint8 Check_Size(const uint8 *source, uint8 length)
 void Init_Gprs_Device(void)
 {
 	uint8 i = 0;
-	uint8 temp_id[SERIAL_ID_LENGTH] = SERIAL_ID;
+	volatile uint8 temp_id[SERIAL_ID_LENGTH] = SERIAL_ID;
 	uint8 temp_ip_1[4]  =SERVER_IP_1;
 	uint8 temp_port_1[2] =SERVER_PORT_1; 
 	uint8 temp_ip_2[4]  =SERVER_IP_2;
 	uint8 temp_port_2[2] =SERVER_PORT_2;   
   uint8 temp_ip_3[4]  =SERVER_IP_3;
-	uint8 temp_port_3[2] =SERVER_PORT_3;   
-	for(i=0;i<SERIAL_ID_LENGTH;i++)
-	{
-		Device_Info.Serial_Id[i] = temp_id[i];   //设备ID
-	}    
+	uint8 temp_port_3[2] =SERVER_PORT_3;  
+  //调试使用
+//	for(i=0;i<SERIAL_ID_LENGTH;i++)
+//	{
+//		Device_Info.Serial_Id[i] = temp_id[i];   //设备ID
+//	}    
   
-	for(i=0;i<SERVER_IP_LENGTH;i++)
-	{
-		Web_Param.Server_Ip_1[i] = temp_ip_1[i];   //服务器IP
-	}
+//	for(i=0;i<SERVER_IP_LENGTH;i++)
+//	{
+//		Web_Param.Server_Ip_1[i] = temp_ip_1[i];   //服务器IP
+//	}
 	for(i=0;i<SERVER_PORT_LENGTH;i++)
 	{
 		Web_Param.Server_Port_1[i] = temp_port_1[i];//服务器端口号
@@ -530,9 +552,8 @@ void Init_Gprs_Device(void)
 	Set_Param.Lock_Chair=0x00;    //0x00表示解锁
 	Collect_Data.Chair_ServiceCondition = 0x01; 	
 	Gprs_flag.flag = 0x0000;
-	//开机上报
 	Gprs_flag.bits.ReportFirstOpen = ON; 
-	//Send_FirstOpen(SendOriginal);
+	Collect_Data.Start_ProgramState = 0x01;
 }
 
 /*
@@ -746,6 +767,13 @@ static uint8 Send_SetInfo(const uint8 * source,uint8 *target,const uint8 total_l
 		}
 		temp_offset+=*(source+temp_offset+immobilization_2); //temp_offset->偏移的位置(监控对象个数)
 	}	 
+  if(ON==Gprs_flag.bits.Start_Program)
+  {
+    if((0!=Master_Inf.RunningTime)||(ON == Set_Param.Lock_Chair)||(0!=Alarm_State.Gprs_Alarm))
+    { //按摩椅时间不未0，设备上锁、gprs无故障
+        *(target+length-1) =0xff;
+    }
+  }
 	temp_crc = crc16(target,length); //装载CRC
 	*(target+length) = temp_crc>>8;length++;
 	*(target+length) = temp_crc;length++;
@@ -767,7 +795,6 @@ static uint8 Send_FirstOpen(uint8 *target)
 	uint8 i = 0;
 	uint8 length = 0;
 	uint16 temp_crc = 0;
-	Gprs_flag.bits.ActiveReportFlag = ON;	
 	*(target+length) = ORDER_FIRST_OPEN; length++;
 	*(target+length) = ACK_ORDER_MUST_REPLY; length++;  
 	*(target+length) = (1+2+SERIAL_ID_LENGTH);length++;
@@ -797,7 +824,6 @@ static uint8 Send_Heartbeat(uint8 *target)
 	uint8 i = 0;
 	uint8 length = 0;
 	uint16 temp_crc = 0;	
-	Gprs_flag.bits.ActiveReportFlag = ON;
 	Gprs_flag.bits.ReportHeartbeat = ON;      
 	*(target+length) = ORDER_HEARTBEAT; length++;
 	*(target+length) = ACK_ORDER_MUST_REPLY; length++;  
@@ -828,7 +854,6 @@ static uint8 Send_Alarm(uint8 *target)
 {    
 	uint8 length = 0;
 	uint16 temp_crc = 0;
-	Gprs_flag.bits.ActiveReportFlag = ON;
 	Gprs_flag.bits.ReportAlarm = ON;   
 	*(target+length) = ORDER_ALARM; length++;
 	*(target+length) = ACK_ORDER_MUST_REPLY; length++;  
@@ -842,7 +867,31 @@ static uint8 Send_Alarm(uint8 *target)
 	Group_SendData(target,length);
 	return length ;
 }
-
+/*
+** ===================================================================
+**     Method      : 	Send_GprsAlarm 
+**     Description :	上报GPRS告警
+**     Parameters  : 	*target －目标数据指针； 
+**     Returns     : 	目标数据长度
+** ===================================================================
+*/
+static uint8 Send_GprsAlarm(uint8 *target)
+{    
+	uint8 length = 0;
+	uint16 temp_crc = 0;
+	Gprs_flag.bits.ReportAlarm = ON;   
+	*(target+length) = ORDER_ALARM; length++;
+	*(target+length) = ACK_ORDER_MUST_REPLY; length++;  
+	*(target+length) = (1+2+CHAIR_ALARM);length++;
+	*(target+length) = Head_ALA;length++;
+	*(target+length) = Gprs_Alarm;length++;
+	*(target+length) = Alarm_State.Gprs_Alarm;length++;
+	temp_crc = crc16(target,length);
+	*(target+length) = temp_crc>>8;length++;
+	*(target+length) = temp_crc;length++;
+	Group_SendData(target,length);
+	return length ;
+}
 /*
 ** ===================================================================
 **     Method      : 	Head_SearchAddr 
@@ -921,6 +970,8 @@ static uint8* Matching_Coll(const uint8 *coll)
 	{
 		case Chair_ServiceCondition :
 				return (&Collect_Data.Chair_ServiceCondition);
+    case Start_ProgramState  :
+        return (&Collect_Data.Start_ProgramState);
 		default: return  NULL;
 	}
 }
@@ -939,4 +990,48 @@ static void Group_SendData(uint8 *source,uint8 length)
 	uint8 temp_length = 0;
 	temp_length=GprsToServer_ChangeMean(source,target,length);
   GprsSend_Date(target,temp_length); 
+}
+
+
+void Send_ChangeState(uint8 *target,uint16 Monitor_Target)
+{
+	uint8 length = 0;
+	uint16 temp_crc = 0;
+	*(target+length) = ORDER_SendInfo; length++;
+	*(target+length) = ACK_ORDER_MUST_REPLY; length++;  
+	*(target+length) = (1+2+1);length++;
+
+	*(target+length) = (uint8)(Monitor_Target>>8);length++;
+	*(target+length) = (uint8)Monitor_Target;length++;
+  if(0x0502 == Monitor_Target)
+  {
+    *(target+length) =Collect_Data.Start_ProgramState;length++;
+  }else if(0x0503 == Monitor_Target)
+  {
+    *(target+length) =Collect_Data.Chair_State;length++;
+  }else 
+  {
+    return;
+  }
+	temp_crc = crc16(target,length);
+	*(target+length) = temp_crc>>8;length++;
+	*(target+length) = temp_crc;length++;
+	Group_SendData(target,length); 
+}
+
+void ChairStateChange(void)
+{
+    if((0!=Gprs_flag.bits.StateChange)&&(ON==NeoWayExternalPar.NetWorkConnetState))
+    {
+        if(0x01==(Gprs_flag.bits.StateChange&0x01))
+        {
+            Send_ChangeState(SendOriginal,0x0502);
+            Gprs_flag.bits.StateChange&=0xFE;
+        }else if(0x02==(Gprs_flag.bits.StateChange&0x02))
+        {
+            Send_ChangeState(SendOriginal,0x0503);
+            Gprs_flag.bits.StateChange&=0xFD;            
+        }
+    }
+
 }

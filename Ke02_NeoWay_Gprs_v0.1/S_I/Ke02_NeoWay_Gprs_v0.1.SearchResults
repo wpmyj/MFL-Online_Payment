@@ -1,1 +1,10 @@
-
+---- g_aRecMasterDate[2] Matches (6 in 1 files) ----
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):       if(((g_aRecMasterDate[2]&0x13)!=Old_State)&&(0==Gprs_flag.bits.StateChangeFlag))
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):        Collect_Data.Chair_State=(g_aRecMasterDate[2]&0x13);
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):			Master_Inf.State.SysPower = g_aRecMasterDate[2]&0x01;
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):			Master_Inf.State.Pause = g_aRecMasterDate[2]&0x02;
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):			Master_Inf.State.Error = g_aRecMasterDate[2]&0x10;
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):        Old_State =g_aRecMasterDate[2];
+---- g_aRecMasterDate[2] Search Errors Encountered (1) ----
+The following 1 files could not be processed:
+E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Online_Payment\Ke02_NeoWay_Gprs_v0.1\Pro\Ke02_NeoWay_Gprs_v0.build_log.htm : File could not be opened.

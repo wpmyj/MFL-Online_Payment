@@ -23,7 +23,8 @@
 .\init.o: ..\user\uartApp.h
 .\init.o: ..\user\AdcApp.h
 .\init.o: ..\user\RtcApp.h
-.\init.o: ..\drivers\pit.h
+.\init.o: ..\user\init.h
 .\init.o: ..\user\NeoWay_Gprs.h
 .\init.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
 .\init.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+.\init.o: ..\drivers\pit.h

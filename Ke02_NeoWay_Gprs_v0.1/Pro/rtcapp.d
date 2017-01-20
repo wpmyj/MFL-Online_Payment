@@ -18,3 +18,13 @@
 .\rtcapp.o: ..\drivers\uart.h
 .\rtcapp.o: ..\drivers\wdog.h
 .\rtcapp.o: ..\drivers\sim.h
+.\rtcapp.o: ..\user\init.h
+.\rtcapp.o: ..\drivers\gpio.h
+.\rtcapp.o: ..\cpu\sysinit.h
+.\rtcapp.o: ..\drivers\flash.h
+.\rtcapp.o: ..\user\uartApp.h
+.\rtcapp.o: ..\user\RtcApp.h
+.\rtcapp.o: ..\drivers\pit.h
+.\rtcapp.o: ..\user\NeoWay_Gprs.h
+.\rtcapp.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
+.\rtcapp.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\math.h

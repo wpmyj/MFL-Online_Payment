@@ -126,7 +126,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
+          <Name>/</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -149,122 +149,72 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>NeoWaySysPar</ItemText>
+          <ItemText>Alarm_State</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_uNeoWayVccio,0x0A</ItemText>
+          <ItemText>Gprs_flag.bits.HeartbeatTime,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf,0x0A</ItemText>
+          <ItemText>NeoWayExternalPar</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Web_Param.Server_Ip_1,0x0A</ItemText>
+          <ItemText>NeoWaySysPar.Init.GprsStep</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_aRecMasterDate,0x10</ItemText>
+          <ItemText>g_aRecMasterDate</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>TempFlag</ItemText>
+          <ItemText>Device_Info</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Key</ItemText>
+          <ItemText>Web_Param,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Device_Info.Serial_Id</ItemText>
+          <ItemText>Alarm_State</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Gprs_flag.bits.HeartbeatTime,0x0A</ItemText>
+          <ItemText>Set_Param</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Gprs_flag.bits.ProtectOpenProgramTime,0x0A</ItemText>
+          <ItemText>Collect_Data</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>\\Ke02_NeoWay_Gprs_v0\../user/NeoWay_Gprs.c\g_aNeoWayRec</ItemText>
+          <ItemText>Master_Inf.LostMasterTime</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf.RunningTime,0x0A</ItemText>
+          <ItemText>string</ItemText>
         </Ww>
         <Ww>
           <count>13</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Collect_Data.Start_ProgramState</ItemText>
+          <ItemText>Device_Info</ItemText>
         </Ww>
         <Ww>
           <count>14</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Web_Param,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>15</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_aRecMasterDate[2]</ItemText>
-        </Ww>
-        <Ww>
-          <count>16</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>g_aRecMasterDate</ItemText>
-        </Ww>
-        <Ww>
-          <count>17</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Gprs_flag.bits.StateChange</ItemText>
-        </Ww>
-        <Ww>
-          <count>18</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Alarm_State.Gprs_Alarm</ItemText>
-        </Ww>
-        <Ww>
-          <count>19</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Alarm_State.Chair_Alarm</ItemText>
-        </Ww>
-        <Ww>
-          <count>20</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>string</ItemText>
-        </Ww>
-        <Ww>
-          <count>21</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>temp,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>22</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>*(string-m-1)</ItemText>
-        </Ww>
-        <Ww>
-          <count>23</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>i,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>24</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf.Alarm_Num</ItemText>
+          <ItemText>SendTcpIp</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

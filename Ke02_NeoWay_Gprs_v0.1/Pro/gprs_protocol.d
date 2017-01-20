@@ -29,4 +29,5 @@
 .\gprs_protocol.o: ..\drivers\flash.h
 .\gprs_protocol.o: ..\user\AdcApp.h
 .\gprs_protocol.o: ..\user\RtcApp.h
+.\gprs_protocol.o: ..\user\init.h
 .\gprs_protocol.o: ..\drivers\pit.h

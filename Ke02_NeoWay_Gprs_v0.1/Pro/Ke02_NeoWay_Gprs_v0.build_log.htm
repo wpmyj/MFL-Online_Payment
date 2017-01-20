@@ -37,30 +37,16 @@ compiling spi.c...
 compiling uart.c...
 compiling wdog.c...
 compiling main.c...
-..\user\main.c(89): warning:  #223-D: function "LostMasterCnt" declared implicitly
-        LostMasterCnt();
-..\user\main.c: 1 warning, 0 errors
 compiling uartApp.c...
-..\user\uartApp.c(4): warning:  #550-D: variable "pUART_RxBuff" was set but never used
-  static  uint8  *pUART_RxBuff[MAX_UART_NO] = {NULL};           /* pointer to TxBuf */
-..\user\uartApp.c(6): warning:  #550-D: variable "gu16UART_RxBuffPos" was set but never used
-   static  uint16 gu16UART_RxBuffPos[MAX_UART_NO] = {0};        /* read position to TxBuf */
-..\user\uartApp.c: 2 warnings, 0 errors
 compiling AdcApp.c...
 compiling RtcApp.c...
 compiling Init.c...
 compiling NeoWay_Gprs.c...
-..\user\NeoWay_Gprs.c(435): warning:  #177-D: function "Get_Cimi" was declared but never referenced
-  static uint8 Get_Cimi(void)
-..\user\NeoWay_Gprs.c: 1 warning, 0 errors
 compiling GPRS_Protocol.c...
-..\user\GPRS_Protocol.c(514): warning:  #177-D: variable "temp_ip_1" was declared but never referenced
-        uint8 temp_ip_1[4]  =SERVER_IP_1;
-..\user\GPRS_Protocol.c: 1 warning, 0 errors
 compiling Connet_Master.c...
 linking...
-Program Size: Code=28532 RO-data=700 RW-data=684 ZI-data=1580  
-".\Ke02_NeoWay_Gprs_v0.1" - 0 Error(s), 5 Warning(s).
+Program Size: Code=27788 RO-data=740 RW-data=652 ZI-data=1644  
+".\Ke02_NeoWay_Gprs_v0.1" - 0 Error(s), 0 Warning(s).
 Load "E:\\Easepal\\项目\\在线自助支付操作系统\\M590E\\程序\\Online_Payment\\Ke02_NeoWay_Gprs_v0.1\\Pro\\Ke02_NeoWay_Gprs_v0.1" 
 * JLink Info: Device "ARM7" selected.
 Set JLink Project File to "E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Online_Payment\Ke02_NeoWay_Gprs_v0.1\Pro\JLinkSettings.ini"
@@ -91,7 +77,7 @@ ROMTableAddr = 0xE00FF003
 Target info:
 ------------
 Device: MKE02Z64xxx4
-VTarget = 4.950V
+VTarget = 5.053V
 State of Pins: 
 TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 0
 Hardware-Breakpoints: 2
@@ -105,28 +91,13 @@ Verify OK.
 </pre>
 </body>
 </html>
-4000 kHz
+te of Pins: 
+TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 0
+Hardware-Breakpoints: 2
+Software-Breakpoints: 8192
+Watchpoints:          2
+JTAG speed: 4000 kHz
  
 Erase Done.
 Programming Done.
 Verify OK.
-hangeFlag =OFF;
-..\user\GPRS_Protocol.c: 2 warnings, 10 errors
-compiling Connet_Master.c...
-..\user\GPRS_Protocol.h(62): error:  #7: unrecognized token
-    uint8　StateChangeFlag;
-..\user\GPRS_Protocol.h(62): error:  #40: expected an identifier
-    uint8　StateChangeFlag;
-..\user\Connet_Master.c(124): error:  #20: identifier "Alarm_State" is undefined
-      Alarm_State.Gprs_Alarm &=0xFE;//清告警位
-..\user\Connet_Master.c(128): error:  #20: identifier "Gprs_flag" is undefined
-         if((g_aRecMasterDate[2]!=Old_State)&&(0==Gprs_flag.bits.StateChangeFlag))
-..\user\Connet_Master.c(131): error:  #20: identifier "Collect_Data" is undefined
-          Collect_Data.Chair_State=g_aRecMasterDate[2];
-..\user\Connet_Master.c(35): warning:  #177-D: variable "Temp" was declared but never referenced
-    static uint8 Temp[21] ={0};
-..\user\Connet_Master.c(208): error:  #20: identifier "Alarm_State" is undefined
-              Alarm_State.Gprs_Alarm |=0x01;
-..\user\Connet_Master.c: 1 warning, 6 errors
-".\Ke02_NeoWay_Gprs_v0.1" - 20 Error(s), 8 Warning(s).
-Target not created

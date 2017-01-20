@@ -29,4 +29,5 @@
 .\neoway_gprs.o: ..\drivers\flash.h
 .\neoway_gprs.o: ..\user\AdcApp.h
 .\neoway_gprs.o: ..\user\RtcApp.h
+.\neoway_gprs.o: ..\user\init.h
 .\neoway_gprs.o: ..\drivers\pit.h

@@ -126,7 +126,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>/</Name>
+          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -149,74 +149,64 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>NeoWaySysPar</ItemText>
+          <ItemText>Alarm_State</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_uNeoWayVccio,0x0A</ItemText>
+          <ItemText>Gprs_flag.bits.HeartbeatTime,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf,0x0A</ItemText>
+          <ItemText>NeoWayExternalPar</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Web_Param.Server_Ip_1,0x0A</ItemText>
+          <ItemText>NeoWaySysPar.Init.GprsStep</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_aRecMasterDate,0x10</ItemText>
+          <ItemText>g_aRecMasterDate</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>TempFlag</ItemText>
+          <ItemText>Device_Info</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Key</ItemText>
+          <ItemText>Web_Param,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Device_Info.Serial_Id</ItemText>
+          <ItemText>Alarm_State</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Gprs_flag.bits.HeartbeatTime,0x0A</ItemText>
+          <ItemText>Set_Param</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Gprs_flag.bits.ProtectOpenProgramTime,0x0A</ItemText>
+          <ItemText>Collect_Data</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>\\Ke02_NeoWay_Gprs_v0\../user/NeoWay_Gprs.c\g_aNeoWayRec</ItemText>
-        </Ww>
-        <Ww>
-          <count>12</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Master_Inf.RunningTime,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>13</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Collect_Data.Start_ProgramState</ItemText>
+          <ItemText>Master_Inf.LostMasterTime</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>0x10000000</ItemText>
+          <ItemText>Send_SetInfo</ItemText>
         </Mm>
       </MemoryWindow1>
       <Tracepoint>
@@ -745,7 +735,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>35</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>

@@ -40,7 +40,7 @@ int main (void)
 {
 	Board_Init();
 	ConnetBoard_Init();  
-  Init_Gprs_Device();
+  //Init_Gprs_Device();
 	NeoWayBoard_Init();
 	Delay_ms(400);  //等待采集的电源电压值稳定
   Read_MasterID();

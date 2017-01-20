@@ -15,7 +15,7 @@
 #include "wdog.h"
 #include "NeoWay_Gprs.h"
 #define UART1_BUFFLENGTH   10
-#define LIGHT			GPIO_PTB5
+#define LIGHT			GPIO_PTD3//GPIO_PTD3//GPIO_PTB5
 void Board_Init(void);
 void Gpio_Init(void);
 void Uart_Init(void);

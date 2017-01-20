@@ -15,6 +15,7 @@ typedef struct{
 		uint8 NeckMassage;
 		uint8 WaistMassage;
 		uint8 WholeMassage;
+    uint8 Massage;
 	}State;
 	
 	uint8 Alarm_Num;
@@ -37,4 +38,6 @@ void RecMaster_Uart(uint8 date);
 void SendMaster_Date(void);
 void SendMaster_KeyValue(uint8 KeyValue);
 void Read_MasterID(void);
+void LostMasterCnt(void);
+
 #endif

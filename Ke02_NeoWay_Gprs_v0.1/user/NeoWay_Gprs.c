@@ -45,12 +45,6 @@ Send: 3				"AT+CGSN\r"								获取CGSN号，产品序列号
 			4			 GPRS协议中，当305S未收到后台回应的数据，硬件重启模块
 */
 
-/********************EEPROM存储结构***********************/
-/*		   		地址
-	 Ip1		0x10000000  0xfe Ip   Ip  Ip  Ip   PortH  PortL 
-	 Ip2    0x10000008  0xfe Ip   Ip  Ip  Ip   PortH  PortL
-	 Ip3    0x10000010  0xfe Ip   Ip  Ip  Ip   PortH  PortL
-*/
 
 /********************其他文件调用参数集合************************/
 /*
@@ -118,64 +112,8 @@ void NeoWayBoard_Init(void)
 	GPIO_PinClear(HARDWARE_POWR_CONTORL);
 	GPIO_PinClear(PORT_EMERGOFF);
 	GPIO_PinClear(PORT_ON_OFF);		
-	NeoWayIp_Init();
 }
-static void NeoWayIp_Init(void)
-{
-	uint8 i=0;
-	uint8 k=0xfe;
-//	volatile uint8 temp[256]={0};
-	if((0xfe!=*((uint8 *)EEPROM_START_ADDRESS)) ||
-	 (0xfe!=*((uint8 *)(EEPROM_START_ADDRESS+8))) ||
-	 (0xfe!=*((uint8 *)(EEPROM_START_ADDRESS+16))))
-	 {  //Ip从未写入
-		for( i=0;i<24;i++)
-    { //写入EEPROM  之前  要进行擦除操作
-      EEPROM_EraseSector( i + EEPROM_START_ADDRESS);
-    }
-		for(i=0;i<3;i++)
-		{
-			EEPROM_Program(EEPROM_START_ADDRESS+i*8,&k,1);
-		}    
-		EEPROM_Program( EEPROM_START_ADDRESS+1,(Web_Param.Server_Ip_1),4 );
-		EEPROM_Program( EEPROM_START_ADDRESS+9,(Web_Param.Server_Ip_2),4 );	
-		EEPROM_Program( EEPROM_START_ADDRESS+17,(Web_Param.Server_Ip_3),4 );		
 
-		EEPROM_Program( EEPROM_START_ADDRESS+5,(Web_Param.Server_Port_1),2 );
-		EEPROM_Program( EEPROM_START_ADDRESS+13,(Web_Param.Server_Port_2),2 );	
-		EEPROM_Program( EEPROM_START_ADDRESS+22,(Web_Param.Server_Port_3),2);				
-	}else
-	{//eeprom存在IP。更新本地IP
-		for(i=0;i<4;i++)
-		{
-			Web_Param.Server_Ip_1[i]= *((uint8 *)(EEPROM_START_ADDRESS+1+i));
-		}
-		for(i=0;i<2;i++)
-		{
-			Web_Param.Server_Port_1[i]= *((uint8 *)(EEPROM_START_ADDRESS+5+i));
-		}
-		for(i=0;i<4;i++)
-		{
-			Web_Param.Server_Ip_2[i]= *((uint8 *)(EEPROM_START_ADDRESS+9+i));
-		}
-		for(i=0;i<2;i++)
-		{
-			Web_Param.Server_Port_2[i]= *((uint8 *)(EEPROM_START_ADDRESS+13+i));
-		}
-		for(i=0;i<4;i++)
-		{
-			Web_Param.Server_Ip_3[i]= *((uint8 *)(EEPROM_START_ADDRESS+17+i));
-		}
-		for(i=0;i<2;i++)
-		{
-			Web_Param.Server_Port_3[i]= *((uint8 *)(EEPROM_START_ADDRESS+22+i));
-		}		
-	}
-//	for(i=0;i < 255;i++)
-//	{
-//		*(temp+i) = *((uint8 *)(EEPROM_START_ADDRESS+i));
-//	}
-}
 // 115200/8=14400 14400/2=7200字  一个char 之间的间隔为7个us 
 //所以可以设定帧之间的数据20ms是保险的
 
@@ -250,13 +188,6 @@ void NeoWay_Rtc1s(void)
 void NeoWay_Rtc1ms(void)
 {
 	NeoWay_Rec1ms();	
-//	if((g_uNeoWayVccio >= 2100)&&(g_uNeoWayVccio<=2900))
-//	{
-//		NeoWaySysPar.Init.ModulePowerState = ON;
-//	}else
-//	{
-//	  NeoWaySysPar.Init.ModulePowerState = OFF;
-//	}
 }
 
 /*
@@ -299,8 +230,6 @@ static uint8  NeoWay_SendDate(uint8* Date,uint8 num)
 	volatile uint8 i=0;
 	*(Date+num)='\r';	
 	UART_SendWait(NEOWAY_UART,Date,num+1);
-//	UART_SendWait(NEOWAY_UART,Date,num);
-//	UART_PutChar(NEOWAY_UART, '\r');
 #ifdef DEBUG_RANK_BRONZE
 printf("Send Server Date is:----->>");
 	for(i=0;i<num;i++)
@@ -341,18 +270,25 @@ void Delay_ms(uint16 num)
 uint8 NeoWay_Init(void)
 {
     uint8 i = 0;
+		NeoWaySysPar.Init.GprsStep=0;
     if((ON == NeoWaySysPar.Init.ModuleRunning)&&
       (ON == NeoWaySysPar.Init.FindSimState))
     {
+        Init_Gprs_Device();
         NeoWaySysPar.Init.StartInitState = OFF;
         Delay_ms(NEOWAY_WAIT_TIME);
         Get_Cgsn();
-       // Get_Cimi();
+			NeoWaySysPar.Init.GprsStep++;
         NetWork_Login();
+			NeoWaySysPar.Init.GprsStep++;
         Signal_Strength(); 
+			NeoWaySysPar.Init.GprsStep++;
         SetProtocol_Stack();   
+			NeoWaySysPar.Init.GprsStep++;
         SetPDP_Format();   
+			NeoWaySysPar.Init.GprsStep++;
         User_Authentication();  
+			NeoWaySysPar.Init.GprsStep++;
         for(;i<4;i++)
         {
             if(SUCCEED == BuildPPP_Connet())
@@ -364,12 +300,16 @@ uint8 NeoWay_Init(void)
             }
             
         }
+        NeoWay_GetCellLocalID();
+				NeoWaySysPar.Init.GprsStep++;
 				DNS_AnalysisGetIp();
+				NeoWaySysPar.Init.GprsStep++;
         if(ERROR == BuildTCP_Connet())
         {
             NeoWayExternalPar.SofewareRebootState = ON; 
             return ERROR;
         } 
+				NeoWaySysPar.Init.GprsStep++;
         return SUCCEED;
     }
 		return ERROR;
@@ -432,48 +372,89 @@ printf("Get CGSN SUCCEED,Nunber is %s\r",TempPrintf);
 **     Returns     : 	结果
 ** ===================================================================
 */
-static uint8 Get_Cimi(void)
+//static uint8 Get_Cimi(void)
+//{
+//	uint8 i=0;
+//	int8* string;
+//	int8* TempPrintf="012345678912345";
+//	NeoWay_SendString((uint8*)"AT+CIMI\r");
+//	Delay_ms(NEOWAY_WAIT_TIME);
+//	Delay_ms(NEOWAY_WAIT_TIME);
+//	Delay_ms(NEOWAY_WAIT_TIME);
+//	if(strstr((char *)g_aNeoWayRec,"ERROR")>0)
+//	{//获取失败
+//#ifdef DEBUG_RANK_DIAMOND	
+//printf("Get CIMI ERROR\r");
+//#endif 
+//			return ERROR;
+//	}else
+//	{
+//		string=strrchr((const char *)g_aNeoWayRec,'I');
+//		if(NULL == string)
+//		{
+//			return ERROR;
+//		}
+//		for(;i<15;i++)
+//		{
+//			*(NeoWayInf.Cgsn+i)=*(string+4+i);
+///*********************protect Num Rang******************************/			
+//			if((*(NeoWayInf.Cgsn+i)>'9')&&(*(NeoWayInf.Cgsn+i)<'0'))
+//			{
+//#ifdef DEBUG_RANK_DIAMOND	
+//printf("Get Cimi ERROR,Nunber is Over Range \r");
+//#endif 
+//				return ERROR;			
+//			}
+//		}
+///*********************End protect***********************************/			
+//#ifdef DEBUG_RANK_PLATINUM	
+//TempPrintf=string+3;
+//printf("Get CIMI SUCCEED,Nunber is %s\r",TempPrintf);
+//#endif 
+//		return SUCCEED;
+//	}	
+//}
+
+void NeoWay_GetCellLocalID(void)
 {
-	uint8 i=0;
-	int8* string;
-	int8* TempPrintf="012345678912345";
-	NeoWay_SendString((uint8*)"AT+CIMI\r");
-	Delay_ms(NEOWAY_WAIT_TIME);
-	Delay_ms(NEOWAY_WAIT_TIME);
-	Delay_ms(NEOWAY_WAIT_TIME);
-	if(strstr((char *)g_aNeoWayRec,"ERROR")>0)
-	{//获取失败
-#ifdef DEBUG_RANK_DIAMOND	
-printf("Get CIMI ERROR\r");
-#endif 
-			return ERROR;
-	}else
-	{
-		string=strrchr((const char *)g_aNeoWayRec,'I');
-		if(NULL == string)
-		{
-			return ERROR;
-		}
-		for(;i<15;i++)
-		{
-			*(NeoWayInf.Cgsn+i)=*(string+4+i);
-/*********************protect Num Rang******************************/			
-			if((*(NeoWayInf.Cgsn+i)>'9')&&(*(NeoWayInf.Cgsn+i)<'0'))
-			{
-#ifdef DEBUG_RANK_DIAMOND	
-printf("Get Cimi ERROR,Nunber is Over Range \r");
-#endif 
-				return ERROR;			
-			}
-		}
-/*********************End protect***********************************/			
-#ifdef DEBUG_RANK_PLATINUM	
-TempPrintf=string+3;
-printf("Get CIMI SUCCEED,Nunber is %s\r",TempPrintf);
-#endif 
-		return SUCCEED;
-	}	
+  volatile uint8 i=0;
+  volatile uint8 n=0;
+  int8 * string;
+  Delay_ms(NEOWAY_WAIT_TIME);
+  NeoWay_SendString((uint8*)"AT+CREG=2\r");
+  Delay_ms(NEOWAY_WAIT_TIME);
+  NeoWay_SendString((uint8*)"AT+CREG?\r");
+  for(i=0;i<20;i++)
+  {
+    Delay_ms(NEOWAY_WAIT_TIME);
+		if(strstr((char *)g_aNeoWayRec,"+CREG: ")>0)
+    {
+        string = strchr((const char *)g_aNeoWayRec,'"');
+          if(NULL==string)
+          {
+
+          }else 
+          {
+            for(i=0;i<4;i++)
+            {
+                Device_Info.Cell_Id[i]=*(string+1+i);
+            }
+            string = strrchr((const char *)g_aNeoWayRec,'"');
+            if(NULL==string)return;
+            for(i=0;i<8;i++)
+            {
+                Device_Info.Local_Id[i] =*(string-(8-i));
+            }
+            return;            
+          }
+    }
+  }
 }
+
+
+
+
+
 /*
 ** ===================================================================
 **     Method      : 	NetWork_Login
@@ -544,7 +525,14 @@ printf("Get Signal Strength ERROR\r");
 		{
 			return ERROR;
 		}
-		Strength = (int16)(((*(string-2)-'0')*10)+((*(string-1)-'0')))*2-113;
+    if((*(string-2)>='0')&&(*(string-2)<='9'))
+    {
+        Strength = (int16)(((*(string-2)-'0')*10)+((*(string-1)-'0')))*2-113;
+    }else 
+    {
+        Strength = (int16)(*(string-1)-'0')*2-113;
+    }
+		
 		if((*(string+2)>='0')&&(*(string+2)<='9'))
 		{
 			ErrorRate =(*(string+1)-'0')*10+(*(string+2)-'0');
@@ -698,28 +686,20 @@ printf("Build PPP ERROR \r\n");
 **     Returns     : 	结果
 ** ===================================================================
 */
-int8*  Write_Ip(uint8* Ip,uint8* Port)
+void  Write_Ip(uint8* Ip,uint8* Port)
 {
-    static int8 SendTcpIp[40] = {"AT+TCPSETUP=0,"};
-    uint8 i = 0;
+    int8 SendTcpIp[40] = {"AT+TCPSETUP=0,"};
     uint16 port_temp = 0;
     int8 temp[]="9999";
-    for(;i<4;i++)
-    {
-       itoa((int)*(Ip+i),temp,10);
-       strcat(SendTcpIp,temp);
-       if(i<3)
-       {
-            strcat(SendTcpIp,".");
-       }
-    }
+    strcat(SendTcpIp,(int8 *)Ip);
     port_temp=(uint16)(*Port)<<8;
     port_temp+=*(Port+1);
     itoa((int16)port_temp,temp,10);
     strcat(SendTcpIp,",");
     strcat(SendTcpIp,temp);
 		strcat(SendTcpIp,"\r");
-		return SendTcpIp;
+		NeoWay_SendString((uint8*)SendTcpIp);
+		//return SendTcpIp;
 }
 
 /*
@@ -731,10 +711,9 @@ int8*  Write_Ip(uint8* Ip,uint8* Port)
 ** ===================================================================
 */
 static void DNS_AnalysisGetIp(void)
-{	
-	uint8 i ,m = 0;
-  uint8 temp = 0;
-	volatile int8* string;
+{
+  uint8 i=0;
+  int8* string;
 	NeoWay_SendString((uint8*)DNS_WEB);
 	Delay_ms(NEOWAY_WAIT_TIME);
 	if(strstr((const char *)g_aNeoWayRec,"OK")>0)
@@ -745,49 +724,16 @@ static void DNS_AnalysisGetIp(void)
 			if(strstr((char *)g_aNeoWayRec,"+DNS:")>0)
 			break;
 		}
-		string=strchr((const char *)(g_aNeoWayRec+3),'.');	
-		if(NULL == string)
-		{
-			return ;
-		}		
-		for(i=0;i<3;i++)
+    string=strstr((char *)g_aNeoWayRec,":");
+    for(i=0;i<20;i++)
     {
-        for(m=0;m<3;m++)
-        {
-					  if(('.'==*(string-m-1))||(':'==*(string-m-1)))
-						break;
-            temp +=(*(string-m-1)-'0')*(pow(10,m)) ;
-        }
-        Web_Param.Server_Ip_1[i] = temp;
-        temp = 0;
-        if(i<2)
-        string=strchr((const char *)(string+1),0x2E);
-        if(NULL == string)
-        {
-            return ;
-        }	
-    }
-    for(i=0;i<3;i++)
-    {
-        if(0x0D == *(string+i+1))
-        {
-            break;     
-        }
-        temp += ((*(string+i+1)-'0')*(pow(10,(2-i))));
-    }
-    if(0 == i)
-    {
-        Web_Param.Server_Ip_1[3] = temp;
-    }else if(1 == i)
-    {
-        Web_Param.Server_Ip_1[3] = temp/10;
-    }else if(2 == i)
-		{
-				Web_Param.Server_Ip_1[3] = temp/100;	
-		}    
-		
+        if((0x0d == *(string+1+i))&&(0x0a == *(string+2+i)))
+				{
+					break;				
+				}
+        Web_Param.Server_Ip_1[i]=*(string+1+i);
+    }  
 	}
-
 }
 
 /*
@@ -801,13 +747,8 @@ static void DNS_AnalysisGetIp(void)
 static uint8 BuildTCP_Connet(void)
 {
 	//NeoWay_SendString((uint8*)SEND_TCP_IP); 
-  switch(NeoWaySysPar.NetWork.IpSelectNum)
-  {
-      case  1: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_1,Web_Param.Server_Port_1));break;
-      case  2: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_2,Web_Param.Server_Port_2));break;
-      case  3: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_3,Web_Param.Server_Port_3));break;
-      default: NeoWay_SendString((uint8 *)Write_Ip(Web_Param.Server_Ip_1,Web_Param.Server_Port_1));break;
-  } 
+	Write_Ip(Web_Param.Server_Ip_1,Web_Param.Server_Port_1);
+	
 	Delay_ms(NEOWAY_WAIT_TIME);
  if(strstr((char *)g_aNeoWayRec,"FAIL")>0)
 	{
@@ -1042,19 +983,10 @@ static void Empty_Par(void)
   g_aNeoWayRecNum = 0;
   g_uRecTcpDateNum = 0;
 }
-//static void ReBuild_NetWork(void)
-//{
-//	//确少清空buff数据函数
-//	BuildPPP_Connet();
-//	BuildTCP_Connet();
-//}
 
 void ReBootHardware_Module(void)
 {
-//	if(ON == NeoWaySysPar.Init.ModulePowerState)
-//	{
-//		PowerOff_Module();
-//	}
+
   Empty_Par();
 	GPIO_PinClear(HARDWARE_POWR_CONTORL);
 	Delay_ms(500);
@@ -1128,11 +1060,6 @@ static void Protect_Connet(void)
 		{
 			Temp++;
 		}
-    if(Temp == 5)
-    {
-//        NeoWaySysPar.Init.ModuleRunning = ON;
-//        NeoWaySysPar.Init.FindSimState = ON;
-    }
 	}else if((ON == NeoWaySysPar.NetWork.ConnetTCPState)&&
 		(ON == NeoWaySysPar.NetWork.ConnetPPPState))
 	{		

@@ -120,7 +120,7 @@ void RecMaster_Uart(uint8 date)
 	if(1 == Deal_Date)
 	{
 	  Master_Inf.LostMasterTime = 0;
-    Alarm_State.Gprs_Alarm &=0xFE;//清告警位
+    Alarm_State.Gprs_Alarm = (Alarm_State.Gprs_Alarm & 0xFE);//清告警位
     
 		if(0x03 == g_aRecMasterDate[0])
 		{
@@ -132,13 +132,15 @@ void RecMaster_Uart(uint8 date)
 			Master_Inf.State.SysPower = g_aRecMasterDate[2]&0x01;
 			Master_Inf.State.Pause = g_aRecMasterDate[2]&0x02;
 			Master_Inf.State.Error = g_aRecMasterDate[2]&0x10;
-			Master_Inf.State.NeckMassage = g_aRecMasterDate[4]&0x01;
-			Master_Inf.State.WaistMassage = g_aRecMasterDate[4]&0x02;
-			Master_Inf.State.WholeMassage = g_aRecMasterDate[4]&0x04;
+      Master_Inf.State.Massage = g_aRecMasterDate[4];
+      Collect_Data.Program_State = g_aRecMasterDate[4];
+			//Master_Inf.State.NeckMassage = g_aRecMasterDate[4]&0x01;
+			//Master_Inf.State.WaistMassage = g_aRecMasterDate[4]&0x02;
+			//Master_Inf.State.WholeMassage = g_aRecMasterDate[4]&0x04;
 			Master_Inf.RunningTime=(uint16)(g_aRecMasterDate[5]*60);
 			Master_Inf.RunningTime+=g_aRecMasterDate[6];
 			Master_Inf.Alarm_Num = g_aRecMasterDate[7];	
-
+      
         Old_State =(g_aRecMasterDate[2]&0x13);
 
 /******************************************************/
@@ -203,7 +205,7 @@ void LostMasterCnt(void)
         Master_Inf.LostMasterTime++;
         if(Master_Inf.LostMasterTime==10)
         {
-            Alarm_State.Gprs_Alarm |=0x01;
+            Alarm_State.Gprs_Alarm =(Alarm_State.Gprs_Alarm | 0x01);
         }
         if(Master_Inf.LostMasterTime>=11)
         {

@@ -3,7 +3,7 @@
 static  uint8 *pUART_TxBuff[MAX_UART_NO] = {NULL};           /* pointer to RxBuf */
 static  uint8  *pUART_RxBuff[MAX_UART_NO] = {NULL};           /* pointer to TxBuf */
 static  uint16 gu16UART_TxBuffPos[MAX_UART_NO] = {0};        /* write position to RxBuf */
- static  uint16 gu16UART_RxBuffPos[MAX_UART_NO] = {0};        /* read position to TxBuf */
+static  uint16 gu16UART_RxBuffPos[MAX_UART_NO] = {0};        /* read position to TxBuf */
 static  uint32 gu32UART_BuffSize[MAX_UART_NO] = {0};         /* buffer size*/
 
 extern void NeoWay_UartRec(uint8 Date);
@@ -21,12 +21,13 @@ void UART_SendInt(UART_Type *pUART, uint8_t *pSendBuff, uint32_t u32Length)
 void UART_ReceiveInt(UART_Type *pUART, uint8 *pReceiveBuff, uint32 u32Length)
 {
     uint8_t u8Port = ((uint32_t)pUART-(uint32_t)UART0)>>12;
-
+		pUART_RxBuff[0] = pUART_RxBuff[0];  //没用
+		gu16UART_RxBuffPos[0] =gu16UART_RxBuffPos[0];//没用
     /* save user defined read buffer pointers and size */
     pUART_RxBuff[u8Port]        = pReceiveBuff;	
     gu32UART_BuffSize[u8Port]   = u32Length;	 
     gu16UART_RxBuffPos[u8Port]  = 0;						
-
+		
     UART_EnableRxBuffFullInt(pUART);  					
 }
 

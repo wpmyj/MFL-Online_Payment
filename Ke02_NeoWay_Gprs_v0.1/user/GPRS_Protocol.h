@@ -9,7 +9,7 @@
 
 #define SERIAL_ID_LENGTH        20
 #define IP_NUMBER               3
-#define SERVER_IP_LENGTH        4
+#define SERVER_IP_LENGTH        20
 #define SERVER_PORT_LENGTH      2
 #define CHAIR_ALARM             1  
 #define FAULT             0
@@ -33,7 +33,7 @@
 #define ACK_ORDER_MUST_REPLY    0xFE    //命令，必须应答
 
 
-#define SERIAL_ID       {'3','3','0','C'}
+
 //#define SERIAL_ID       {0}
 
 #define SERVER_IP_1       {122,43,115,207}
@@ -67,6 +67,8 @@ typedef struct {
 
 typedef struct{
     uint8  Serial_Id[SERIAL_ID_LENGTH];
+    uint8  Cell_Id[4];
+    uint8  Local_Id[8];
 }Monitor_Target_01 ;
 
 typedef struct{
@@ -92,14 +94,17 @@ typedef struct {
 }Monitor_Target_04;
 
 typedef struct {
-    uint8   Chair_ServiceCondition;
-    uint8   Start_ProgramState;
-    uint8   Chair_State;
+    uint8   Chair_ServiceCondition; //0x01 未使用、0x02正在使用、0x03设备故障、0x04设备检修
+    uint8   Start_ProgramState; //0x01没有按摩程序启动、0x02按摩椅程序启动成功、0x03按摩椅程序启动不成功
+    uint8   Chair_State; //bit0 开关机、bit1 暂停状态、bit4 错误标志
+    uint8   Program_State;//按摩椅程序启动标志位 bit0颈间按摩状态、bit1腰部按摩状态、bit4全身按摩状态
 }Monitor_Target_05 ;
 
 enum  Device_InfoNum{
   Head_DEV      = 0x00,         
-    Serial_Id   = 0x03
+    Serial_Id   = 0x03,
+    Cell_Id     = 0x04,
+    Local_Id    = 0x05
 
 };
 
@@ -132,7 +137,8 @@ enum Collect_DataNum{
   Head_Coll         = 0x05,
     Chair_ServiceCondition = 0x01,
     Start_ProgramState = 0x02 ,
-    Chair_State = 0x03
+    Chair_State = 0x03,
+    Program_State =0x04
 };
 
 extern Monitor_Target_01 Device_Info;

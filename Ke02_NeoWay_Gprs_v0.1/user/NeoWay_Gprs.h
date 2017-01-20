@@ -29,9 +29,10 @@
 
 #define UART0_BUFFLENGTH   10
 
-#define PORT_EMERGOFF  	GPIO_PTC1
-#define PORT_ON_OFF   	GPIO_PTD5 
-#define HARDWARE_POWR_CONTORL    GPIO_PTD1
+#define PORT_EMERGOFF  	GPIO_PTC1   //
+#define PORT_ON_OFF   GPIO_PTC3//	GPIO_PTC3   //  GPIO_PTD5
+#define HARDWARE_POWR_CONTORL    GPIO_PTD1  //
+
 //帧间隔时间
 #define NEOWAY_REC_INTERVAL_TIME  20
 #define NEOWAY_REC_REBOOT_TIME 120
@@ -48,7 +49,7 @@
 //链路，服务器IP，端口号
 #define SEND_TCP_IP ("AT+TCPSETUP=0,121.43.115.207,6001\r")
 
-#define DNS_WEB ("at+dns=\"www.ogawaplus.com\"\r")
+#define DNS_WEB ("at+dns=\"www.ogawaplus.com\"\r")  // chair.jjkhealth.cn
 
 
 //接收用到的参数
@@ -76,6 +77,7 @@ typedef struct{
 		uint8 FindSimState;
 		uint8 StartInitState;
 		uint8 GprsSendState;
+		volatile uint8 GprsStep;
 	}Init;
 	struct{
 		uint8 ConnetPPPState;
@@ -97,11 +99,11 @@ extern NeoWayExternalPar_ NeoWayExternalPar;
 extern NeoWaySysPar_ NeoWaySysPar;
 void Delay_ms(uint16 num);
 void NeoWayBoard_Init(void);
-static void NeoWayIp_Init(void);
 void NeoWay_Rtc1s(void);
 uint8 NeoWay_Init(void);
 static uint8 Get_Cgsn(void);
-static uint8 Get_Cimi(void);
+//static uint8 Get_Cimi(void);
+void NeoWay_GetCellLocalID(void);
 static uint8 NetWork_Login(void);
 static uint8 Signal_Strength(void);
 static uint8 SetProtocol_Stack(void);

@@ -23,13 +23,35 @@ void Rtc_Isr(void)
 	if(Cnt_50Ms>=50)
 	{
 		Cnt_50Ms=0;
+    Light_Event();
 		g_uRTC50MsEvent=1;
 	}
 	if(Cnt_1S>=1000)
 	{
 		Cnt_1S=0;
 		g_uRTC1SEvent=1;
-	}
-	
-		
+  }	
+}
+
+void Light_Event(void)
+{
+   static uint16 TargetTime=0;
+   static uint16 Time=0;
+   Time++;
+   if(ON==NeoWayExternalPar.NetWorkConnetState) 
+   {
+        TargetTime= 20;
+   }else
+   {
+        TargetTime =2;
+   }
+   if(Time>=TargetTime)
+   {
+        Time=0;
+        GPIO_PinToggle(LIGHT);
+   }else if(Time>=30)
+   {
+        Time = 0;
+   }
+   
 }

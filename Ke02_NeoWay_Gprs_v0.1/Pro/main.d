@@ -25,10 +25,11 @@
 .\main.o: ..\user\uartApp.h
 .\main.o: ..\user\AdcApp.h
 .\main.o: ..\user\RtcApp.h
-.\main.o: ..\drivers\pit.h
+.\main.o: ..\user\init.h
 .\main.o: ..\user\NeoWay_Gprs.h
 .\main.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
 .\main.o: d:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+.\main.o: ..\drivers\pit.h
 .\main.o: ..\user\GPRS_Protocol.h
 .\main.o: ..\drivers\crc.h
 .\main.o: ..\user\Connet_Master.h

@@ -1,1 +1,16 @@
 
+
+
+注意点：
+
+二维码 地址：
+原测试版本二维码：http://massage.jiajkang.com/index.jsp?code=序列号
+运营版本二维码：http://zhifu.ogawaplus.com/index.jsp?code=序列号
+
+
+修改版本代码
+1、登入网址
+2、端口号
+3、
+
+

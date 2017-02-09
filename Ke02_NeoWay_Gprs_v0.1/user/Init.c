@@ -19,6 +19,12 @@ void Gpio_Init(void)
 {
 	GPIO_PinInit(LIGHT, GPIO_PinOutput);
   GPIO_PinSet(LIGHT);
+#ifndef DEBUG   //如果没有进行DEBUG ，需要将IO口初始化为输出高电平
+	GPIO_PinInit(GPIO_PTD6, GPIO_PinOutput);
+	GPIO_PinInit(GPIO_PTD7, GPIO_PinOutput);	
+	GPIO_PinSet(GPIO_PTD6);
+	GPIO_PinSet(GPIO_PTD7);
+#endif
 }
 void Uart_Init(void)
 {

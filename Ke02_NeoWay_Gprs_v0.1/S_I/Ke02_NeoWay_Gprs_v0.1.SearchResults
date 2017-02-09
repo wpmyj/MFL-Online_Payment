@@ -1,10 +1,73 @@
----- g_aRecMasterDate[2] Matches (6 in 1 files) ----
-Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):       if(((g_aRecMasterDate[2]&0x13)!=Old_State)&&(0==Gprs_flag.bits.StateChangeFlag))
-Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):        Collect_Data.Chair_State=(g_aRecMasterDate[2]&0x13);
-Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):			Master_Inf.State.SysPower = g_aRecMasterDate[2]&0x01;
-Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):			Master_Inf.State.Pause = g_aRecMasterDate[2]&0x02;
-Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):			Master_Inf.State.Error = g_aRecMasterDate[2]&0x10;
-Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):        Old_State =g_aRecMasterDate[2];
----- g_aRecMasterDate[2] Search Errors Encountered (1) ----
-The following 1 files could not be processed:
-E:\Easepal\项目\在线自助支付操作系统\M590E\程序\Online_Payment\Ke02_NeoWay_Gprs_v0.1\Pro\Ke02_NeoWay_Gprs_v0.build_log.htm : File could not be opened.
+---- UART1 Matches (79 in 21 files) ----
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):#define UART1_BUFFLENGTH   10
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):uint8 Uart1_ReceiveBuff[UART1_BUFFLENGTH]={0};
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):	UART_Init(UART1,&sUARTConfig);
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):	UART_ReceiveInt(UART1, Uart1_ReceiveBuff, UART1_BUFFLENGTH);
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):	NVIC_EnableIRQ(UART1_IRQn); 
+Connet_Master.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):	NVIC_SetPriority(UART1_IRQn,3);		
+Connet_Master.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):#define UART_CONNET_MASTER  UART1
+Init.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):#define UART1_BUFFLENGTH   10
+Isr.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):#define VECTOR_029  		UART1_Isr   
+Isr.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):extern void UART1_Isr(void);
+Ke02_config.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\platforms):    #define TERM_PORT   UART2             /*!< UART1 is used on KE02 freedom board */
+Ke02_NeoWay_Gprs_v0.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro): <LI><a href="#[19]">UART1_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
+Ke02_NeoWay_Gprs_v0.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro): <LI><a href="#[3]">UART1_Isr</a> from uart.o(.text) referenced from vectors.o(.ARM.__AT_0x00000000)
+Ke02_NeoWay_Gprs_v0.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro):<P><STRONG><a name="[19]"></a>UART1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_mke02z2.o(.text))
+Ke02_NeoWay_Gprs_v0.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro):<P><STRONG><a name="[3]"></a>UART1_Isr</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, uart.o(.text))
+Ke02_NeoWay_Gprs_v0.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro):<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = UART1_Isr
+Ke04_config.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\platforms):#define UART1           NULL
+Ke04_config.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\platforms):    #define TERM_PORT   UART0               /*!< UART1 is used on KE04 freedom board */
+Ke06_config.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\platforms):    #define TERM_PORT   UART1              /*!< UART0 is used on KE06 EVB board */
+Ke06_config.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\platforms):    #define TERM_PORT   UART1               /*!< UART1 is used on KE06 freedom board */
+Main.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):				 uart1 380W 36-37
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):  UART1_IRQn                   = 13,               /**< UART1 status/error interrupt */
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define SIM_SCGC_UART1_MASK                      0x200000u
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define SIM_SCGC_UART1_SHIFT                     21
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):/** Peripheral UART1 base address */
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define UART1_BASE                               (0x4006B000u)
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):/** Peripheral UART1 base pointer */
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define UART1                                    ((UART_Type *)UART1_BASE)
+MKE02Z2.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define UART_BASES                               { UART0, UART1, UART2 }
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):  UART1_IRQn                   = 13,               /**< UART1 status/error interrupt */
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define SIM_PINSEL1_UART1PS_MASK                 0x1000u
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define SIM_PINSEL1_UART1PS_SHIFT                12
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define SIM_SCGC_UART1_MASK                      0x200000u
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define SIM_SCGC_UART1_SHIFT                     21
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):/** Peripheral UART1 base address */
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define UART1_BASE                               (0x4006B000u)
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):/** Peripheral UART1 base pointer */
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define UART1                                    ((UART_Type *)UART1_BASE)
+MKE06Z4.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu\headers):#define UART_BASES                               { UART0, UART1, UART2 }
+Motor_driver.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro): <LI><a href="#[18]">UART1_IRQHandler</a> from startup_mke02z2.o(.text) referenced from startup_mke02z2.o(RESET)
+Motor_driver.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro): <LI><a href="#[3]">UART1_Isr</a> from uart.o(.text) referenced from vectors.o(.ARM.__AT_0x00000000)
+Motor_driver.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro):<P><STRONG><a name="[18]"></a>UART1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_mke02z2.o(.text))
+Motor_driver.htm (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\pro):<P><STRONG><a name="[3]"></a>UART1_Isr</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, uart.o(.text))
+NeoWay_Gprs.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):**		 Port				 :	NeoWay Use:	Uart1
+NeoWay_Gprs.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\user):#define NEOWAY_DEBUG_UART UART1
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):* @brief select PWTIN3 input signal from UART1RX.
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):__STATIC_INLINE void SIM_SetPWTIN3InputFromUART1Rx(void)
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):* @brief remap UART1 to pin PTC6/7 (default). 
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):__STATIC_INLINE void SIM_RemapUART1ToPTC_6_7(void)
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    SIM->PINSEL1 &= ~SIM_PINSEL1_UART1PS_MASK;    
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):* @brief remap UART1 to pin PTF2/3. 
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):__STATIC_INLINE void SIM_RemapUART1ToPTF_2_3(void)
+Sim.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    SIM->PINSEL1 |= SIM_PINSEL1_UART1PS_MASK;    
+startup_MKE02Z2.s (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):                DCD     UART1_IRQHandler  ; UART1 status/error interrupt
+startup_MKE02Z2.s (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):                EXPORT  UART1_IRQHandler     [WEAK]
+startup_MKE02Z2.s (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):UART1_IRQHandler
+startup_MKE06Z4.s (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):                DCD     UART1_IRQHandler  ; UART1 status/error interrupt
+startup_MKE06Z4.s (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):                EXPORT  UART1_IRQHandler     [WEAK]
+startup_MKE06Z4.s (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):UART1_IRQHandler
+Sysinit.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):                         SIM_SCGC_UART0_MASK | SIM_SCGC_UART1_MASK | 
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    ASSERT((pUART == UART0) || (pUART == UART1) || (pUART == UART2));
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):	else if (pUART == UART1)
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):        SIM->SCGC |= SIM_SCGC_UART1_MASK;
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    ASSERT((pUART == UART0) || (pUART == UART1) || (pUART == UART2));
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    ASSERT((pUART == UART0) || (pUART == UART1) || (pUART == UART2));
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    ASSERT((pUART == UART0) || (pUART == UART1) || (pUART == UART2));
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    ASSERT((pUART == UART0) || (pUART == UART1) || (pUART == UART2));
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):* @brief uart1 interrupt service routine.
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):void UART1_Isr(void)
+Uart.c (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):    UART_Callback(UART1);
+Uart.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\drivers):void UART1_Isr(void);
+Vectors.h (e:\easepal\项目\在线自助支付操作系统\m590e\程序\online_payment\ke02_neoway_gprs_v0.1\cpu):#define VECTOR_029      default_isr     // 0x0000_0074 29    13     SCI1             UART1

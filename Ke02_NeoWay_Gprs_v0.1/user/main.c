@@ -38,13 +38,21 @@ volatile uint8 Key=0;
 
 int main (void)
 {
+
 	Board_Init();
 	ConnetBoard_Init();  
   //Init_Gprs_Device();
 	NeoWayBoard_Init();
-	Delay_ms(400);  //等待采集的电源电压值稳定
-  Read_MasterID();
-	NeoWayExternalPar.HardwareRebootState = ON;	
+  Delay_ms(400);  //必须要有的延时，使底板初始化完成
+/********************读取ID************************/	
+    SendMaster_KeyValue(0);
+		SendMaster_Date();
+    Delay_ms(50);
+    Read_MasterID();
+    SendMaster_Date();
+    Delay_ms(50);
+/********************读取ID结束************************/
+  NeoWayExternalPar.HardwareRebootState = ON;
   while(1)
 	{	
 		/********************模块回码解析************************/		
@@ -53,6 +61,7 @@ int main (void)
     ReBoot_Module();
 		/********************时间片解析**************************/	
 		Rtc_Event();
+    SendMaster_Date();
 		if(1==TempFlag)
 		{
 			TempFlag=0;

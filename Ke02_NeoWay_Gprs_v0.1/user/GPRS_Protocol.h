@@ -15,7 +15,7 @@
 #define FAULT             0
 
 #define FRAME_MAX_LENGTH  128
-#define PROTECT_START_TIME 3
+#define PROTECT_START_TIME 4
 #define PROTECT_PROGRAM_TIME 1500
 #define FRAME_HEADER            0X5E
 #define FRAME_END               0x7E
@@ -25,7 +25,7 @@
 #define ORDER_ALARM             0x03     //告警
 #define ORDER_INQUIRE           0x04     //查询
 #define ORDER_SET               0x05     //设置
-#define ORDER_SendInfo			0x06     //上送信息
+#define ORDER_SendInfo			    0x06     //上送信息
 
 #define ACK_SUCCEED             0x01     //成功
 #define ACK_CRC_FAULT           0x02     //CRC校验错误

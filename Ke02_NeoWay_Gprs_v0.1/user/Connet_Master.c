@@ -47,10 +47,12 @@ void RecMaster_Uart(uint8 date)
 						{
 							TempDate[0] = date;
 							RecList = 1;
-						}else if('$' == date)
+						}else
 						{
-							TempDate[0] = date;
-							RecList = 3;
+							TempDate[0] = 0;
+							TempDate[1] = 0;
+							RecList = 0;
+              i=0;
 						}
 						break;
 		case 1: if(0x01 == date)
@@ -115,7 +117,9 @@ void RecMaster_Uart(uint8 date)
 							RecList = 0;							
 							i=0;
 						}break;
-		default: break;
+		default:	TempDate[0] = 0;
+							TempDate[1] = 0;
+							RecList = 0;i=0; break;
 	}
 	if(1 == Deal_Date)
 	{
@@ -134,21 +138,21 @@ void RecMaster_Uart(uint8 date)
 			Master_Inf.State.Error = g_aRecMasterDate[2]&0x10;
       Master_Inf.State.Massage = g_aRecMasterDate[4];
       Collect_Data.Program_State = g_aRecMasterDate[4];
-			//Master_Inf.State.NeckMassage = g_aRecMasterDate[4]&0x01;
-			//Master_Inf.State.WaistMassage = g_aRecMasterDate[4]&0x02;
-			//Master_Inf.State.WholeMassage = g_aRecMasterDate[4]&0x04;
 			Master_Inf.RunningTime=(uint16)(g_aRecMasterDate[5]*60);
 			Master_Inf.RunningTime+=g_aRecMasterDate[6];
 			Master_Inf.Alarm_Num = g_aRecMasterDate[7];	
       
-        Old_State =(g_aRecMasterDate[2]&0x13);
+      Old_State =(g_aRecMasterDate[2]&0x13);
 
 /******************************************************/
-			SendMaster_Date();
+      Master_Inf.SendMasterDateFlag = ON;
+			//SendMaster_Date();
 		}else if(0x06 == g_aRecMasterDate[0])
 		{
     			Ext_Inf.NoRespond_State=0;
-    			SendMaster_Date();
+          
+          Master_Inf.SendMasterDateFlag = ON;
+    			//SendMaster_Date();
 		}
 	}else if(2 == Deal_Date)
 	{
@@ -164,7 +168,9 @@ void RecMaster_Uart(uint8 date)
 void SendMaster_Date(void)
 {
 	uint8 i = 0,Checkout = 0;
-	
+	if(!Master_Inf.SendMasterDateFlag)return; 
+  Master_Inf.SendMasterDateFlag = OFF;
+  
 	g_aSendMasterDate[0] = 0x03;
 	g_aSendMasterDate[1] = 0x01;
 	g_aSendMasterDate[2] = 0x00;
@@ -182,12 +188,12 @@ void SendMaster_Date(void)
 	}
 	g_aSendMasterDate[4] = Checkout;	
 	UART_SendWait(UART_CONNET_MASTER,g_aSendMasterDate,5);	
-
 }
 
 void SendMaster_KeyValue(uint8 KeyValue)
 {
 	Ext_Inf.NoRespond_State = 1;
+  Master_Inf.SendMasterDateFlag = ON;
 	Ext_Inf.KeyValue = KeyValue;
 }
 
@@ -203,14 +209,12 @@ void LostMasterCnt(void)
     if(ON==NeoWayExternalPar.NetWorkConnetState)
     {
         Master_Inf.LostMasterTime++;
-        if(Master_Inf.LostMasterTime==10)
+        if(Master_Inf.LostMasterTime==5)
         {
+            Master_Inf.LostMasterTime=0;
+            SendMaster_KeyValue(0);
             Alarm_State.Gprs_Alarm =(Alarm_State.Gprs_Alarm | 0x01);
         }
-        if(Master_Inf.LostMasterTime>=11)
-        {
-            Master_Inf.LostMasterTime =11;
-        }
     }
-
 }
+

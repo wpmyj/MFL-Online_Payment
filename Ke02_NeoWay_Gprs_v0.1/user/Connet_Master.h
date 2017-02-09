@@ -11,17 +11,13 @@ typedef struct{
 	struct{
 		uint8 SysPower;
 		uint8 Pause;
-		uint8 Error;	
-		uint8 NeckMassage;
-		uint8 WaistMassage;
-		uint8 WholeMassage;
+		uint8 Error;	 
     uint8 Massage;
-	}State;
-	
-	uint8 Alarm_Num;
-	uint8 Serial_Id[SERIAL_ID_LENGTH];
+	}State;	
+	uint8 Alarm_Num; 
 	uint16 RunningTime;
   uint16 LostMasterTime;
+  uint8 SendMasterDateFlag;
 }Master_Inf_;
 typedef struct{
 	uint8 DownloadID_State;

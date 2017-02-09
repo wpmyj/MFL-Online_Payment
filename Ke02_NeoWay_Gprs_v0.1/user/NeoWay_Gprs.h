@@ -8,7 +8,7 @@
 #include "uart.h"
 #include "uartApp.h"
 #include "gpio.h"
-#define DEBUG
+//#define DEBUG
 #ifdef  DEBUG
 //关键信息-重要错误
 #define DEBUG_RANK_DIAMOND     
@@ -49,7 +49,7 @@
 //链路，服务器IP，端口号
 #define SEND_TCP_IP ("AT+TCPSETUP=0,121.43.115.207,6001\r")
 
-#define DNS_WEB ("at+dns=\"www.ogawaplus.com\"\r")  // chair.jjkhealth.cn
+#define DNS_WEB ("at+dns=\"www.ogawaplus.com\"\r")  // chair.jjkhealth.cn  www.ogawaplus.com
 
 
 //接收用到的参数

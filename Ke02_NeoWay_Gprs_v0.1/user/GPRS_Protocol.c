@@ -209,12 +209,11 @@ static void Gprs_AlarmEvent(void)
 
   if(Alarm_State.Gprs_Alarm!=Old_GprsAlarm)
   { //GPRS告警上报
-    Gprs_flag.bits.AlarmFlag =ON;
-    Gprs_flag.bits.ReportAlarm=ON; //开启循环告警标志位
-    Collect_Data.Chair_ServiceCondition =0x03;
-		//Set_Param.Lock_Chair=0x01;//设备上锁
-    Send_GprsAlarm(SendOriginal);
-    flag =2;
+//    Gprs_flag.bits.AlarmFlag =ON;
+//    Gprs_flag.bits.ReportAlarm=ON; //开启循环告警标志位
+//    Collect_Data.Chair_ServiceCondition =0x03;
+     Send_GprsAlarm(SendOriginal);
+//    flag =2;
     Old_GprsAlarm=Alarm_State.Gprs_Alarm;
   }else  if(Master_Inf.Alarm_Num!=Old_ChairAlarm)
   {  //椅子告警上报
@@ -231,7 +230,7 @@ static void Gprs_AlarmEvent(void)
 	{
 		Gprs_flag.bits.AlarmTime++;
     //告警解除
-    if((0 == Alarm_State.Gprs_Alarm)&&(0 == Master_Inf.Alarm_Num))
+    if(0 == Master_Inf.Alarm_Num)
     {  
         Alarm_State.Chair_Alarm=0;        
         Collect_Data.Chair_ServiceCondition =0x01;
@@ -241,8 +240,7 @@ static void Gprs_AlarmEvent(void)
         Gprs_flag.bits.ReportAlarm =OFF;
         Old_ChairAlarm = 0;
         Old_GprsAlarm  = 0;
-    }
-    
+    }    
 	}
 	if(	(ON==Gprs_flag.bits.AlarmFlag)&&
 		((Gprs_flag.bits.AlarmTime==60)||
@@ -313,23 +311,11 @@ static void Gprs_HeartbeatEvent(void)
 */
 uint8 Gprs_StartCodeEvent(void)
 {	
-  if(Gprs_flag.bits.ProtectOpenProgramTime <= PROTECT_START_TIME)
-  {
-      if(Master_Inf.State.Massage>0)
-      {
-        Collect_Data.Start_ProgramState = 0x02;     
-        Gprs_flag.bits.StateChange |= 0x01;
-        Gprs_flag.bits.ProtectOpenProgramTime=4;
-      }else if(Gprs_flag.bits.ProtectOpenProgramTime == PROTECT_START_TIME)
-      {
-        Collect_Data.Start_ProgramState = 0x03;
-        Gprs_flag.bits.StateChange |= 0x01;
-      }
-  }else if(Gprs_flag.bits.ProtectOpenProgramTime > PROTECT_START_TIME)
+  if(Gprs_flag.bits.ProtectOpenProgramTime > PROTECT_START_TIME)
   {
     if((0 == Master_Inf.State.Massage)||(Gprs_flag.bits.ProtectOpenProgramTime >PROTECT_PROGRAM_TIME))
     {
-        Collect_Data.Start_ProgramState = 0x01;
+        //Collect_Data.Start_ProgramState = 0x01;
         Gprs_flag.bits.ProtectOpenProgramTime = 0;
         Collect_Data.Chair_ServiceCondition = 0x01;
         Gprs_flag.bits.StartProgram = OFF;
@@ -338,8 +324,7 @@ uint8 Gprs_StartCodeEvent(void)
         	SendMaster_KeyValue(1);
         }		
     }
-  }
-	
+  }	
 	if((ON == Gprs_flag.bits.Start_Program)&&(0x01==Collect_Data.Chair_ServiceCondition)
 		&&(0x00==Set_Param.Lock_Chair))
 	{			
@@ -357,7 +342,10 @@ uint8 Gprs_StartCodeEvent(void)
 	{	
 		if(0x01==Set_Param.Stop_Chair)
 		{
-			SendMaster_KeyValue(1);	
+		  if(Master_Inf.State.SysPower)
+      {
+        SendMaster_KeyValue(1);	
+      }			
 			Gprs_flag.bits.Stop_Chair=OFF;
 			Collect_Data.Chair_ServiceCondition=0x01;
 			Collect_Data.Start_ProgramState = 0x01;
@@ -753,11 +741,14 @@ static uint8 Send_SetInfo(const uint8 * source,uint8 *target,const uint8 total_l
 	}	 
   if(ON==Gprs_flag.bits.Start_Program)
   {
-    if((Master_Inf.State.Massage>0)||(ON == Set_Param.Lock_Chair)
-      ||(0!=Alarm_State.Gprs_Alarm)||(0x01 != Collect_Data.Chair_ServiceCondition)
-      ||(0!=Alarm_State.Chair_Alarm))
+    if((Master_Inf.State.Massage>0)
+      ||(ON == Set_Param.Lock_Chair)
+      ||(0x01 != Collect_Data.Chair_ServiceCondition)
+      ||(0!=Alarm_State.Chair_Alarm)
+      ||(0!=Alarm_State.Gprs_Alarm))
     { //按摩椅时间不未0，设备上锁、gprs无故障、设备无故障
         *(target+length-1) =0xff;
+        Gprs_flag.bits.Start_Program=OFF;
     }
   }
 	temp_crc = crc16(target,length); //装载CRC
@@ -913,7 +904,7 @@ static uint8* Matching_DEV(const uint8 *dev)
 	switch(*dev)
 	{
 		case Serial_Id 		: return (Device_Info.Serial_Id);
-    case Cell_Id 		: return (Device_Info.Cell_Id);
+    case Cell_Id 		  : return (Device_Info.Cell_Id);
     case Local_Id 		: return (Device_Info.Local_Id);
 		default  	   		: return  NULL;
 	}
@@ -1018,7 +1009,7 @@ void ChairStateChange(void)
     {
         if(0x01 == (Gprs_flag.bits.StateChange&0x01))
         {
-            Send_ChangeState(SendOriginal,0x0502);
+           // Send_ChangeState(SendOriginal,0x0502);
             Gprs_flag.bits.StateChange&=0xFE;
         }else if(0x02 == (Gprs_flag.bits.StateChange&0x02))
         {
@@ -1028,3 +1019,4 @@ void ChairStateChange(void)
     }
 
 }
+
